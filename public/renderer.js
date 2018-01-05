@@ -6,11 +6,20 @@ ws.onopen = function () {
 }
 
 ws.onmessage = function (ev) {
-    console.log('Hallo Klause');
-    let test = { port: 4201, print: "test test" };
-
+    let test = safelyParseJSON(ev.data);
+    console.log(test);
+    test.print = 'new';
     setTimeout(() => {
         ws.send(JSON.stringify(test));
     }, 3000);
 }
 
+const safelyParseJSON = (res) => {
+    let parsed;
+    try {
+        parsed = JSON.parse(res);
+    } catch (e) {
+        parsed = 'null';
+    }
+    return parsed;
+}

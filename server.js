@@ -15,11 +15,13 @@ app.listen(config.port, function (res) {
 });
 
 wss.on('connection', function (ws) {
-  ws.send(`${new Date()}`);
+  const test = { port: 4000, print: "test test" };
+  ws.send(JSON.stringify(test));
   ws.on('message', function (message) {
     let msg = safelyParseJSON(message);
-    console.log('received: ', msg);
-    ws.send(`${msg}`);
+    msg.print = "new test";
+    console.log(`received: `, msg);
+    ws.send(JSON.stringify(msg));
   });
 })
 
