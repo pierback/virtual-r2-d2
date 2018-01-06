@@ -10,4 +10,4 @@ exports.parseJSON = res => {
 
 exports.stringifyJSON = test => JSON.stringify(test);
 
-exports.Log = res => console.log(res);
+exports.log = console.log.bind(console);
