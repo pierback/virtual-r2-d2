@@ -17,11 +17,13 @@ body {
 
 #r2d2-wrapper {
     width: 225px;
-    margin: 0 auto;
     position: absolute;
+
+    /* margin: 0 auto;
+    
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 /** 02 - Head **/
