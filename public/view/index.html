@@ -11,156 +11,157 @@
     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;height: 100%;margin-top: 50px">
         <!-- <canvas id="myCanvas" width="578" height="200"></canvas> -->
         <button id="stop-btn" style="display: flex;transform: scale(2.5); display:none">Stop</button>
-        <div id="r2d2-wrapper" style="transform: scale(0.5);">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;height: 100%;margin-top: 50px">
+            <div id="r2d2-wrapper" style="transform: scale(0.5);">
 
-            <div id="r2d2-head">
+                <div id="r2d2-head">
 
-                <div class="top"></div>
-                <div class="top-left"></div>
-                <div class="top-right"></div>
+                    <div class="top"></div>
+                    <div class="top-left"></div>
+                    <div class="top-right"></div>
 
-                <div id="eye-wrap">
-                    <div class="eye"></div>
-                    <div class="bot-left"></div>
-                    <div class="bot-right"></div>
-                </div>
-                <!--end #eye-wrap-->
-
-                <div id="bottom-row">
-
-                    <div class="block one"></div>
-                    <div class="block two"></div>
-
-                    <div class="block three">
-                        <div class="gray top"></div>
-                        <div class="gray bottom"></div>
+                    <div id="eye-wrap">
+                        <div class="eye"></div>
+                        <div class="bot-left"></div>
+                        <div class="bot-right"></div>
                     </div>
-                    <!--end .block.three-->
+                    <!--end #eye-wrap-->
 
-                    <div class="block four"></div>
+                    <div id="bottom-row">
 
-                    <div class="block five">
+                        <div class="block one"></div>
+                        <div class="block two"></div>
+
+                        <div class="block three">
+                            <div class="gray top"></div>
+                            <div class="gray bottom"></div>
+                        </div>
+                        <!--end .block.three-->
+
+                        <div class="block four"></div>
+
+                        <div class="block five">
+                            <div class="dot"></div>
+                        </div>
+                        <!--end .block.five-->
+
+                        <div class="black"></div>
+                        <div class="block six"></div>
+                        <div class="block seven"></div>
+
+                    </div>
+                    <!--end #bottom-row-->
+
+
+                </div>
+                <!--end #r2d2-head-->
+
+                <div id="r2d2-neck">
+                    <div class="stripe"></div>
+                    <div class="spacer"></div>
+                </div>
+
+                <div id="r2d2-body">
+
+                    <ul class="main-stripes">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+
+                    <div class="outline one"></div>
+                    <div class="outline two"></div>
+                    <div class="outline three"></div>
+                    <div class="outline four"></div>
+                    <div class="outline five"></div>
+                    <div class="outline six"></div>
+                    <div class="outline seven"></div>
+                    <div class="outline eight"></div>
+                    <div class="outline nine"></div>
+                    <div class="outline ten"></div>
+                    <div class="outline eleven"></div>
+
+                    <div class="gray-block"></div>
+
+                    <div class="chest">
+                        <div class="block top"></div>
+                        <div class="block bottom"></div>
+                    </div>
+                    <!--end .chest-->
+
+                    <div class="crosshairs">
+                        <div class="outer-ring"></div>
+                        <div class="vert"></div>
+                        <div class="hor"></div>
+                        <div class="inner-ring"></div>
+                    </div>
+                    <!--end .crosshair-->
+
+                    <div class="octagon">
                         <div class="dot"></div>
                     </div>
-                    <!--end .block.five-->
+                    <!--end .octagon-->
 
-                    <div class="black"></div>
-                    <div class="block six"></div>
-                    <div class="block seven"></div>
+                    <ul class="six-hor-stripes">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
 
-                </div>
-                <!--end #bottom-row-->
+                    <ul class="three-vert-stripes">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
 
+                    <div id="left-leg">
 
-            </div>
-            <!--end #r2d2-head-->
+                        <div class="spacer"></div>
 
-            <div id="r2d2-neck">
-                <div class="stripe"></div>
-                <div class="spacer"></div>
-            </div>
+                        <div class="bulk">
+                            <div class="stripe"></div>
+                            <div class="square"></div>
+                            <div class="foot"></div>
+                        </div>
+                        <!--end .bulk-->
 
-            <div id="r2d2-body">
-
-                <ul class="main-stripes">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-
-                <div class="outline one"></div>
-                <div class="outline two"></div>
-                <div class="outline three"></div>
-                <div class="outline four"></div>
-                <div class="outline five"></div>
-                <div class="outline six"></div>
-                <div class="outline seven"></div>
-                <div class="outline eight"></div>
-                <div class="outline nine"></div>
-                <div class="outline ten"></div>
-                <div class="outline eleven"></div>
-
-                <div class="gray-block"></div>
-
-                <div class="chest">
-                    <div class="block top"></div>
-                    <div class="block bottom"></div>
-                </div>
-                <!--end .chest-->
-
-                <div class="crosshairs">
-                    <div class="outer-ring"></div>
-                    <div class="vert"></div>
-                    <div class="hor"></div>
-                    <div class="inner-ring"></div>
-                </div>
-                <!--end .crosshair-->
-
-                <div class="octagon">
-                    <div class="dot"></div>
-                </div>
-                <!--end .octagon-->
-
-                <ul class="six-hor-stripes">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-
-                <ul class="three-vert-stripes">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-
-                <div id="left-leg">
-
-                    <div class="spacer"></div>
-
-                    <div class="bulk">
-                        <div class="stripe"></div>
-                        <div class="square"></div>
-                        <div class="foot"></div>
                     </div>
-                    <!--end .bulk-->
+                    <!--end #left-leg-->
 
-                </div>
-                <!--end #left-leg-->
+                    <div id="right-leg">
 
-                <div id="right-leg">
+                        <div class="spacer"></div>
 
-                    <div class="spacer"></div>
+                        <div class="bulk">
+                            <div class="stripe"></div>
+                            <div class="square"></div>
+                            <div class="foot"></div>
+                        </div>
+                        <!--end .bulk-->
 
-                    <div class="bulk">
-                        <div class="stripe"></div>
-                        <div class="square"></div>
-                        <div class="foot"></div>
                     </div>
-                    <!--end .bulk-->
+                    <!--end #right-leg-->
 
                 </div>
-                <!--end #right-leg-->
+                <!--end #r2d2-body-->
 
-            </div>
-            <!--end #r2d2-body-->
+                <div id="r2d2-bottom"></div>
 
-            <div id="r2d2-bottom"></div>
+                <div id="front-leg">
 
-            <div id="front-leg">
+                    <div class="block"></div>
 
-                <div class="block"></div>
+                    <div class="foot">
+                        <div class="stripe"></div>
+                    </div>
+                    <!--end .foot-->
 
-                <div class="foot">
-                    <div class="stripe"></div>
                 </div>
-                <!--end .foot-->
-
+                <!--end #front-leg-->
             </div>
-            <!--end #front-leg-->
-
         </div>
     </div>
     <!--end #r2d2-wrapper-->
