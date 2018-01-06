@@ -1,33 +1,37 @@
 {
-    "eslint.enable": true,
-    "eslint.options": {
-        "extensions": [
-            ".html",
-            ".js",
-            ".vue",
-            ".jsx"
-        ],
-        "no-debugger": "off"
-    },
-    "eslint.validate": [
-      {
+  "eslint.enable": true,
+  "eslint.options": {
+    "extensions": [
+      ".html",
+      ".js",
+      ".vue",
+      ".jsx"
+    ],
+    "no-debugger": "off"
+  },
+  "eslint.validate": [
+    {
       "language": "html",
       "autoFix": true
-      },
-      {
-        "language": "vue",
-        "autoFix": true
-      },
-      {
-        "language": "javascript",
-        "autoFix": true
-      },
-      {
-        "language": "javascriptreact",
-        "autoFix": true
-      }
-    ],
-    "eslint.run": "onSave",
-    "eslint.autoFixOnSave": true,
-    "editor.formatOnSave": false,
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    }
+  ],
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange"
 }
