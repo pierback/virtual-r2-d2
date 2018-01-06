@@ -9,3 +9,5 @@ exports.parseJSON = res => {
 };
 
 exports.stringifyJSON = test => JSON.stringify(test);
+
+exports.Log = res => console.log(res);

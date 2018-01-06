@@ -1,0 +1,21 @@
+{
+  "name": "virtual-r2-d2",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Fabian <fabian.pieringer@student.uni-augsburg.de>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/pierback/virtual-r2-d2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "canvas-text-wrapper": "^0.9.3"
+  }
+}
