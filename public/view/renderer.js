@@ -1,6 +1,6 @@
 const { parseJSON, stringifyJSON, Log } = require('/scripts/helper.js');
 //TODO: require bower_modules in rederer.js not in index.html
-//const { CanvasTextWrapper } = require('/scripts/canvas-text-wrapper.js');
+/* const { CanvasTextWrapper } = require('/scripts/canvas-text-wrapper.js'); */
 const ws = new WebSocket('ws://localhost:4000');
 ws.onopen = function () {
     Log('websocket is connected ...');
