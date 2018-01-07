@@ -1,53 +1,50 @@
 //@ts-checkts
 const { moveR2 } = require('./act.js');
-const { moveBall } = require('./react.js');
-let interval, speed;
-let end = false;
-const ballDisp = false;
+const { moveBall, hideBall } = require('./react.js');
 
-function move(ballDisplayed = false, env, r2d2) {
-    let pos = r2d2.getPosX() + 1;
-    let touchedEdges = 0;
-    speed = 4 * randSign();
-    interval = setInterval(() => {
-        if (end && Math.abs(r2d2.getPosX() - r2d2.startPosX()) <= 15) {
+
+export function move(ballDisplayed = false, env, robot) {
+    //let _interval;
+    let _end = false;
+    let _touchedEdges = 0;
+    let _speed = 4 * randSign();
+    let _curRobotPosX = robot.getPosX() + 1;
+    const _robotStartPosX = robot.x;
+
+    const _interval = setInterval(() => {
+        if (_end && Math.abs(robot.getPosX() - robot.x) <= 15) {
             stop();
         }
-        if (pos <= env.canvasOffset.left || pos >= (env.canvasOffset.right - 450)) {
-            speed = -speed;
-            touchedEdges++;
-            if (touchedEdges == 2) end = true;
+        if (_curRobotPosX <= robot.leftBorder || _curRobotPosX >= (robot.rightBorder - 450)) {
+            _speed = -_speed;
+            _touchedEdges++;
+            if (_touchedEdges == 2) _end = true;
         }
-        pos += speed;
-        moveR2(pos);
-        ballDisplayed && moveBall(pos);
+        _curRobotPosX += _speed;
+        moveR2(_curRobotPosX);
+        ballDisplayed && moveBall(_curRobotPosX);
     }, 5);
-}
-module.exports = move;
 
 
-function stop() {
-    console.log('stop');
-    clearInterval(interval);
-    let curPos = r2PosX();
-    r2PosX() > startPosX ? speed = Math.abs(speed) * -1 : speed = Math.abs(speed);
-
-    const stopInter = setInterval(() => {
-        if (Math.abs(r2PosX() - startPosX) <= 5) {
-            speed /= Math.abs(speed);
-        }
-        if (r2PosX() === startPosX) {
-            clearInterval(stopInter);
-            hideBall();
-        }
-        curPos += speed;
-        r2.style.left = curPos + 'px';
-        ballDisp && moveBall(speed);
-    });
+    const stop = () => {
+        console.log('stop');
+        clearInterval(_interval);
+        robot.x > _robotStartPosX ? _speed = Math.abs(_speed) * -1 : _speed = Math.abs(_speed);
+        _speed /= Math.abs(_speed);
+        const stopInter = setInterval(() => {
+            if (robot.x === _robotStartPosX) {
+                clearInterval(stopInter);
+                hideBall();
+            }
+            _curRobotPosX += _speed;
+            moveR2(_curRobotPosX);
+            ballDisplayed && moveBall(_curRobotPosX);
+        });
+    };
 }
 
-function randSign() {
+const randSign = () => {
     console.log('randSign');
     const items = [-1, 1];
     return items[Math.floor(Math.random() * items.length)];
-}
+};

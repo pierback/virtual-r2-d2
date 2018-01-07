@@ -1,9 +1,9 @@
 class Robot {
-    constructor(env){
+    constructor(env) {
         this._initializeVariables(env);
     }
 
-    _initializeVariables(env){
+    _initializeVariables(env) {
         const canvas = env.canvas;
         const canvasOffset = canvas.getBoundingClientRect();
         this.leftBorder = canvasOffset.left;
@@ -15,11 +15,7 @@ class Robot {
         this.x = robotOffset.left;
         this.y = robotOffset.top;
         this.height = robotOffset.height;
-        this.width = robotOffset.Offset.width
+        this.width = robotOffset.Offset.width;
     }
 }
-
 exports.Robot = Robot;
-
-
-
