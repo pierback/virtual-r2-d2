@@ -7,6 +7,5 @@ class Act {
     moveRobot(rbPosX) {
         this.robot.X = rbPosX;
     }
-
 }
 exports.Act = Act;

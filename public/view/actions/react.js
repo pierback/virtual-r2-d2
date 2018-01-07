@@ -3,6 +3,8 @@ class React {
         this.env = env;
         this.robot = robot;
         this.ballItem = env.ballItem;
+        console.log(this.ballItem);
+        console.log(this.ballItem);
     }
 
     moveBall(dir, robotPosX) {

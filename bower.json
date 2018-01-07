@@ -15,7 +15,5 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "canvas-text-wrapper": "^0.9.3"
-  }
+  "dependencies": {}
 }

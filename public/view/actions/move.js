@@ -1,11 +1,11 @@
 //@ts-checkts
 exports.move = (robot, act, react, ballDisplayed = false) => {
-    let _end = false;
-    let _touchedEdges = 0;
-    const direction = randSign();
-    let _speed = 4 * direction;
     let _curRobotPosX = robot.getPosX() + 1;
     const _robotStartPosX = robot.x;
+    const direction = randSign();
+    let _speed = 4 * direction;
+    let _touchedEdges = 0;
+    let _end = false;
 
     const _interval = setInterval(() => {
         if (_end && Math.abs(robot.getPosX() - robot.x) <= 15) {
@@ -38,7 +38,7 @@ exports.move = (robot, act, react, ballDisplayed = false) => {
     };
 
     const setSpeed = () => {
-        robot.x > _robotStartPosX ? _speed = Math.abs(_speed) * -1 : _speed = Math.abs(_speed);
+        robot.X > _robotStartPosX ? _speed = Math.abs(_speed) * -1 : _speed = Math.abs(_speed);
         _speed /= Math.abs(_speed);
     };
 
