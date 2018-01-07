@@ -1,8 +1,5 @@
 //@ts-checkts
-const { moveRobot } = require('./view/actions/act.js');
-const { moveBall } = require('./view/actions/react.js');
-
-exports.move = function (ballDisplayed = false, robot) {
+exports.move = (robot, act, react, ballDisplayed = false) => {
     let _end = false;
     let _touchedEdges = 0;
     const direction = randSign();
@@ -18,11 +15,11 @@ exports.move = function (ballDisplayed = false, robot) {
             _speed = -_speed;
             _touchedEdges++;
             if (_touchedEdges == 2) _end = true;
-            moveBall.switchSides(_speed);
+            react.moveBall.switchSides(_speed);
         }
         _curRobotPosX += _speed;
-        moveRobot(_curRobotPosX);
-        ballDisplayed && moveBall(direction, _curRobotPosX);
+        act.moveRobot(_curRobotPosX);
+        ballDisplayed && act.moveBall(direction, _curRobotPosX);
     }, 5);
 
 
@@ -32,11 +29,11 @@ exports.move = function (ballDisplayed = false, robot) {
         const stopInter = setInterval(() => {
             if (robot.x === _robotStartPosX) {
                 clearInterval(stopInter);
-                moveBall.hide();
+                react.moveBall.hide();
             }
             _curRobotPosX += _speed;
-            moveRobot(_curRobotPosX);
-            ballDisplayed && moveBall(_curRobotPosX);
+            act.moveRobot(_curRobotPosX);
+            ballDisplayed && react.moveBall(_curRobotPosX);
         }, 5);
     };
 
