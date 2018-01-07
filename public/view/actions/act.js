@@ -1,12 +1,12 @@
 class Act {
-
-    constructor(name) {
-        this.name = name;
+    constructor(env, robot) {
+        this.env = env;
+        this.robot = robot;
     }
 
-    sayHi() {
-        alert(this.name);
+    moveRobot(rbPosX) {
+        this.robot.X = rbPosX;
     }
 
 }
-module.exports.User;
+exports.Act = Act;
