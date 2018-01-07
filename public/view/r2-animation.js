@@ -112,9 +112,5 @@ function hideBall() {
 }
 
 
-function randSign() {
-    console.log('randSign');
-    const items = [-1, 1];
-    return items[Math.floor(Math.random() * items.length)];
-}
+
 
