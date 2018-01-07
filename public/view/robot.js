@@ -16,7 +16,7 @@ class Robot {
         //this.fullWidth = robotWidth + robotLegWidth * 2;
 
         const robotOffset = env.robot.getBoundingClientRect();
-        console.log(robotOffset);
+        //console.log(robotOffset);
         const scale = robotOffset.width / robotWidth;
         const robotHeight = robotOffset.height / scale;
 
@@ -78,9 +78,9 @@ class Robot {
     }
 
     set X(x) {
-        console.log(x);
+        //console.log(x);
         this._x = x - this._xCorrection;
-        console.log(this._x);
+        //console.log(this._x);
         this.robot.style.left = this._x;
     }
 
