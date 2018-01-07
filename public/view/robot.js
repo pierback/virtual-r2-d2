@@ -1,9 +1,9 @@
 class Robot {
-    constructor(env){
+    constructor(env) {
         this._initializeVariables(env);
     }
 
-    _initializeVariables(env){
+    _initializeVariables(env) {
         const canvas = env.canvas;
         const canvasOffset = canvas.getBoundingClientRect();
         this._leftBorder = canvasOffset.left;
@@ -26,12 +26,12 @@ class Robot {
     }
 
     //returns pixels of right canvas border - width of robot
-    getMaxX(){
+    getMaxX() {
         return this._rightBorder - this._width;
     }
 
     //returns pixels of left canvas border
-    getMinX(){
+    getMinX() {
         return this._leftBorder;
     }
 
@@ -50,30 +50,26 @@ class Robot {
         //return this.
     }
 
-    getY(){
+    getY() {
 
     }
 
     //get width of robot
-    getWidth(){
+    getWidth() {
 
     }
 
     //get height of robot
-    getHeight(){
+    getHeight() {
 
     }
 
-    setX(x){
+    setX(x) {
 
     }
 
-    setY(y){
+    setY(y) {
 
     }
 }
-
 exports.Robot = Robot;
-
-
-
