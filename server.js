@@ -10,7 +10,7 @@ const wss = new WebSocketServer({ port: 4000 });
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/view/index.html');
+  res.sendFile(__dirname + '/public/view/environment/index.html');
 });
 
 app.listen(config.port, function (res) {

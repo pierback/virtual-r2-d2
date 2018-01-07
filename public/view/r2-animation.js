@@ -1,6 +1,4 @@
-//@ts-check
-//const { log } = require('/scripts/helper.js');
-
+const { log } = require('./scripts/helper.js');
 const r2 = document.getElementById('r2d2-wrapper');
 const btn = document.getElementById('stop-btn');
 const ball = document.getElementById('ball');
@@ -9,7 +7,7 @@ const canvas = document.getElementById('canvas');
 const canvasOffset = canvas.getBoundingClientRect();
 console.log(canvasOffset);
 const offsets = r2.getBoundingClientRect();
-console.log(offsets)
+console.log(offsets);
 const r2PosX = () => parseInt(r2.style.left);
 const r2PosY = () => parseInt(r2.style.top);
 const startPosX = parseInt(offsets.left);
@@ -35,13 +33,13 @@ btn.addEventListener('click', stop);
 
 
 function setBallPos() {
-    console.log("setBallPos");
+    console.log('setBallPos');
     ball.style.left = startPosX + 18 + 200 + 'px';
     ball.style.top = startPosY + 100 + 'px';
 }
 
 function moveBall(dir) {
-    console.log("moveBall");
+    console.log('moveBall');
     ball.style.display = 'inline';
     ballBtn.disabled = true;
     let direction;
@@ -51,13 +49,13 @@ function moveBall(dir) {
 }
 
 function switchSide() {
-    console.log("switchSide");
+    console.log('switchSide');
     ball.style.left = r2PosX() + 75 + 'px';
     ball.style.top = r2PosY() - 175 + 'px';
 }
 
 function move(ev, dir = 1) {
-    console.log("move");
+    console.log('move');
     if (!blockClick) {
         blockClick = true;
         let pos = startPosX + 1;
@@ -82,12 +80,12 @@ function move(ev, dir = 1) {
 }
 
 function setR2Position() {
-    console.log("setR2Position");
+    console.log('setR2Position');
     r2.style.left = startPosX;
 }
 
 function stop() {
-    console.log("stop");
+    console.log('stop');
     clearInterval(interval);
     let curPos = r2PosX();
     r2PosX() > startPosX ? speed = Math.abs(speed) * -1 : speed = Math.abs(speed);
@@ -107,7 +105,7 @@ function stop() {
 }
 
 function hideBall() {
-    console.log("hideBall");
+    console.log('hideBall');
     ballDisp = false;
     ball.style.display = 'none';
     ballBtn.disabled = false;
@@ -115,7 +113,7 @@ function hideBall() {
 
 
 function randSign() {
-    console.log("randSign");
+    console.log('randSign');
     const items = [-1, 1];
     return items[Math.floor(Math.random() * items.length)];
 }

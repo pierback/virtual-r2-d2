@@ -16,6 +16,7 @@ Table of Contents
     position: absolute;
     bottom: 20%;
     transform: scale(0.3);
+
     /* margin: 0 auto;
     
     top: 50%;
@@ -39,7 +40,7 @@ Table of Contents
 }
 
 #r2d2-head .top {
-    background: #82acdb;
+    background: #2231a4;
     width: 100%;
     height: 5px;
     position: absolute;
@@ -50,7 +51,7 @@ Table of Contents
 #r2d2-head .top-left,
 #r2d2-head .top-right {
     width: 48%;
-    background: #82acdb;
+    background: #2231a4;
     position: absolute;
     top: 8px;
     height: 18px;
@@ -74,7 +75,7 @@ Table of Contents
     top: 29px;
     left: 50%;
     transform: translateX(-50%);
-    background: #82acdb;
+    background: #2231a4;
 }
 
 #r2d2-head #eye-wrap .eye {
@@ -112,7 +113,7 @@ Table of Contents
 
 #r2d2-head #bottom-row .block {
     bottom: 0;
-    background: #82acdb;
+    background: #2231a4;
     position: absolute;
 }
 
@@ -210,7 +211,7 @@ Table of Contents
 #r2d2-neck .stripe {
     position: absolute;
     top: 5px;
-    background: #82acdb;
+    background: #2231a4;
     width: 100%;
     height: 7px;
 }
@@ -242,7 +243,7 @@ Table of Contents
 #r2d2-body ul.main-stripes li {
     width: 100%;
     height: 14px;
-    background: #82acdb;
+    background: #2231a4;
     margin-bottom: 10px;
 }
 
@@ -335,7 +336,7 @@ Table of Contents
 
 #r2d2-body .chest {
     width: 48px;
-    background: #82acdb;
+    background: #2231a4;
     height: 96px;
     top: 75px;
     left: 50%;
@@ -380,7 +381,7 @@ Table of Contents
 
 #r2d2-body .crosshairs {
     width: 48px;
-    background: #82acdb;
+    background: #2231a4;
     height: 40px;
     bottom: 8px;
     left: 50%;
@@ -448,7 +449,7 @@ Table of Contents
     width: 18px;
     height: 4px;
     margin-bottom: 7px;
-    background: #82acdb;
+    background: #2231a4;
 }
 
 #r2d2-body ul.three-vert-stripes {
@@ -476,7 +477,7 @@ Table of Contents
 #r2d2-body .octagon {
     width: 30px;
     height: 30px;
-    background: #82acdb;
+    background: #2231a4;
     position: absolute;
     bottom: 12px;
     right: 7px;
@@ -488,7 +489,7 @@ Table of Contents
     position: absolute;
     top: 0;
     left: 0;
-    border-bottom: 9px solid #82acdb;
+    border-bottom: 9px solid #2231a4;
     border-left: 9px solid #f1f1f1;
     border-right: 9px solid #f1f1f1;
     width: 12px;
@@ -500,7 +501,7 @@ Table of Contents
     position: absolute;
     bottom: 0;
     left: 0;
-    border-top: 9px solid #82acdb;
+    border-top: 9px solid #2231a4;
     border-left: 9px solid #f1f1f1;
     border-right: 9px solid #f1f1f1;
     width: 12px;
@@ -585,7 +586,7 @@ Table of Contents
 }
 
 #left-leg .bulk .stripe {
-    background: #82acdb;
+    background: #2231a4;
     height: 130px;
     width: 7px;
     left: 0;
@@ -639,7 +640,7 @@ Table of Contents
 }
 
 #right-leg .bulk .stripe {
-    background: #82acdb;
+    background: #2231a4;
     height: 130px;
     width: 7px;
     right: 0;

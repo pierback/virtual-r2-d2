@@ -1,10 +1,9 @@
-
 #main-container {
     max-height: 80vh;
 }
 
 #canvas {
-    background-image: url(../res/desert-279862_1920.jpg);
+    background-image: url(/res/desert-279862_1920.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 70vh;
@@ -13,5 +12,3 @@
 .w3-bar-item {
     width: 14.28% !important;
 }
-
-
