@@ -13,10 +13,16 @@ class Robot {
 
         const robotOffset = env.robot.getBoundingClientRect();
         console.log(robotOffset);
+        console.log('line 16');
         this._x = robotOffset.left;
         this._y = robotOffset.top;
 
         env.robot.style.left = 250;
+        console.log(this._x);
+        console.log(env.robot.getBoundingClientRect().left);
+        console.log(env.robot.style.left);
+
+        env.robot.getBoundingClientRect().left = 250;
         console.log(this._x);
         console.log(env.robot.getBoundingClientRect().left);
         console.log(env.robot.style.left);
@@ -47,7 +53,7 @@ class Robot {
     }
 
     getX(){
-        //return this.
+
     }
 
     getY() {
