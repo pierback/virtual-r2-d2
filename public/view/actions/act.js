@@ -1,5 +1,5 @@
 class Act {
-    constructor(env, robot) {
+    constructor(robot, env) {
         this.env = env;
         this.robot = robot;
     }

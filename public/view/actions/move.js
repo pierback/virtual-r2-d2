@@ -1,8 +1,5 @@
 //@ts-checkts
-const { moveRobot } = require('./act.js');
-const { moveBall } = require('./react.js');
-
-export function move(ballDisplayed = false, env, robot) {
+exports.move = (robot, act, react, ballDisplayed = false) => {
     let _end = false;
     let _touchedEdges = 0;
     const direction = randSign();
@@ -18,11 +15,11 @@ export function move(ballDisplayed = false, env, robot) {
             _speed = -_speed;
             _touchedEdges++;
             if (_touchedEdges == 2) _end = true;
-            moveBall.switchSides(_speed);
+            react.moveBall.switchSides(_speed);
         }
         _curRobotPosX += _speed;
-        moveRobot(_curRobotPosX);
-        ballDisplayed && moveBall(direction, _curRobotPosX);
+        act.moveRobot(_curRobotPosX);
+        ballDisplayed && act.moveBall(direction, _curRobotPosX);
     }, 5);
 
 
@@ -32,11 +29,11 @@ export function move(ballDisplayed = false, env, robot) {
         const stopInter = setInterval(() => {
             if (robot.x === _robotStartPosX) {
                 clearInterval(stopInter);
-                moveBall.hide();
+                react.moveBall.hide();
             }
             _curRobotPosX += _speed;
-            moveRobot(_curRobotPosX);
-            ballDisplayed && moveBall(_curRobotPosX);
+            act.moveRobot(_curRobotPosX);
+            ballDisplayed && react.moveBall(_curRobotPosX);
         }, 5);
     };
 
@@ -49,7 +46,7 @@ export function move(ballDisplayed = false, env, robot) {
         const items = [-1, 1];
         return items[Math.floor(Math.random() * items.length)];
     };
-}
+};
 
 
 

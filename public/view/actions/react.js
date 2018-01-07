@@ -1,5 +1,5 @@
 class React {
-    constructor(env, robot) {
+    constructor(robot, env) {
         this.env = env;
         this.robot = robot;
         this.ballItem = env.ballItem;
