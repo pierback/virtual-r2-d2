@@ -1,8 +1,8 @@
 //@ts-checkts
-const { moveRobot } = require('./act.js');
-const { moveBall } = require('./react.js');
+const { moveRobot } = require('./view/actions/act.js');
+const { moveBall } = require('./view/actions/react.js');
 
-export function move(ballDisplayed = false, env, robot) {
+exports.move = function (ballDisplayed = false, robot) {
     let _end = false;
     let _touchedEdges = 0;
     const direction = randSign();
@@ -49,7 +49,7 @@ export function move(ballDisplayed = false, env, robot) {
         const items = [-1, 1];
         return items[Math.floor(Math.random() * items.length)];
     };
-}
+};
 
 
 
