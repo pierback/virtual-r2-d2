@@ -1,6 +1,7 @@
 class Env {
     constructor(){
         this.canvas = document.getElementById('canvas');
+        this.leftRobotLeg = document.getElementById('left-leg');
         this.robot = document.getElementById('r2d2');
         this.ballItem = document.getElementById('ball-item');
 
