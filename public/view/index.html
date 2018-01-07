@@ -14,14 +14,12 @@
     <div id="main-container" class="w3-row">
         <div class="w3-col l2 m1">&nbsp;</div>
         <div class="w3-col l8 m10">
-            <div class="canvas">
-                <button id="stop-btn" style="display: flex;transform: scale(2.5); display:none">Stop</button>
-                <div id="r2-standard" style="display: flex; flex-direction: column; align-items: center; width: 100%;height: 100%;margin-top: 50px">
+            <div id="canvas">
 
-                    <div id="r2d2-wrapper" style="transform: scale(0.5);">
+                <div id="r2-standard">
+                    <div id="r2d2-wrapper">
 
                         <div id="r2d2-head">
-
                             <div class="top"></div>
                             <div class="top-left"></div>
                             <div class="top-right"></div>
@@ -57,9 +55,8 @@
 
                             </div>
                             <!--end #bottom-row-->
-
-
                         </div>
+
                         <!--end #r2d2-head-->
 
                         <div id="r2d2-neck">
@@ -168,7 +165,7 @@
                         </div>
                         <!--end #front-leg-->
                     </div>
-                    <div id="ball" style="display: none; position: absolute;font-size: 60px;">
+                    <div id="ball" style="position: absolute;font-size: 40px;">
                         ⚽️
                     </div>
                 </div>
@@ -193,8 +190,8 @@
                 <button class="w3-bar-item w3-button w3-border w3-teal" id="punish-btn">
                     🛠
                 </button>
-                <button class="w3-bar-item w3-button w3-border w3-teal" id="punish-btn">
-                    🛠
+                <button class="w3-bar-item w3-button w3-border w3-teal" id="stop-btn">
+                    Stop
                 </button>
             </div>
         </div>

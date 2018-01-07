@@ -10,15 +10,12 @@ Table of Contents
 **/
 
 /** 01 - General **/
-body {
-    margin: 0;
-    padding: 0;
-}
 
 #r2d2-wrapper {
     width: 225px;
     position: absolute;
-
+    bottom: 20%;
+    transform: scale(0.3);
     /* margin: 0 auto;
     
     top: 50%;

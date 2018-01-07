@@ -3,7 +3,7 @@
     max-height: 80vh;
 }
 
-.canvas {
+#canvas {
     background-image: url(../res/desert-279862_1920.jpg);
     background-repeat: no-repeat;
     background-size: cover;
