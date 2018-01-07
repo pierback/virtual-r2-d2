@@ -11,7 +11,7 @@ Table of Contents
 
 /** 01 - General **/
 
-#r2d2-wrapper {
+#r2d2 {
     width: 225px;
     position: absolute;
     bottom: 20%;
