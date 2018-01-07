@@ -5,7 +5,7 @@ const { Act } = require('../view/actions/act.js');
 const { React } = require('../view/actions/react.js');
 const { Env } = require('../view/environment/env.js');
 const user = require('../view/user.js');
-const move = require('../view/actions/move.js');
+const { move } = require('../view/actions/move.js');
 
 //TO-DO: initialize user (only env), act, react with same object of r2-d2 and env 
 
@@ -14,7 +14,7 @@ const robot = new Robot(myEnv);
 
 const react = new React(robot, myEnv);
 const act = new Act(robot, myEnv);
-
+//move(robot, act, react, true);
 /**
  * move(robot, act, react, balldisplayed = true || false);
  */

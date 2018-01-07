@@ -17,10 +17,10 @@ class Robot {
 
         const robotOffset = env.robot.getBoundingClientRect();
         console.log(robotOffset);
-        const scale = robotOffset.width/robotWidth;
+        const scale = robotOffset.width / robotWidth;
         const robotHeight = robotOffset.height / scale;
 
-        this._xCorrection = (robotWidth-robotOffset.width)/2 - robotLegWidth * scale;
+        this._xCorrection = (robotWidth - robotOffset.width) / 2 - robotLegWidth * scale;
 
         this._height = robotOffset.height + robotStripeHeight * scale;
         this._width = robotOffset.width + robotLegWidth * 2 * scale;
@@ -40,54 +40,54 @@ class Robot {
     }
 
     //returns pixels of right canvas border - width of robot
-    getMaxX() {
+    get MaxX() {
         return this._maxX;
     }
 
     //returns pixels of left canvas border
-    getMinX() {
+    get MinX() {
         return 0;
     }
 
     //returns pixels of bottom canvas border + height of robot
-    getMaxY(){
+    get MaxY() {
         return this._maxY;
     }
 
     //returns pixels of horizontal line in image + half of the height of the robot
-    getMinY(){
+    get MinY() {
         return this._minY;
     }
 
-    getX(){
+    get X() {
         return this._x;
     }
 
-    getY() {
+    get Y() {
         return this._y;
     }
 
     //get width of robot
-    getWidth() {
+    get Width() {
         return this._width;
     }
 
     //get height of robot
-    getHeight() {
+    get Height() {
         return this._height;
     }
 
-    setX(x) {
+    set X(x) {
         console.log(x);
         this._x = x - this._xCorrection;
         console.log(this._x);
         this.robot.style.left = this._x;
     }
 
-    setY(y) {
-        if(y < this._minY){
+    set Y(y) {
+        if (y < this._minY) {
             y = this._minY;
-        } else if(y > this._maxY){
+        } else if (y > this._maxY) {
             y = this._maxY;
         }
 
