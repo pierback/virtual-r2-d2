@@ -13,6 +13,7 @@ class Robot {
         const robotOriginalLegWidth = 52; //original value
         const robotOriginalWidth = 225; // original value
         const robotOffset = env.robot.getBoundingClientRect();
+
         console.log(robotOffset);
         const xScale = robotOffset.width / robotOriginalWidth;
         this._xCorrection = Math.floor((robotOriginalWidth - robotOffset.width) / 2 - robotOriginalLegWidth * xScale);
@@ -32,6 +33,7 @@ class Robot {
         this._startY = this._minY + Math.floor((this._maxY - this._minY)/2);
         this.Y = this._startY;
     }
+
 
     //returns pixels of left canvas border
     //OUTPUT: Integer

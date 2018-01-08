@@ -8,8 +8,8 @@ class React {
     moveBall(dir, robotPosX) {
         let direction;
         dir < 0 ? direction = 200 : direction = -75;
-        this.ballItem.style.left = this.robot.X + 18 + (direction) + 'px';
-        this.ballItem.style.top = this.robot.Y + 175 + 'px';
+        this.ballItem.style.left = Math.floor(this.robot.X) + 15 + 'px';
+        this.ballItem.style.top = Math.floor(this.robot.Y) + 40 + 'px';
         this.ballItem.style.display = 'inline';
 
         const hide = () => {
