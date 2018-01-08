@@ -18,11 +18,10 @@ class Controller {
 
     //consider promises/callbacks to determine if action has ended 
     move(playBall) {
-        if (!this.robot.Busy) {
-
+        !this.robot.Busy && Move(this.robot, this.act, this.react, playBall);
+        /* if (!this.robot.Busy)
             Move(this.robot, this.act, this.react, playBall).then(() => {
                 console.log('resolve');
-            });
-        }
+            }); */
     }
 } new Controller();
