@@ -132,6 +132,13 @@ class Robot {
     get Center() {
         return Math.floor((this.Width / 3) + this.X);
     }
+
+    set Busy(bsy) {
+        this._busy = bsy;
+    }
+    get Busy() {
+        return this._busy;
+    }
 }
 
 exports.Robot = Robot;

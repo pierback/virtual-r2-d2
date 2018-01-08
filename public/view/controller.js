@@ -16,7 +16,13 @@ class Controller {
         this.react = new React(this.robot, this.myEnv);
     }
 
+    //consider promises/callbacks to determine if action has ended 
     move(playBall) {
-        Move(this.robot, this.act, this.react, playBall);
+        if (!this.robot.Busy) {
+
+            Move(this.robot, this.act, this.react, playBall).then(() => {
+                console.log('resolve');
+            });
+        }
     }
 } new Controller();
