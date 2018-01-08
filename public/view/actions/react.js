@@ -5,24 +5,25 @@ class React {
         this.ballItem = env.ballItem;
     }
 
-    moveBall(dir, robotPosX) {
-        let direction;
-        dir < 0 ? direction = 200 : direction = -75;
-        this.ballItem.style.left = Math.floor(this.robot.X) + 15 + 'px';
-        this.ballItem.style.top = Math.floor(this.robot.Y) + 40 + 'px';
+    playBall(dir, robotPosX) {
+        const leftOffset = -82;//manual set value
+        const rightOffset = 75;//manual set value
+        const offsetStart = dir > 0 ? rightOffset : leftOffset;
+        this.ballItem.style.top = this.robot.Y + 106 + 'px'; //475px;
+        this.ballItem.style.left = this.robot.X + offsetStart + 'px'; //370px;104
         this.ballItem.style.display = 'inline';
+
+        const moveBall = (newDir) => {
+            const offset = newDir > 0 ? rightOffset : leftOffset;
+            this.ballItem.style.left = this.robot.Center + offset + 'px'; //370px;104
+        };
 
         const hide = () => {
             this.ballItem.style.display = 'none';
         };
 
-        const switchSides = (_block) => {
-            this.ballItem.style.left = this.robot.X + 75 + 'px';
-            this.ballItem.style.top = this.robot.Y - 175 + 'px';
-        };
-
-        this.moveBall.switchSides = switchSides;
-        this.moveBall.hide = hide;
+        this.playBall.hide = hide;
+        this.playBall.moveBall = moveBall;
     }
 
 }

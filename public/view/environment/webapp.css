@@ -3,7 +3,7 @@
 }
 
 #canvas {
-    position:relative;
+    position: relative;
     background-image: url(/res/desert-279862_1920.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,4 +12,8 @@
 
 .w3-bar-item {
     width: 14.28% !important;
+}
+
+#ball-item {
+    display: none;
 }

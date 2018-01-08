@@ -13,14 +13,12 @@ class Robot {
         const robotOriginalLegWidth = 52; //original value
         const robotOriginalWidth = 225; // original value
         const robotOffset = env.robot.getBoundingClientRect();
-
-        console.log(robotOffset);
         const xScale = robotOffset.width / robotOriginalWidth;
         this._xCorrection = Math.floor((robotOriginalWidth - robotOffset.width) / 2 - robotOriginalLegWidth * xScale);
         this._width = Math.floor(robotOffset.width + robotOriginalLegWidth * 2 * xScale);
         this._minX = 0;
         this._maxX = Math.floor(canvasWidth - this._width);
-        this._startX = Math.floor((this._maxX /2) - this._width);
+        this._startX = Math.floor((this._maxX / 2) - this._width);
         this.X = this._startX;
 
         const robotHeight = robotOffset.height;
@@ -28,9 +26,9 @@ class Robot {
         const horizontalLine = (canvasHeight) * 0.61; //specific for desert image
         this._yCorrection = 158; //estimation needs to be changed if scale is changed
         this._height = Math.floor(robotHeight + robotNewLegHeight);
-        this._minY = Math.floor(horizontalLine - robotHeight /2);
+        this._minY = Math.floor(horizontalLine - robotHeight / 2);
         this._maxY = Math.floor(canvasHeight - robotHeight - robotNewLegHeight);
-        this._startY = this._minY + Math.floor((this._maxY - this._minY)/2);
+        this._startY = this._minY + Math.floor((this._maxY - this._minY) / 2);
         this.Y = this._startY;
     }
 
@@ -67,13 +65,12 @@ class Robot {
 
     //Input: Integer (0 robot is on the left border, MaxX robot is on the right border)
     set X(x) {
-        console.log('input: ' + x);
-        if(isNaN(x)){
+        if (isNaN(x)) {
             console.log('Error: Your value is not a number.');
         } else {
             x = parseInt(x);
-            if(x < this._minX) x = this._minX + 1;
-            if(x > this._maxX) x = this._maxX - 1;
+            if (x < this._minX) x = this._minX + 1;
+            if (x > this._maxX) x = this._maxX - 1;
             this._x = x - this._xCorrection;
             this.robot.style.left = this._x;
         }
@@ -107,22 +104,33 @@ class Robot {
 
     //get current y position
     //OUTPUT: Integer
-    get Y(){
+    get Y() {
         return this._y + this._yCorrection;
     }
 
     //set y position
     //INPUT: Integer
     set Y(y) {
-        if(isNaN(y)){
+        if (isNaN(y)) {
             console.log('Error: Your value is not a number.');
         } else {
             y = parseInt(y);
-            if(y < this._minY) y = this._minY + 1;
-            if(y > this._maxY) y = this._maxY - 1;
+            if (y < this._minY) y = this._minY + 1;
+            if (y > this._maxY) y = this._maxY - 1;
             this._y = y - this._yCorrection;
             this.robot.style.top = this._y;
         }
+    }
+
+    // set center of robot
+    // Currently not needed ¯\_(ツ)_/¯ 
+    set Center(c) {
+        this._center = c;
+    }
+    // set center of robot
+    //OUTPUT: Integer
+    get Center() {
+        return Math.floor((this.Width / 3) + this.X);
     }
 }
 

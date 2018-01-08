@@ -1,16 +1,27 @@
+const { parseJSON, stringifyJSON, log } = require('/scripts/helper.js');
 
+class AI {
+    constructor(controller) {
+        this.controller = controller;
+        this._initializeSocket();
+    }
+    _initializeSocket() {
+        const evalControllerFunc = this.evalControllerFunc;
+        const controller = this.controller;
+        const ws = new WebSocket('ws://localhost:4000');
+        ws.onopen = function () {
+            log('websocket is connected ...');
+        };
+        ws.onmessage = function (ev) {
+            const funcStr = ev.data.toString();
+            evalControllerFunc(controller, funcStr);
+        };
+    }
 
-/* const ws = new WebSocket('ws://localhost:4000');
-ws.onopen = function () {
-    log('websocket is connected ...');
-    const test = { port: 4000, print: 'test test' };
-    ws.send(stringifyJSON(test));
-};
-ws.onmessage = function (ev) {
-    const test = parseJSON(ev.data);
-    test.print = 'new';
-    setTimeout(() => {
-        log(test);
-        // ws.send(stringifyJSON(test));
-    }, 3000);
-}; */
+    evalControllerFunc(controller, funcStr) {
+        if (funcStr === 'move') {
+            controller.move();
+        }
+    }
+}
+exports.AI = AI;

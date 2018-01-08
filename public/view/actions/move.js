@@ -1,50 +1,54 @@
 //@ts-check
-exports.move = (robot, act, react, ballDisplayed = false) => {
-    let _curRobotPosX = robot.X + 1;
-    const _robotStartPosX = robot.X;
-    const direction = randSign();
-    let _speed = 3 * direction;
-    let _touchedEdges = 0;
-    const _end = false;
+const { randSign } = require('../../scripts/helper.js');
 
-    const _interval = setInterval(() => {
-        if (_touchedEdges == 2 && Math.abs(robot.X - (_robotStartPosX)) <= 15) {
+exports.Move = (robot, act, react, ballDisplayed = false) => {
+    const direction = randSign();
+    let _curRobotPosX = robot.StartX + 1;
+    let _speed = 4 * direction;
+    let _touchedEdges = 0;
+
+    const _moveInterval = setInterval(() => {
+        if (inStartPosRange()) {
             stop();
         }
-        if (_curRobotPosX <= robot.MinX || _curRobotPosX >= (robot.MaxX)) {
+        if (robotOutOfRange()) {
             _speed = -_speed;
             _touchedEdges++;
-            ballDisplayed && react.moveBall.switchSides(_speed);
         }
         _curRobotPosX += _speed;
         act.moveRobot(_curRobotPosX);
-        ballDisplayed && react.moveBall(direction, _curRobotPosX);
+        moveBall();
     }, 5);
 
     const stop = () => {
         setSpeed();
-        clearInterval(_interval);
-        const stopInter = setInterval(() => {
-            console.log(robot.X, Math.floor(_robotStartPosX));
-            if (Math.floor(robot.X) === Math.floor(_robotStartPosX)) {
-                clearInterval(stopInter);
-                ballDisplayed && react.moveBall.hide();
+        clearInterval(_moveInterval);
+        const stopInterval = setInterval(() => {
+            if (backOnStartPos()) {
+                clearInterval(stopInterval);
+                hideBall();
+            } else {
+                _curRobotPosX += _speed;
+                act.moveRobot(_curRobotPosX);
+                moveBall();
             }
-            _curRobotPosX += _speed;
-            act.moveRobot(_curRobotPosX);
-            ballDisplayed && react.moveBall(_curRobotPosX);
         }, 5);
     };
 
-    const setSpeed = () => {
-        robot.X > _robotStartPosX ? _speed = Math.abs(_speed) * -1 : _speed = Math.abs(_speed);
-        _speed /= Math.abs(_speed);
-    };
-};
-
-const randSign = () => {
-    const items = [-1, 1];
-    return items[Math.floor(Math.random() * items.length)];
+    //_moveInterval()
+    const offset = 50;
+    const ballWidth = ballDisplayed ? 40 + offset : 0;//get ballWidth from item.js + offset
+    const robotOutOfRange = () => (_curRobotPosX <= (robot.MinX + ballWidth) || _curRobotPosX >= (robot.MaxX - ballWidth));
+    const inStartPosRange = () => _touchedEdges == 2 && Math.abs(robot.X - robot.StartX) <= 10;
+    //stop()
+    const backOnStartPos = () => Math.floor(robot.X) === Math.floor(robot.StartX);
+    //determine in which direction is startPos
+    const setSpeed = () => robot.X > robot.StartX ? _speed = -1 : _speed = 1;
+    //ball function wrappers
+    const initBallItem = () => ballDisplayed && react.playBall(direction);
+    const moveBall = () => ballDisplayed && react.playBall.moveBall(_speed);
+    const hideBall = () => ballDisplayed && react.playBall.hide();
+    initBallItem();
 };
 
 
