@@ -123,14 +123,9 @@ class Robot {
     }
 
     // set center of robot
-    // Currently not needed ¯\_(ツ)_/¯ 
-    set Center(c) {
-        this._center = c;
-    }
-    // set center of robot
     //OUTPUT: Integer
-    get Center() {
-        return Math.floor((this.Width / 3) + this.X);
+    get CenterX() {
+        return Math.floor(this.X + this.Width/2)
     }
 
     set Busy(bsy) {
