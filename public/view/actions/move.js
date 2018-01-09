@@ -42,13 +42,15 @@ exports.Move = (robot, act, react, ballDisplayed = false) => {
         };
         //_moveInterval()
         const offset = 50;
-        const ballWidth = ballDisplayed ? 40 + offset : 0;//get ballWidth from item.js + offset
-        const robotOutOfRange = () => (_curRobotPosX <= (robot.MinX + ballWidth) || _curRobotPosX >= (robot.MaxX - ballWidth));
+        const ballWidth = ballDisplayed ? 40 : 0;//get ballWidth from item.js + offset
+        const robotOutOfRange = () => (_curRobotPosX <= (robot.MinX + ballWidth + offset) || _curRobotPosX >= (robot.MaxX - ballWidth - offset));
         const inStartPosRange = () => _touchedEdges == 2 && Math.abs(robot.X - robot.StartX) <= 10;
+
         //stop()
-        const backOnStartPos = () => Math.floor(robot.X) === Math.floor(robot.StartX);
+        const backOnStartPos = () => robot.X === robot.StartX;
         //determine in which direction is startPos
         const setSpeed = () => robot.X > robot.StartX ? _speed = -1 : _speed = 1;
+
         //ball function wrappers
         const initBallItem = () => ballDisplayed && react.playBall(direction);
         const moveBall = () => ballDisplayed && react.playBall.moveBall(_speed);

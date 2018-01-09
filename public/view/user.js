@@ -24,7 +24,7 @@ class User {
             console.log('this.controller.repair()');
         });
         this.speakBtn.addEventListener('click', () => {
-            console.log('this.controller.speak()');
+            this.controller.happy();
         });
         this.punishBtn.addEventListener('click', () => {
             console.log('this.controller.punish()');

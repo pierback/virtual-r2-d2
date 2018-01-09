@@ -18,10 +18,10 @@ app.listen(config.port, function (res) {
 });
 
 wss.on('connection', function (ws) {
-  setTimeout(() => ws.send('move'), 500);
   ws.on('message', function (message) {
     const msg = parseJSON(message);
-    console.log('received: ', msg);
+    console.log('action received: ', msg);
+    ws.send('move');//setTimeout(() => ws.send('move'), 500);
   });
 });
 

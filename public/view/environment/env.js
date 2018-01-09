@@ -3,7 +3,7 @@ class Env {
         this.canvas = document.getElementById('canvas');
         this.robot = document.getElementById('r2d2');
         this.leftRobotLeg = document.getElementById('left-leg');
-        this.frontRobotLeg = document.querySelectorAll('.foot')[1];//document.getElementById('front-leg');
+        this.frontRobotLeg = document.querySelectorAll('.foot') [1];//document.getElementById('front-leg');
         this.ballItem = document.getElementById('ball-item');
 
         this.rechargeBtn = document.getElementById('recharge-btn');
@@ -13,6 +13,27 @@ class Env {
         this.punishBtn = document.getElementById('punish-btn');
         this.stopBtn = document.getElementById('stop-btn');
         this.ballBtn = document.getElementById('ball-btn');
+        this.initButtoArray();
+    }
+
+    initButtoArray() {
+        this.allBtns = [
+            this.rechargeBtn,
+            this.oilBtn,
+            this.repairBtn,
+            this.speakBtn,
+            this.punishBtn,
+            this.stopBtn,
+            this.ballBtn
+        ];
+    }
+
+    disableBtns() {
+        this.allBtns.map((btn) => btn.disabled = true);
+    }
+
+    enableBtns() {
+        this.allBtns.map((btn) => btn.disabled = false);
     }
 }
 exports.Env = Env;
