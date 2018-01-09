@@ -2,9 +2,11 @@ const { parseJSON, stringifyJSON, log } = require('/scripts/helper.js');
 const { Robot } = require('../view/robot.js');
 const { Act } = require('../view/actions/act.js');
 const { React } = require('../view/actions/react.js');
+const { Item } = require('../view/environment/item.js');
 const { Env } = require('../view/environment/env.js');
 const { User } = require('../view/user.js');
 const { Move } = require('../view/actions/move.js');
+
 
 class Controller {
     constructor() {
@@ -12,7 +14,7 @@ class Controller {
         this.robot = new Robot(this.myEnv);
         this.user = new User(this.myEnv, this);
         this.act = new Act(this.robot, this.myEnv);
-        this.react = new React(this.robot, this.myEnv);
+        this.react = new React(this.robot, this.myEnv, Item);
         this._busy = false;
         this._initializeSocket();
     }

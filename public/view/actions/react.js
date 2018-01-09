@@ -1,25 +1,27 @@
 class React {
-    constructor(robot, env) {
+    constructor(robot, env, Item) {
         this.env = env;
         this.robot = robot;
-        this.ballItem = env.ballItem;
+        this.ballItem = new Item(env.ballItem);
     }
 
     playBall(dir, robotPosX) {
-        const leftOffset = -82;//manual set value
-        const rightOffset = 75;//manual set value
+        this.ballItem.show();
+        const ballWidth = this.ballItem.Width;
+        const leftOffset = -ballWidth - this.robot.Width/2;//manual set value
+        const rightOffset = this.robot.Width/2;//manual set value
         const offsetStart = dir > 0 ? rightOffset : leftOffset;
-        this.ballItem.style.top = this.robot.Y + 106 + 'px'; //475px;
-        this.ballItem.style.left = this.robot.X + offsetStart + 'px'; //370px;104
-        this.ballItem.style.display = 'inline';
+        this.ballItem.Y = this.robot.Y + 106; //475px;
+        this.ballItem.X = this.robot.X + offsetStart; //370px;104
+
 
         const moveBall = (newDir) => {
             const offset = newDir > 0 ? rightOffset : leftOffset;
-            this.ballItem.style.left = this.robot.Center + offset + 'px'; //370px;104
+            this.ballItem.X = this.robot.CenterX + offset; //370px;104
         };
 
         const hide = () => {
-            this.ballItem.style.display = 'none';
+            this.ballItem.hide();
         };
 
         this.playBall.hide = hide;
