@@ -26,31 +26,31 @@ class Controller {
             log('websocket is connected ...');
         };
         this.ws.onmessage = function (ev) {
-            const funcStr = ev.data.toString();
-            switch (funcStr) {
-                case 'move':
-                    that.move();
-                    break;
-                case 'happy':
-                    that.happy();
-                    break;
-                case '':
-                    that.happy();
-                    break;
-                case 'd':
-                    //controller.happy();
-                    break;
-                case 'b':
-                    //controller.happy();
-                    break;
-                default:
-                    break;
-            }
+            this._busy = true;
+            setTimeout(() => that.evalActFunc(ev.data), 1200);
         };
     }
 
-    available() {
-        if (!this._busy) return this._busy = true;
+    evalActFunc(funcName) {
+        switch (funcName) {
+            case 'move':
+                this.move();
+                break;
+            case 'adsf':
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    set Busy(bsy) {
+        this._busy = bsy;
+        this.toggleBtns();
+    }
+
+    toggleBtns() {
+        this._busy ? this.myEnv.disableBtns() : this.myEnv.enableBtns();
     }
 
     /**
@@ -58,34 +58,33 @@ class Controller {
      */
 
     wait() {
-        this._busy = false;
+        this.Busy = false;
         setTimeout(() => !this._busy && this.ws.send('noreaction'), 10000);
     }
 
     send(funcName) {
-        this._busy = false;
+        //this.Busy = false;
         this.ws.send(funcName);
     }
 
     move(playBall) {
-        //Move(this.robot, this.act, this.react, playBall);
-        if (this.available())
-            Move(this.robot, this.act, this.react, playBall)
-                .then(() => {
-                    log('move finished');
-                    playBall ? this.send() : this.wait();
-                });
+        this.Busy = true;
+        Move(this.robot, this.act, this.react, playBall)
+            .then(() => {
+                playBall ? log('play ball finished') : log('move finished');
+                playBall ? this.send() : this.wait();
+            });
     }
 
     /** 
      * react
     */
     happy() {
-        if (this.available())
-            this.react.happy()
-                .then(() => {
-                    this.send();
-                });
+        this.Busy = true;
+        this.react.happy()
+            .then(() => {
+                this.send();
+            });
     }
 
 } new Controller();
