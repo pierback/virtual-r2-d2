@@ -8,8 +8,8 @@ class React {
     playBall(dir, robotPosX) {
         this.ballItem.show();
         const ballWidth = this.ballItem.Width;
-        const leftOffset = -ballWidth - this.robot.Width/2;//manual set value
-        const rightOffset = this.robot.Width/2;//manual set value
+        const leftOffset = -ballWidth - this.robot.Width / 2;//manual set value
+        const rightOffset = this.robot.Width / 2;//manual set value
         const offsetStart = dir > 0 ? rightOffset : leftOffset;
         this.ballItem.Y = this.robot.Y + 106; //475px;
         this.ballItem.X = this.robot.X + offsetStart; //370px;104
@@ -31,7 +31,6 @@ class React {
     happy() {
         const that = this;
         return new Promise(function (resolve, reject) {
-            const _curRobotPosX = that.robot.StartX + 1;
             let _curRobotPosY = that.robot.StartY + 1;
             let _speed = 4;
             let _touchedEdges = 0;
@@ -52,8 +51,8 @@ class React {
             }, 1000);
 
 
-            const offset = 25;
-            const robotOutOfRange = () => (_curRobotPosX <= (that.robot.MinY + offset) || _curRobotPosY >= (that.robot.MaxY - offset));
+            const offset = 125;
+            const robotOutOfRange = () => (_curRobotPosY <= (that.robot.MinY + offset) || _curRobotPosY >= (that.robot.MaxY - offset));
         });
     }
 

@@ -50,7 +50,7 @@ class Controller {
     }
 
     toggleBtns() {
-        this._busy ? this.myEnv.disableBtns() : this.myEnv.enableBtns();
+        this._busy ? this.myEnv.disableButtons() : this.myEnv.enableButtons();
     }
 
     /**
