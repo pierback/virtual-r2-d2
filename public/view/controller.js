@@ -65,13 +65,17 @@ class Controller {
      */
 
     wait() {
+        const that = this;
         this.Busy = false;
-        setTimeout(() => !this._busy && this.ws.send('noreaction'), 10000);
+        const wait = setTimeout(() => {
+            if (!this._busy) {
+                that.ws.send('noreaction');
+            } else clearInterval(wait);
+        }, 10000);
     }
 
     send(funcName) {
-        //this.Busy = false;
-        this.ws.send(funcName);
+        this.ws.send(funcName.toString());
     }
 
     move(playBall) {
@@ -79,7 +83,7 @@ class Controller {
         Move(this.robot, this.act, this.react, playBall)
             .then(() => {
                 playBall ? log('play ball finished') : log('move finished');
-                playBall ? this.send() : this.wait();
+                playBall ? this.send('playball') : this.wait();
             });
     }
 
@@ -116,10 +120,8 @@ class Controller {
         this.Busy = true;
         this.react.happy()
             .then(() => {
-                this.send();
+                this.send('happy');
             });
     }
 
 } new Controller();
-
-

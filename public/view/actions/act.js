@@ -1,4 +1,4 @@
-const { randSign } = require('../../scripts/helper.js');
+const { randSign } = require('./../scripts/helper.js');
 
 class Act {
     constructor(robot, env) {

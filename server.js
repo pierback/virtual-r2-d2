@@ -22,7 +22,7 @@ wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     console.log('action received: ', message);
     tail = !tail;
-    tail ? ws.send('peepMonoton') : ws.send('waveArms');//setTimeout(() => ws.send('move'), 500);
+    tail ? ws.send('peepMonoton') : ws.send('waveArms');
   });
 });
 

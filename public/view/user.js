@@ -32,6 +32,26 @@ class User {
         this.stopBtn.addEventListener('click', () => {
             console.log('this.controller.stop()');
         });
+
+        const that = this;
+        window.onkeyup = function (e) {
+            let key = e.keyCode ? e.keyCode : e.which;
+            if (key === 49) {
+                console.log('this.controller.recharge()');
+            } else if (key === 50) {
+                console.log('this.controller.spillOil()');
+            } else if (key === 51) {
+                console.log('this.controller.repair()');
+            } else if (key == 52) {
+                that.ballBtn.click();
+            } else if (key == 53) {
+                that.speakBtn.click();
+            } else if (key == 54) {
+                console.log('this.controller.punish()');
+            } else if (key == 55) {
+                console.log('this.controller.stop()');
+            }
+        };
     }
 }
 exports.User = User; 
