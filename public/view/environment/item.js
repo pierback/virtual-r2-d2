@@ -37,13 +37,8 @@ class Item {
         this._item.style.top = Math.floor(y);
     }
 
-    get X(){
-        console.log(this._item.style.left);
-
-    }
-
-    get Y(){
-
+    set Animation(animationQuery){
+        this._item.style.animation = animationQuery;
     }
 
 

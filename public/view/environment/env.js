@@ -1,9 +1,16 @@
 class Env {
     constructor() {
         this.canvas = document.getElementById('canvas');
+
         this.robot = document.getElementById('r2d2');
-        this.leftRobotLeg = document.getElementById('left-leg');
-        this.frontRobotLeg = document.querySelectorAll('.foot') [1];//document.getElementById('front-leg');
+        this.legLeft = document.getElementById('left-leg');
+        this.legRight = document.getElementById('right-leg');
+        this.legFront = document.querySelectorAll('.foot') [1];//document.getElementById('front-leg');
+        this.dotCenter = document.getElementById('dot-center');
+        this.dotRight = document.getElementById('dot-right');
+        this.dotLeftUp = document.getElementById('dot-left-up');
+        this.dotLeftBottom = document.getElementById('dot-left-bottom');
+
         this.ballItem = document.getElementById('ball-item');
 
         this.rechargeBtn = document.getElementById('recharge-btn');
