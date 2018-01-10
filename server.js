@@ -19,8 +19,7 @@ app.listen(config.port, function (res) {
 
 wss.on('connection', function (ws) {
   ws.on('message', function (message) {
-    const msg = parseJSON(message);
-    console.log('action received: ', msg);
+    console.log('action received: ', message);
     ws.send('move');//setTimeout(() => ws.send('move'), 500);
   });
 });

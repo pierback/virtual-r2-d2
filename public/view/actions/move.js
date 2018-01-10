@@ -2,7 +2,6 @@
 const { randSign } = require('../../scripts/helper.js');
 
 exports.Move = (robot, act, react, ballDisplayed = false) => {
-
     const direction = randSign();
     let _curRobotPosX = robot.StartX + 1;
     let _speed = 4 * direction;

@@ -20,10 +20,10 @@ class Env {
         this.punishBtn = document.getElementById('punish-btn');
         this.stopBtn = document.getElementById('stop-btn');
         this.ballBtn = document.getElementById('ball-btn');
-        this.initButtoArray();
+        this.initButtonArray();
     }
 
-    initButtoArray() {
+    initButtonArray() {
         this.allBtns = [
             this.rechargeBtn,
             this.oilBtn,
@@ -35,11 +35,11 @@ class Env {
         ];
     }
 
-    disableBtns() {
+    disableButtons() {
         this.allBtns.map((btn) => btn.disabled = true);
     }
 
-    enableBtns() {
+    enableButtons() {
         this.allBtns.map((btn) => btn.disabled = false);
     }
 }
