@@ -36,7 +36,14 @@ class Controller {
             case 'move':
                 this.move();
                 break;
-            case 'adsf':
+            case 'waveArms':
+                this.wave();
+                break;
+            case 'peepMonoton':
+                this.peepMonoton();
+                break;
+            case 'peepIrregular':
+                this.peepIrregular();
                 break;
             default:
                 break;
@@ -73,6 +80,32 @@ class Controller {
             .then(() => {
                 playBall ? log('play ball finished') : log('move finished');
                 playBall ? this.send() : this.wait();
+            });
+    }
+
+    wave() {
+        this.Busy = true;
+        this.act.waveArms()
+            .then(() => {
+                this.wait();
+            });
+    }
+
+    peepIrregular() {
+        this.Busy = true;
+        this.act.peepIrregular()
+            .then(() => {
+                log('peepIrregular resolve');
+                this.wait();
+            });
+    }
+
+    peepMonoton() {
+        this.Busy = true;
+        this.act.peepMonoton()
+            .then(() => {
+                log('peepMonoton resolve');
+                this.wait();
             });
     }
 

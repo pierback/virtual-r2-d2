@@ -17,10 +17,12 @@ app.listen(config.port, function (res) {
   console.log(`Example app listening on port ${config.port}!`);
 });
 
+let tail = false;
 wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     console.log('action received: ', message);
-    ws.send('move');//setTimeout(() => ws.send('move'), 500);
+    tail = !tail;
+    tail ? ws.send('peepMonoton') : ws.send('waveArms');//setTimeout(() => ws.send('move'), 500);
   });
 });
 

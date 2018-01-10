@@ -16,13 +16,6 @@
         "no-this-before-super": "warn",
         "no-unreachable": "warn",
         "no-var": "error",
-        "prefer-const": [
-            "error",
-            {
-                "destructuring": "any",
-                "ignoreReadBeforeAssign": false
-            }
-        ],
         "constructor-super": "warn",
         "valid-typeof": "warn",
         "no-extra-semi": "warn",
