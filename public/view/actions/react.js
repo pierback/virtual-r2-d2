@@ -96,5 +96,17 @@ class React {
         });
     }
 
+    sleep() {
+        const bubble = new Item(this.env.speachBubble);
+        bubble.Text = '💤';
+        bubble.show(1);
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                bubble.hide(1);
+                resolve();
+            }, 3000);
+        });
+    }
+
 }
 exports.React = React;

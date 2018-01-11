@@ -222,6 +222,14 @@ class Controller {
             });
     }
 
+    sleep() {
+        this.Busy = true;
+        this.react.sleep()
+            .then(() => {
+                this.send('sleep');
+            });
+    }
+
 
 }
 let c = new Controller();
