@@ -15,7 +15,7 @@ class User {
             this.controller.move(true);
         });
         this.rechargeBtn.addEventListener('click', () => {
-            console.log('this.controller.recharge()');
+            this.controller.charge();
         });
         this.oilBtn.addEventListener('click', () => {
             this.controller.oil();
@@ -37,7 +37,7 @@ class User {
         window.onkeyup = function (e) {
             const key = e.keyCode ? e.keyCode : e.which;
             if (key === 49 || key === 65) {
-                console.log('this.controller.recharge()');
+                that.rechargeBtn.click();
             } else if (key === 50 || key === 83) {
                 that.oilBtn.click();
             } else if (key === 51 || key === 68) {

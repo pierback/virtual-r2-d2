@@ -61,10 +61,21 @@ class React {
     oil() {
         const barrel = new Item(this.env.barrelItem);
         barrel.show();
-        barrel.Animation = 'fallinTop 1s ease';
+        barrel.Animation = 'fallinTop 2.5s ';
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 barrel.hide();
+                resolve();
+            }, 3000);
+        });
+    }
+
+    charge() {
+        const chargeBar = new Item(this.env.chargeBar);
+        chargeBar.show(2);
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                chargeBar.hide();
                 resolve();
             }, 3000);
         });

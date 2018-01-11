@@ -178,6 +178,14 @@ class Controller {
                 this.send('oil');
             });
     }
+
+    charge() {
+        this.Busy = true;
+        this.react.charge()
+            .then(() => {
+                this.send('charge');
+            });
+    }
 }
 let c = new Controller();
 
