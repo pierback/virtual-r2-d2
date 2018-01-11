@@ -86,7 +86,7 @@ class Controller {
                 that.ws.send('noreaction');
             }
             clearInterval(checkBusy);
-        }, 10000);
+        }, 6000);
         //on wait: watches busy-var if changes state to true, clearTimeout and interval,
         //cos user has activated new action
         const checkBusy = setInterval(() => {

@@ -6,6 +6,7 @@ class React {
     }
 
     playBall(dir, robotPosX) {
+        log('playBall');
         this.ballItem.show();
         const ballWidth = this.ballItem.Width;
         const leftOffset = -ballWidth - this.robot.Width / 2;//manual set value
@@ -29,6 +30,7 @@ class React {
     }
 
     praise() {
+        log('praise');
         const that = this;
         return new Promise(function (resolve, reject) {
             let _curRobotPosY = that.robot.StartY + 1;
