@@ -17,9 +17,9 @@ class Env {
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');
         this.repairBtn = document.getElementById('repair-btn');
-        this.speakBtn = document.getElementById('speak-btn');
+        this.praiseBtn = document.getElementById('praise-btn');
         this.punishBtn = document.getElementById('punish-btn');
-        this.stopBtn = document.getElementById('stop-btn');
+        this.nothingBtn = document.getElementById('nothing-btn');
         this.ballBtn = document.getElementById('ball-btn');
         this.initButtonArray();
     }
@@ -29,9 +29,9 @@ class Env {
             this.rechargeBtn,
             this.oilBtn,
             this.repairBtn,
-            this.speakBtn,
+            this.praiseBtn,
             this.punishBtn,
-            this.stopBtn,
+            this.nothingBtn,
             this.ballBtn
         ];
     }

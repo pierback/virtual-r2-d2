@@ -54,7 +54,7 @@ class Act {
         center.Animation = 'peepMonoton 1s 3';
         right.Animation = 'peepMonoton1 1s 0.5s 2';
         let sound = new Audio('res/Bleep.mp3');
-        const trackLength = 500; // 5 seconds for instance
+        const trackLength = 500;
         let playthroughs = 6; //play through the file 3 times
 
         return new Promise(function (resolve, reject) {
@@ -83,7 +83,7 @@ class Act {
         leftDown.Animation = 'peepIrregular 1s 1s 3';
         robot.Animation = 'shaking 1s 1s 3';
         const sound = new Audio('res/Beeping.mp3');
-        const trackLength = 1000; // 5 seconds for instance
+        const trackLength = 1000;
         let playthroughs = 3; //play through the file 3 times
 
         return new Promise(function (resolve, reject) {
