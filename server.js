@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(config.port, function (res) {
-  console.log(`Example app listening on port ${config.port}!`);
+  console.log(`Example app listening on port ${config.base_url}:${config.port}!`);
 });
 
 let tail = false;
@@ -22,7 +22,7 @@ wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     console.log('action received: ', message);
     tail = !tail;
-    ws.send('peepIrregular');
+    ws.send('waveArms');
     //tail ? ws.send('circle') : ws.send('malfunction');
   });
 });

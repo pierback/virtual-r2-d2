@@ -23,7 +23,6 @@ class Act {
     }
 
     circle() {
-        log(this.robot);
         const robot = new Item(this.env.robot);
         robot.Animation = 'moveCircle 3s 1';
         return new Promise(function (resolve, reject) {
@@ -43,8 +42,7 @@ class Act {
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 resolve();
-                right.reset_animation();
-                left.reset_animation();
+                [left, right].map((el) => el.resetAnimation());
             }, 3000);
         });
     }
@@ -68,9 +66,8 @@ class Act {
                 }
                 else {
                     resolve();
-                    center.reset_animation();
-                    right.reset_animation();
                     clearInterval(player);
+                    [center, right].map((el) => el.resetAnimation());
                 }
             }, trackLength);
         });
@@ -97,10 +94,8 @@ class Act {
                 }
                 else {
                     resolve();
-                    leftUp.reset_animation();
-                    leftDown.reset_animation();
-                    robot.reset_animation();
                     clearInterval(player);
+                    [leftUp, leftDown, robot].map((el) => el.resetAnimation());
                 }
             }, trackLength);
         });

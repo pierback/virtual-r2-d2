@@ -2,7 +2,6 @@ class Item {
     constructor(documentItem) {
         this._item = documentItem;
         const itemOffset = this._item.getBoundingClientRect();
-        console.log(itemOffset);
         this._width = itemOffset.width;
         this._height = itemOffset.height;
     }
@@ -48,9 +47,9 @@ class Item {
         this._item.textContent = txt;
     }
 
-    reset_animation() {
+    resetAnimation() {
         this._item.style.animation = 'none';
-        this._item.offsetHeight;
+        this._item.offsetHeight; /* trigger reflow */
         this._item.style.animation = null;
     }
 }
