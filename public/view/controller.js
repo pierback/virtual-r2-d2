@@ -186,6 +186,16 @@ class Controller {
                 this.send('charge');
             });
     }
+
+    punish() {
+        this.Busy = true;
+        this.react.punish()
+            .then(() => {
+                this.send('punish');
+            });
+    }
+
+
 }
 let c = new Controller();
 

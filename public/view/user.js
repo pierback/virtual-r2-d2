@@ -27,7 +27,7 @@ class User {
             this.controller.praise();
         });
         this.punishBtn.addEventListener('click', () => {
-            console.log('this.controller.punish()');
+            this.controller.punish();
         });
         this.nothingBtn.addEventListener('click', () => {
             console.log('this.controller.nothing()');
@@ -47,7 +47,7 @@ class User {
             } else if (key == 53 || key === 71) {
                 that.praiseBtn.click();
             } else if (key == 54 || key === 72) {
-                console.log('this.controller.punish()');
+                that.punishBtn.click();
             } else if (key == 55 || key === 74) {
                 console.log('this.controller.stop()');
             }

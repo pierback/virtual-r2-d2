@@ -61,7 +61,7 @@ class React {
     oil() {
         const barrel = new Item(this.env.barrelItem);
         barrel.show();
-        barrel.Animation = 'fallinTop 2.5s ';
+        barrel.Animation = 'fallin 2.5s';
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 barrel.hide();
@@ -76,6 +76,21 @@ class React {
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 chargeBar.hide();
+                resolve();
+            }, 3000);
+        });
+    }
+
+    punish() {
+        const canvas = this.env.canvas;
+        canvas.style.filter = 'grayscale(1)';
+        const bubble = new Item(this.env.speachBubble);
+        bubble.Text = '😢';
+        bubble.show(1);
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                bubble.hide(1);
+                canvas.style.filter = 'none';
                 resolve();
             }, 3000);
         });
