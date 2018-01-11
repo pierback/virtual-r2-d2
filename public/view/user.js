@@ -49,7 +49,7 @@ class User {
             } else if (key == 54 || key === 72) {
                 that.punishBtn.click();
             } else if (key == 55 || key === 74) {
-                that.punishBtn.nothingBtn();
+                that.nothingBtn.click();
             }
         };
     }
