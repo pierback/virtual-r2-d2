@@ -3,9 +3,9 @@ class User {
         this.rechargeBtn = env.rechargeBtn;
         this.oilBtn = env.oilBtn;
         this.repairBtn = env.repairBtn;
-        this.praiseBtn = env.speakBtn;
+        this.praiseBtn = env.praiseBtn;
         this.punishBtn = env.punishBtn;
-        this.nothingBtn = env.stopBtn;
+        this.nothingBtn = env.nothingBtn;
         this.ballBtn = env.ballBtn;
         this.controller = controller;
         this._initializeListeners();
