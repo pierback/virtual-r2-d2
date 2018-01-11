@@ -19,7 +19,7 @@ class Controller {
         this._initializeSocket();
     }
 
-    updateCanvas(){
+    updateCanvas() {
         this.robot.updateSize();
     }
 
@@ -171,9 +171,16 @@ class Controller {
             });
     }
 
+    oil() {
+        this.Busy = true;
+        this.react.oil()
+            .then(() => {
+                this.send('oil');
+            });
+    }
 }
-c = new Controller();
+let c = new Controller();
 
-window.onresize = function(event) {
+window.onresize = function (event) {
     c.updateCanvas();
 };

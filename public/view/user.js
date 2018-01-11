@@ -18,7 +18,7 @@ class User {
             console.log('this.controller.recharge()');
         });
         this.oilBtn.addEventListener('click', () => {
-            console.log('this.controller.spillOil()');
+            this.controller.oil();
         });
         this.repairBtn.addEventListener('click', () => {
             console.log('this.controller.repair()');
@@ -39,7 +39,7 @@ class User {
             if (key === 49 || key === 65) {
                 console.log('this.controller.recharge()');
             } else if (key === 50 || key === 83) {
-                console.log('this.controller.spillOil()');
+                that.oilBtn.click();
             } else if (key === 51 || key === 68) {
                 console.log('this.controller.repair()');
             } else if (key == 52 || key === 70) {

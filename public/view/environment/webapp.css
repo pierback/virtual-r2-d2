@@ -13,7 +13,7 @@
 .w3-bar-item {
     width: 14.28% !important;
     background-color: #333e3a !important;
-    border:1px solid #938f83 !important;
+    border: 1px solid #938f83 !important;
 }
 
 #ball-item {
@@ -163,16 +163,25 @@
     }
 }
 
+#barrel {
+    display: none;
+    position: absolute;
+    top: 62%;
+    left: 25%;
+    font-size: 100px;
+}
 
-/* 
-#r2d2 {
-	animation: moveCircle 2s 1 linear;
-} */
+@keyframes fallinTop {
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 62%;
+    }
+}
 
 #talkbubble {
     display: none;
-    position: relative;
-    width: 65px;
     height: 64px;
     padding: 10px;
     border-radius: 17px;

@@ -58,5 +58,17 @@ class React {
         });
     }
 
+    oil() {
+        const barrel = new Item(this.env.barrelItem);
+        barrel.show();
+        barrel.Animation = 'fallinTop 1s ease';
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                barrel.hide();
+                resolve();
+            }, 3000);
+        });
+    }
+
 }
 exports.React = React;
