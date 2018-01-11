@@ -12,6 +12,7 @@ class Env {
         this.dotLeftBottom = document.getElementById('dot-left-bottom');
 
         this.ballItem = document.getElementById('ball-item');
+        this.speachBubble = document.getElementById('talkbubble');
 
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');

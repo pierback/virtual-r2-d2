@@ -22,7 +22,8 @@ wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     console.log('action received: ', message);
     tail = !tail;
-    tail ? ws.send('peepMonoton') : ws.send('waveArms');
+    ws.send('malfunction');
+    //tail ? ws.send('circle') : ws.send('malfunction');
   });
 });
 

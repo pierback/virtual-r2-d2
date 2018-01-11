@@ -6,35 +6,29 @@ class Act {
         this.robot = robot;
     }
 
+    malfunction() {
+        const bubble = new Item(this.env.speachBubble);
+        bubble.show();
+        this.env.speachBubble.textContent = '⚡️ 💨';
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                bubble.hide();
+                resolve();
+            }, 8000);
+        });
+    }
+
     moveRobot(rbPosX) {
         this.robot.X = rbPosX;
     }
 
     circle() {
+        log(this.robot);
+        const robot = new Item(this.env.robot);
+        robot.Animation = 'moveCircle 3s 1';
         return new Promise(function (resolve, reject) {
-            const _curRobotPosX = this.robot.StartX + 1;
-            let _curRobotPosY = this.robot.StartY + 1;
-            let _speed = 4;
-            let _touchedEdges = 0;
-
-            const _moveInterval = setInterval(() => {
-                if (robotOutOfRange()) {
-                    _speed = -_speed;
-                    _touchedEdges++;
-                }
-                _curRobotPosY += _speed;
-                this.robot.Y = _curRobotPosY;
-            }, 5);
-
-            setTimeout(() => {
-                clearInterval(_moveInterval);
-                this.robot.Y = this.robot.StartY;
-            }, 2000);
-
-
-            const offset = 25;
-
-            const robotOutOfRange = () => (_curRobotPosX <= (this.robot.MinY + offset) || _curRobotPosY >= (this.robot.MaxY - offset));
+            log('circle');
+            setTimeout(() => resolve(), 3000);
         });
     }
 

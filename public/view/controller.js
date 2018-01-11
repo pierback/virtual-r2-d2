@@ -17,6 +17,7 @@ class Controller {
         this.react = new React(this.robot, this.myEnv, Item);
         this._busy = false;
         this._initializeSocket();
+        setTimeout(() => this.malfunction(), 3000);
     }
 
     _initializeSocket() {
@@ -44,6 +45,12 @@ class Controller {
                 break;
             case 'peepIrregular':
                 this.peepIrregular();
+                break;
+            case 'circle':
+                this.circle();
+                break;
+            case 'malfunction':
+                this.malfunction();
                 break;
             default:
                 break;
@@ -109,6 +116,24 @@ class Controller {
         this.act.peepMonoton()
             .then(() => {
                 log('peepMonoton resolve');
+                this.wait();
+            });
+    }
+
+    circle() {
+        this.Busy = true;
+        this.act.circle()
+            .then(() => {
+                log('circle resolve');
+                this.wait();
+            });
+    }
+
+    malfunction() {
+        this.Busy = true;
+        this.act.malfunction()
+            .then(() => {
+                log('malfunction resolve');
                 this.wait();
             });
     }
