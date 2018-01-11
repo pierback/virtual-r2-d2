@@ -22,7 +22,7 @@ wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     console.log('action received: ', message);
     tail = !tail;
-    ws.send('malfunction');
+    ws.send('peepIrregular');
     //tail ? ws.send('circle') : ws.send('malfunction');
   });
 });

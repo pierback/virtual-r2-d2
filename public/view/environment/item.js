@@ -47,6 +47,12 @@ class Item {
     set Text(txt) {
         this._item.textContent = txt;
     }
+
+    reset_animation() {
+        this._item.style.animation = 'none';
+        this._item.offsetHeight;
+        this._item.style.animation = null;
+    }
 }
 
 exports.Item = Item;

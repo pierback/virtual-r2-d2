@@ -38,11 +38,14 @@ class Act {
         let animationQuery = 'arm 1.5s 2';
         let left = new Item(this.env.legLeft);
         let right = new Item(this.env.legRight);
-        this.env.legLeft.style.animation = 'arm 1.5s 2';
-        this.env.legRight.style.animation = 'arm 1.5s 2';
+        left.Animation = 'arm 1.5s 2';
+        right.Animation = 'arm 1.5s 2';
         return new Promise(function (resolve, reject) {
-            log('waveArms');
-            setTimeout(() => resolve(), 3000);
+            setTimeout(() => {
+                resolve();
+                right.reset_animation();
+                left.reset_animation();
+            }, 3000);
         });
     }
 
@@ -65,6 +68,8 @@ class Act {
                 }
                 else {
                     resolve();
+                    center.reset_animation();
+                    right.reset_animation();
                     clearInterval(player);
                 }
             }, trackLength);
@@ -92,6 +97,9 @@ class Act {
                 }
                 else {
                     resolve();
+                    leftUp.reset_animation();
+                    leftDown.reset_animation();
+                    robot.reset_animation();
                     clearInterval(player);
                 }
             }, trackLength);
