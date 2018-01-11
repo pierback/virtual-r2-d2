@@ -20,7 +20,7 @@ class Item {
         this._item.style.animation = `fadeOut ${duration}s`;
         setTimeout(() => {
             this._item.style.display = 'none';
-        }, duration * 1000);
+        }, (duration * 1000) - 100);
     }
 
     get Width() {

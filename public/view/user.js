@@ -24,8 +24,7 @@ class User {
             console.log('this.controller.repair()');
         });
         this.praiseBtn.addEventListener('click', () => {
-            console.log('this.controller.praise()');
-            this.controller.happy();
+            this.controller.praise();
         });
         this.punishBtn.addEventListener('click', () => {
             console.log('this.controller.punish()');
@@ -46,7 +45,7 @@ class User {
             } else if (key == 52 || key === 70) {
                 that.ballBtn.click();
             } else if (key == 53 || key === 71) {
-                that.speakBtn.click();
+                that.praiseBtn.click();
             } else if (key == 54 || key === 72) {
                 console.log('this.controller.punish()');
             } else if (key == 55 || key === 74) {
