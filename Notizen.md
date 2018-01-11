@@ -1,65 +1,70 @@
-# Semesterprojekt
-## R2-d2
+#Semesterprojekt
+##R2-d2
 
-Ziel: Bedürfnisse gezielt befriedigen
+Ziel Bedürfnisse gezielt befriedigen
 
-### Zustandsraum/Bedürfnisse
+###Zustandsraum/Bedürfnisse
 *	Energie (Strom) - Zeitabhängig
-*	Öl, (für Gelenke) – Aktionsabhängig (bei Bewegungen)
+*	Öl (für Gelenke) – Aktionsabhängig (bei Bewegungen)
 *	Aufmerksamkeit (Sprache, tätschelt, Ball) – Zeit und Nutzerabhängig
 *	Störung - Aktionsabhängig
-* Beliebtheit
-
-### Aktionen
-* In Kreis fahren (Aufmerksamkeit)
-  * left und top Werte anpassen
-*	Roboterarme ausstrecken (Strom, Öl)
-  * Arme spiegeln
-*	Piepsen (Aufmerksamkeit)
-  * Zufällig Leds aus- und einschalten + Sound
-* Blinken (Störung beheben)
-  * Monotones ein- und ausschalten
-*	Hin und her fahren (Aufmerksamkeit)
-  * left Werte anpassen/links-rechts gehen
-* Ölfleck machen (Aufmerksamkeit)
-* Ölfleck wegmachen (Beliebtheit)
-* Sprechblase (Störung beheben)
-  * mit Blitzen ⚡️ und Rauch 💨
-* Energiesparmodus, nichts (keine Aktion wird erwartet)
-  * nichts/hinlegen Gedankenblase 💤 (90° drehen)
-* (Aktionen zusammenfassen)
+*   Liebe
 
 ### Reward
 * Bedürfnisabhängig
 * Default: leichter negativ reward
 
-### Nutzeraktionen
-Durch Buttons mit Emoticons
+##Aktionen (act)
+Sinnvolle Aktionen für 
 
-* Batteriewechsel 🔋
-  * Recharge-Ladebalken anzeigen (ohne konkreten Ladestand)
-* Öl nachfüllen 🛢
-  * Roboter an Ölkanister anschließen
-* Störung beheben 🛠
-  * Wartungssymbol, Schraubenzieher in der Nähe einblenden
-* Ball zuwerfen ⚽️
-  * Ball liegt links, r2-d2 holt ihn
-* Sprechen (Eingabefeld, Codewörter - Lob, )
-  * Sprechblase und Blinken beim r2-d2
-* Bestrafung (Dunkelkammer, Licht aus, reden mit C-3PO)
-  * Alles ist dunkel, und Gitterstäbe
-  * C-3PO (?) wird eingeblendet
-* Keine Aktion/Reaktion
-  * Roboter verdreht sein Auge oder ganz kleine vor und zurückbewegung
+* Energie
+    * 'waveArms' im Sinne von Hilfe
+    * 'peepMonotonous' 
+* Öl
+    * 'peepMonotonous'
+    * 'waveArms' im Sinne von Hilfe
+* Aufmerksamkeit
+    * 'move' hin und her fahren
+    * 'waveArms' spielerisch
+    * 'MakeSmear' Ölfleck machen
+* Störung
+    * 'malfunction' Sprechblase mit Blitzen ⚡️ und Rauch 💨
+    * 'MakeSmear' Ölfleck machen
+* Liebe
+    * 'peepIrregular' Freudiges quitschen
+    * 'RemoveSmear' Ölfleck entfernen
+* Keine Bedürfnisse
+    * 'snooze' Gedankenblase mit snooze, hinlegen?
+    
 
--> Tod (90° drehen, Störungsblase)
+### Nutzeraktionen (react)
+
+
+* Batteriewechsel 'recharge' 🔋
+    * Recharge-Ladebalken anzeigen (ohne konkreten Ladestand)
+* Ölen 'oil' 🛢
+    * Roboter an Ölkanister anschließen
+* Störung beheben 'repair' 🛠
+    * Wartungssymbol, Schraubenzieher in der Nähe einblenden
+* Ball zuwerfen 'toss ball' ⚽️
+    * 'play ball' Ball liegt links, r2-d2 holt ihn
+* Loben 'praise'
+    * 'happy' r2-d2 bewegt sich ganz schnell auf und ab
+* Bestrafung 'punish' (Dunkelkammer, Licht aus, reden mit C-3PO)
+    * Alles ist dunkel, und Gitterstäbe
+    * C-3PO (?) wird eingeblendet
+* Keine Aktion 'nothing'
+    * Roboter verdreht sein Auge oder ganz kleine vor und zurückbewegung
+
+### Spezialanimation
+* Tod (90° drehen, Störungsblase)
 
 
 ## Arbeitsschritte
 1. Projektstruktur anlegen (done by Fabian)
 2. CSS Animation in 2D,
-  1. Zustandsanimationen (Klaus)
-  2. Aktionsanimationen (Fabian)
-  3. Hintergrund (Klaus)
+  1. Zustandsanimationen 
+  2. Aktionsanimationen 
+3. Zustandsraum implementieren
 3. Algorithmen finden/ins Projekt übertragen
 4. Tests, Bot schreiben

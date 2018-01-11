@@ -19,6 +19,10 @@ class Controller {
         this._initializeSocket();
     }
 
+    updateCanvas(){
+        this.robot.updateSize();
+    }
+
     _initializeSocket() {
         const that = this;
         this.ws = new WebSocket('ws://localhost:4000');
@@ -167,4 +171,9 @@ class Controller {
             });
     }
 
-} new Controller();
+}
+c = new Controller();
+
+window.onresize = function(event) {
+    c.updateCanvas();
+};

@@ -1,18 +1,19 @@
 class Robot {
     constructor(env) {
-        this._initializeVariables(env);
+        this.env = env;
+        this.updateSize();
     }
 
-    _initializeVariables(env) {
-        this.robot = env.robot;
-        const canvas = env.canvas;
+    updateSize(){
+        this.robot = this.env.robot;
+        const canvas = this.env.canvas;
         const canvasOffset = canvas.getBoundingClientRect();
         const canvasWidth = canvasOffset.width;
         const canvasHeight = canvasOffset.height;
 
         const robotOriginalLegWidth = 52; //original value
         const robotOriginalWidth = 225; // original value
-        const robotOffset = env.robot.getBoundingClientRect();
+        const robotOffset = this.env.robot.getBoundingClientRect();
         const xScale = robotOffset.width / robotOriginalWidth;
         this._xCorrection = Math.floor((robotOriginalWidth - robotOffset.width) / 2 - robotOriginalLegWidth * xScale);
         this._width = Math.floor(robotOffset.width + robotOriginalLegWidth * 2 * xScale);
@@ -23,7 +24,7 @@ class Robot {
 
         const robotHeight = robotOffset.height;
         const robotNewLegHeight = 19; //estimation for scale 0.3
-        const horizontalLine = (canvasHeight) * 0.61; //specific for desert image
+        const horizontalLine = (canvasHeight) * 0.51; //specific for desert image
         this._yCorrection = 158; //estimation needs to be changed if scale is changed
         this._height = Math.floor(robotHeight + robotNewLegHeight);
         this._minY = Math.floor(horizontalLine - robotHeight / 2);
