@@ -16,6 +16,7 @@ class User {
         });
         this.rechargeBtn.addEventListener('click', () => {
             console.log('this.controller.recharge()');
+            this.controller.wave();
         });
         this.oilBtn.addEventListener('click', () => {
             console.log('this.controller.spillOil()');
@@ -35,20 +36,20 @@ class User {
 
         const that = this;
         window.onkeyup = function (e) {
-            let key = e.keyCode ? e.keyCode : e.which;
-            if (key === 49) {
+            const key = e.keyCode ? e.keyCode : e.which;
+            if (key === 49 || key === 65) {
                 console.log('this.controller.recharge()');
-            } else if (key === 50) {
+            } else if (key === 50 || key === 83) {
                 console.log('this.controller.spillOil()');
-            } else if (key === 51) {
+            } else if (key === 51 || key === 68) {
                 console.log('this.controller.repair()');
-            } else if (key == 52) {
+            } else if (key == 52 || key === 70) {
                 that.ballBtn.click();
-            } else if (key == 53) {
+            } else if (key == 53 || key === 71) {
                 that.speakBtn.click();
-            } else if (key == 54) {
+            } else if (key == 54 || key === 72) {
                 console.log('this.controller.punish()');
-            } else if (key == 55) {
+            } else if (key == 55 || key === 74) {
                 console.log('this.controller.stop()');
             }
         };

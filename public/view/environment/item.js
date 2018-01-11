@@ -7,8 +7,9 @@ class Item {
         this._height = itemOffset.height;
     }
 
-    show() {
+    show(duration = 0.2) {
         this._item.style.display = 'block';
+        this._item.style.animation = `fadeIn ${duration}s`;
         if (this._width == 0) {
             const itemOffset = this._item.getBoundingClientRect();
             this._width = itemOffset.width;
@@ -16,8 +17,11 @@ class Item {
         }
     }
 
-    hide() {
-        this._item.style.display = 'none';
+    hide(duration = 0.2) {
+        this._item.style.animation = `fadeOut ${duration}s`;
+        setTimeout(() => {
+            this._item.style.display = 'none';
+        }, duration * 1000);
     }
 
     get Width() {
@@ -38,6 +42,10 @@ class Item {
 
     set Animation(animationQuery) {
         this._item.style.animation = animationQuery;
+    }
+
+    set Text(txt) {
+        this._item.textContent = txt;
     }
 }
 

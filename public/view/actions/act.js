@@ -8,13 +8,13 @@ class Act {
 
     malfunction() {
         const bubble = new Item(this.env.speachBubble);
-        bubble.show();
-        this.env.speachBubble.textContent = '⚡️ 💨';
+        bubble.Text = '⚡️ 💨';
+        bubble.show(1);
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
-                bubble.hide();
+                bubble.hide(1);
                 resolve();
-            }, 8000);
+            }, 3500);
         });
     }
 
@@ -38,8 +38,8 @@ class Act {
         let animationQuery = 'arm 1.5s 2';
         let left = new Item(this.env.legLeft);
         let right = new Item(this.env.legRight);
-        left.Animation = 'arm 1.5s 2';
-        right.Animation = 'arm 1.5s 2';
+        this.env.legLeft.style.animation = 'arm 1.5s 2';
+        this.env.legRight.style.animation = 'arm 1.5s 2';
         return new Promise(function (resolve, reject) {
             log('waveArms');
             setTimeout(() => resolve(), 3000);

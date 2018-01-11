@@ -17,7 +17,6 @@ class Controller {
         this.react = new React(this.robot, this.myEnv, Item);
         this._busy = false;
         this._initializeSocket();
-        setTimeout(() => this.malfunction(), 3000);
     }
 
     _initializeSocket() {
