@@ -14,6 +14,9 @@ class Env {
         this.ballItem = document.getElementById('ball-item');
         this.speachBubble = document.getElementById('talkbubble');
         this.smearItem = document.getElementById('smear-item');
+        this.barrelItem = document.getElementById('barrel');
+        this.chargeBar = document.getElementById('chargeBar');
+
 
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');
