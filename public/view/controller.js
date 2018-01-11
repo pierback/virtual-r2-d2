@@ -55,6 +55,12 @@ class Controller {
             case 'malfunction':
                 this.malfunction();
                 break;
+            case 'makeSmear':
+                this.makeSmear();
+                break;
+            case 'removeSmear':
+                this.removeSmear();
+                break;
             default:
                 break;
         }
@@ -149,6 +155,27 @@ class Controller {
                 this.wait();
             });
     }
+
+
+    makeSmear() {
+        this.Busy = true;
+        this.act.makeSmear()
+            .then(() => {
+                log('makeSmear finished');
+                this.wait();
+            });
+    }
+
+    removeSmear() {
+        this.Busy = true;
+        this.act.removeSmear()
+            .then(() => {
+                log('removeSmear finished');
+                this.wait();
+            });
+    }
+
+
 
     malfunction() {
         this.Busy = true;
