@@ -1,4 +1,4 @@
-const { parseJSON, stringifyJSON, log } = require('/scripts/helper.js');
+const { parseJSON, stringifyJSON, log, randSign } = require('/scripts/helper.js');
 const { Robot } = require('../view/robot.js');
 const { Act } = require('../view/actions/act.js');
 const { React } = require('../view/actions/react.js');
@@ -30,14 +30,14 @@ class Controller {
             log('websocket is connected ...');
         };
         this.ws.onmessage = function (ev) {
-            this._busy = true;
+            this.that = true;
             setTimeout(() => that.evalActFunc(ev.data), 1200);
         };
     }
 
     evalActFunc(funcName) {
         switch (funcName) {
-            case 'move':
+            case 'moveRobot':
                 this.move();
                 break;
             case 'waveArms':
@@ -66,6 +66,10 @@ class Controller {
         this.toggleBtns();
     }
 
+    get Busy() {
+        return this._bus;
+    }
+
     toggleBtns() {
         this._busy ? this.myEnv.disableButtons() : this.myEnv.enableButtons();
     }
@@ -75,13 +79,27 @@ class Controller {
      */
 
     wait() {
+        log('wait');
         const that = this;
-        this.Busy = false;
-        const wait = setTimeout(() => {
-            if (!this._busy) {
+        that.Busy = false;
+        //waits 10 sec, if no user action then ask server for new action
+        const waitInterval = setTimeout(() => {
+            if (!that._busy) {
+                that.myEnv.disableButtons();
+                log('no reaction');
                 that.ws.send('noreaction');
-            } else clearInterval(wait);
+            }
+            clearInterval(checkBusy);
         }, 10000);
+        //on wait: watches busy-var if changes state to true, clearTimeout and interval,
+        //cos user has activated new action
+        const checkBusy = setInterval(() => {
+            if (that._busy) {
+                log('clear wait interval');
+                clearTimeout(waitInterval);
+                clearInterval(checkBusy);
+            }
+        }, 50);
     }
 
     send(funcName) {
@@ -109,7 +127,7 @@ class Controller {
         this.Busy = true;
         this.act.peepIrregular()
             .then(() => {
-                log('peepIrregular resolve');
+                log('peepIrregular finished');
                 this.wait();
             });
     }
@@ -118,7 +136,7 @@ class Controller {
         this.Busy = true;
         this.act.peepMonoton()
             .then(() => {
-                log('peepMonoton resolve');
+                log('peepMonoton finished');
                 this.wait();
             });
     }
@@ -127,7 +145,7 @@ class Controller {
         this.Busy = true;
         this.act.circle()
             .then(() => {
-                log('circle resolve');
+                log('circle finished');
                 this.wait();
             });
     }
@@ -136,7 +154,7 @@ class Controller {
         this.Busy = true;
         this.act.malfunction()
             .then(() => {
-                log('malfunction resolve');
+                log('malfunction finished');
                 this.wait();
             });
     }
@@ -144,11 +162,12 @@ class Controller {
     /** 
      * react
     */
-    happy() {
+    praise() {
         this.Busy = true;
-        this.react.happy()
+        this.react.praise()
             .then(() => {
-                this.send('happy');
+                log('praise finished');
+                this.send('praise');
             });
     }
 

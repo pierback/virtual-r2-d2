@@ -28,7 +28,7 @@ class React {
         this.playBall.moveBall = moveBall;
     }
 
-    happy() {
+    praise() {
         const that = this;
         return new Promise(function (resolve, reject) {
             let _curRobotPosY = that.robot.StartY + 1;

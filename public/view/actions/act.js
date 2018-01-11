@@ -1,5 +1,3 @@
-const { randSign } = require('./../scripts/helper.js');
-
 class Act {
     constructor(robot, env) {
         this.env = env;
@@ -57,9 +55,9 @@ class Act {
         const trackLength = 500;
         let playthroughs = 6; //play through the file 3 times
 
+        log('peepMonoton');
         return new Promise(function (resolve, reject) {
             const player = setInterval(function () {
-                log('peepMonoton');
                 if (playthroughs > 0) {
                     sound.play();
                     playthroughs--;
