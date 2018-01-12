@@ -7,7 +7,6 @@ const { Env } = require('../view/environment/env.js');
 const { User } = require('../view/user.js');
 const { Move } = require('../view/actions/move.js');
 
-
 class Controller {
     constructor() {
         this.env = new Env();
@@ -37,7 +36,7 @@ class Controller {
             log('websocket is connected ...');
         };
         this.ws.onmessage = function (ev) {
-            this.that = true;
+            that.Busy = true;
             setTimeout(() => that.evalActFunc(ev.data), 1200);
         };
     }
@@ -80,30 +79,30 @@ class Controller {
     }
 
     get Busy() {
-        return this._bus;
+        return this._busy;
     }
 
     toggleBtns() {
-        this._busy ? this.env.disableButtons() : this.env.enableButtons();
+        this.Busy ? this.env.disableButtons() : this.env.enableButtons();
     }
 
     wait() {
         log('wait');
         const that = this;
         that.Busy = false;
-        //waits 10 sec, if no user action then ask server for new action
+        //waits 5 sec, if no user action then ask server for new action
         const waitInterval = setTimeout(() => {
-            if (!that._busy) {
+            if (!that.Busy) {
                 that.env.disableButtons();
                 log('no reaction');
                 that.ws.send('noreaction');
             }
             clearInterval(checkBusy);
-        }, 6000);
+        }, 5000);
         //on wait: watches busy-var if changes state to true, clearTimeout and interval,
         //cos user has activated new action
         const checkBusy = setInterval(() => {
-            if (that._busy) {
+            if (that.Busy) {
                 log('clear wait interval');
                 clearTimeout(waitInterval);
                 clearInterval(checkBusy);
