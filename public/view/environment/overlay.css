@@ -34,11 +34,41 @@ body {
     position: relative;
     margin: auto;
     width: 50%;
+    animation: pulsate 2s ease-out infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes nopulsation {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+.overlay a:click {
+    color: #f1f1f1;
 }
 
 .overlay a:hover,
 .overlay a:focus {
     color: #f1f1f1;
+    animation: nopulsation 2s infinite;
 }
 
 @media screen and (max-height: 450px) {
