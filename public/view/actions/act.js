@@ -2,7 +2,6 @@ class Act {
     constructor(robot, env) {
         this.env = env;
         this.robot = robot;
-        console.log(robot);
     }
 
     circle() {
@@ -18,7 +17,7 @@ class Act {
         });
     }
 
-    makeSmear(){
+    makeSmear() {
         log('make smear');
         const robot = new Item(this.env.robot);
         const smear = new Item(this.env.smearItem);
@@ -32,8 +31,8 @@ class Act {
 
         setTimeout(() => {
             smear.show();
-            smear.X = this.robot.MaxX/2;
-            smear.Y = this.robot.Y + this.robot.Height*0.75;
+            smear.X = this.robot.MaxX / 2;
+            smear.Y = this.robot.Y + this.robot.Height * 0.75;
         }, 700);
 
         return new Promise(function (resolve, reject) {
@@ -44,12 +43,12 @@ class Act {
         });
     }
 
-    removeSmear(){
+    removeSmear() {
         log('remove smear');
         const robot = new Item(this.env.robot);
         const smear = new Item(this.env.smearItem);
-        smear.X = this.robot.MaxX/2;
-        smear.Y = this.robot.Y + this.robot.Height*0.75;
+        smear.X = this.robot.MaxX / 2;
+        smear.Y = this.robot.Y + this.robot.Height * 0.75;
         smear.show();
         robot.Animation = 'smearRemove 1.5s 1';
 

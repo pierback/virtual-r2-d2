@@ -59,19 +59,24 @@ class React {
     }
 
     oil() {
+        log('oil');
         const barrel = new Item(this.env.barrelItem);
+        barrel.X = this.robot.X;
         barrel.show();
         barrel.Animation = 'fallin 2.5s';
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 barrel.hide();
                 resolve();
+                barrel.resetAnimation();
             }, 3000);
         });
     }
 
     charge() {
+        log('charge');
         const chargeBar = new Item(this.env.chargeBar);
+        chargeBar.X = this.robot.X - 10;
         chargeBar.show(2);
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
@@ -82,22 +87,32 @@ class React {
     }
 
     punish() {
+        log('punish');
         const canvas = this.env.canvas;
-        canvas.style.filter = 'grayscale(1)';
+        const robot = new Item(this.env.robot);
         const bubble = new Item(this.env.speachBubble);
+        canvas.style.filter = 'grayscale(1)';
+        bubble.X = this.robot.X + this.robot.Width - 40;
+        bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
         bubble.Text = '😢';
         bubble.show(1);
+        robot.Animation = 'shaking 1s 1s 3';
+
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 bubble.hide(1);
                 canvas.style.filter = 'none';
+                robot.resetAnimation();
                 resolve();
             }, 3000);
         });
     }
 
     sleep() {
+        log('sleep');
         const bubble = new Item(this.env.speachBubble);
+        bubble.X = this.robot.X + this.robot.Width - 40;
+        bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
         bubble.Text = '💤';
         bubble.show(1);
         return new Promise(function (resolve, reject) {

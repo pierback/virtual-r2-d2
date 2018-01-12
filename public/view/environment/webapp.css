@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 70vh;
-    z-index:-2;
+    z-index: -2;
 }
 
 .w3-bar-item {
@@ -27,7 +27,7 @@
     display: none;
     position: absolute;
     font-size: 40px;
-    z-index:-1;
+    z-index: -1;
 }
 
 @keyframes arm {
@@ -153,7 +153,6 @@
     }
 }
 
-
 @keyframes moveCircle {
     0% {
         transform: scale(0.3) translateX(0px) translateY(0px);
@@ -188,7 +187,6 @@
     100% {
         transform: scale(0.3) translateX(0px) translateY(0px);
     }
-
 }
 
 @keyframes smearMake {
@@ -208,7 +206,6 @@
         transform: scale(0.3) translateX(0px) rotate(0deg);
     }
 }
-
 
 @keyframes smearRemove {
     0% {
@@ -249,7 +246,6 @@
     top: 62%;
     left: 36%;
     font-size: 100px;
-
 }
 
 @keyframes fallin {

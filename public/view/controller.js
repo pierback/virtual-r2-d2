@@ -80,10 +80,6 @@ class Controller {
         this._busy ? this.myEnv.disableButtons() : this.myEnv.enableButtons();
     }
 
-    /**
-     * act
-     */
-
     wait() {
         log('wait');
         const that = this;
@@ -111,6 +107,10 @@ class Controller {
     send(funcName) {
         this.ws.send(funcName.toString());
     }
+
+    /**
+     * act
+     */
 
     move(playBall) {
         this.Busy = true;
