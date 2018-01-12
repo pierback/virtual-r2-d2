@@ -10,17 +10,22 @@ const { Move } = require('../view/actions/move.js');
 
 class Controller {
     constructor() {
-        this.myEnv = new Env();
-        this.robot = new Robot(this.myEnv);
-        this.user = new User(this.myEnv, this);
-        this.act = new Act(this.robot, this.myEnv);
-        this.react = new React(this.robot, this.myEnv, Item);
+        this.env = new Env();
+        this.robot = new Robot(this.env);
+        this.user = new User(this.env, this);
+        this.act = new Act(this.robot, this.env);
+        this.react = new React(this.robot, this.env, Item);
         this._busy = false;
         this._initializeSocket();
     }
 
     updateCanvas() {
         this.robot.updateSize();
+    }
+
+    start() {
+        this.env.overlay.style.width = '0%';
+        this.ws.send('noreaction');
     }
 
     _initializeSocket() {
@@ -77,7 +82,7 @@ class Controller {
     }
 
     toggleBtns() {
-        this._busy ? this.myEnv.disableButtons() : this.myEnv.enableButtons();
+        this._busy ? this.env.disableButtons() : this.env.enableButtons();
     }
 
     wait() {
@@ -87,7 +92,7 @@ class Controller {
         //waits 10 sec, if no user action then ask server for new action
         const waitInterval = setTimeout(() => {
             if (!that._busy) {
-                that.myEnv.disableButtons();
+                that.env.disableButtons();
                 log('no reaction');
                 that.ws.send('noreaction');
             }
@@ -232,7 +237,7 @@ class Controller {
 
 
 }
-let c = new Controller();
+const c = new Controller();
 
 window.onresize = function (event) {
     c.updateCanvas();

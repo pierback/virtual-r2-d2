@@ -119,7 +119,7 @@ class React {
             setTimeout(() => {
                 bubble.hide(1);
                 resolve();
-            }, 3000);
+            }, 4000);
         });
     }
 

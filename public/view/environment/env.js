@@ -17,6 +17,7 @@ class Env {
         this.barrelItem = document.getElementById('barrel');
         this.chargeBar = document.getElementById('chargeBar');
 
+        this.overlay = document.getElementById('start-overlay');
 
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');

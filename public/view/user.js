@@ -1,5 +1,6 @@
 class User {
     constructor(env, controller) {
+        this.overlay = env.overlay;
         this.rechargeBtn = env.rechargeBtn;
         this.oilBtn = env.oilBtn;
         this.repairBtn = env.repairBtn;
@@ -32,6 +33,9 @@ class User {
         this.nothingBtn.addEventListener('click', () => {
             this.controller.sleep();
         });
+        this.overlay.addEventListener('click', () => {
+            this.controller.start();
+        });
 
         const that = this;
         window.onkeyup = function (e) {
@@ -50,6 +54,8 @@ class User {
                 that.punishBtn.click();
             } else if (key == 55 || key === 74) {
                 that.nothingBtn.click();
+            } else if (key == 13 || key === 32) {
+                that.overlay.click();
             }
         };
     }
