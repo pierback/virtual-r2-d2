@@ -30,7 +30,9 @@ class Controller {
 
     _initializeSocket() {
         const that = this;
-        this.ws = new WebSocket('ws://localhost:4000');
+        const HOST = location.origin.replace(/^http/, 'ws');
+        this.ws = new WebSocket(HOST);
+
         this.ws.onopen = function () {
             log('websocket is connected ...');
         };
