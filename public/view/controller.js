@@ -24,6 +24,7 @@ class Controller {
 
     start() {
         this.env.overlay.style.width = '0%';
+        this.env.enableButtons();
         this.ws.send('noreaction');
     }
 

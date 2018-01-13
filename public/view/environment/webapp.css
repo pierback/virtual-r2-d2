@@ -17,7 +17,14 @@
     border: 1px solid #938f83 !important;
 }
 
+#button-panel>button:disabled {
+    cursor: auto !important;
+    pointer-events: none;
+}
+
+
 /* 2. Special Items */
+
 #hammer-item {
     display: none;
     position: absolute;
@@ -58,7 +65,9 @@
     z-index: -1;
 }
 
+
 /* 2.1 Fade items in and out */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -77,8 +86,12 @@
     }
 }
 
+
 /* 3. ACT */
+
+
 /* 3.1 Move in a circle */
+
 @keyframes moveCircle {
     0% {
         transform: scale(0.3) translateX(0px) translateY(0px);
@@ -115,7 +128,9 @@
     }
 }
 
+
 /* 3.2 Speech Bubble: Malfunction, sleep, punish,   */
+
 #talkbubble {
     display: none;
     position: relative;
@@ -149,7 +164,9 @@
     transform: scale(0.9);
 }
 
+
 /* 3.2 Peep Monoton */
+
 @keyframes peepMonoton {
     0% {
         background-color: red
@@ -180,7 +197,9 @@
     }
 }
 
+
 /* 3.3 Peep Irregular */
+
 @keyframes peepIrregular {
     0% {
         background-color: #d0d2d3
@@ -208,7 +227,9 @@
     }
 }
 
+
 /* also in punished*/
+
 @keyframes shaking {
     0% {
         transform: scale(0.3) rotate(0deg) translateY(0px)
@@ -241,6 +262,7 @@
 
 
 /* 3.4 smearMake */
+
 @keyframes smearMake {
     0% {
         transform: scale(0.3) translateX(0px) rotate(0deg);
@@ -259,7 +281,9 @@
     }
 }
 
+
 /* 3.5 smearMake */
+
 @keyframes smearRemove {
     0% {
         transform: scale(0.3) translateX(0px) translateY(0px);
@@ -293,7 +317,9 @@
     }
 }
 
+
 /* 3.6 Wave */
+
 @keyframes arm {
     0% {
         transform: rotate(0deg) translateY(0px) translateX(0px);
@@ -332,9 +358,13 @@
 
 
 /* 4. React */
+
+
 /* 4.1 Charge Bar */
 
+
 /* 4.2 Fallin */
+
 @keyframes fallin {
     0% {
         top: 0%;
@@ -362,6 +392,7 @@
     }
 }
 
+
 /* 4.3 Repair */
 
 @keyframes repair {
@@ -382,7 +413,9 @@
     }
 }
 
+
 /* 4.4 Do nothing */
+
 @keyframes moveHead {
     0% {
         transform: rotate(0deg) translateY(0px);
@@ -401,7 +434,9 @@
     }
 }
 
+
 /* 5.0 Die */
+
 @keyframes fallOver {
     0% {
         transform: scale(0.3) rotate(0deg) translateY(0px);
@@ -424,8 +459,8 @@
 }
 
 
-
 /* charge bar */
+
 #chargeBar {
     width: 120px;
     top: 52%;
