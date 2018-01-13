@@ -1,5 +1,4 @@
 //@ts-check
-
 class Environment {
     constructor() {
         this.energy = 100;
