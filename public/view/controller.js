@@ -61,11 +61,14 @@ class Controller {
             case 'malfunction':
                 this.malfunction();
                 break;
-            case 'makeSmear':
+            case 'smearMake':
                 this.smearMake();
                 break;
-            case 'removeSmear':
+            case 'smearRemove':
                 this.smearRemove();
+                break;
+            case 'sleep':
+                this.sleep();
                 break;
             default:
                 break;
@@ -94,8 +97,9 @@ class Controller {
         const waitInterval = setTimeout(() => {
             if (!that.Busy) {
                 that.env.disableButtons();
-                log('no reaction');
-                that.ws.send('noreaction');
+                that.noReaction()
+                //log('no reaction');
+                //that.ws.send('noreaction');
             }
             clearInterval(checkBusy);
         }, 5000);
@@ -182,6 +186,15 @@ class Controller {
             });
     }
 
+    sleep() {
+        this.Busy = true;
+        this.act.sleep()
+            .then(() => {
+                log('sleep finished');
+                this.wait();
+            });
+    }
+
     wave() {
         this.Busy = true;
         this.act.waveArms()
@@ -201,6 +214,16 @@ class Controller {
             .then(() => {
                 log('charge finished');
                 this.send('charge');
+            });
+    }
+
+
+    noReaction() {
+        this.Busy = true;
+        this.react.noReaction()
+            .then(() => {
+                log('noReaction finished');
+                this.send('noreaction');
             });
     }
 
@@ -240,14 +263,7 @@ class Controller {
             })
     }
 
-    sleep() {
-        this.Busy = true;
-        this.react.sleep()
-            .then(() => {
-                log('sleep finished');
-                this.send('sleep');
-            });
-    }
+
 }
 
 const c = new Controller();

@@ -51,8 +51,8 @@ class React {
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 barrel.hide();
-                resolve();
                 barrel.resetAnimation();
+                resolve();
             }, 3000);
         });
     }
@@ -131,18 +131,31 @@ class React {
         });
     }
 
-    sleep() {
-        log('sleep');
-        const bubble = new Item(this.env.speachBubble);
-        bubble.X = this.robot.X + this.robot.Width - 40;
-        bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
-        bubble.Text = '💤';
-        bubble.show(1);
+    die() {
+        const robot = new Item(this.env.robot);
+        const center = new Item(this.env.dotCenter);
+        center.Animation = 'loosePower 4s'
+        robot.Animation = 'fallOver 4s';
+
+
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
-                bubble.hide(1);
+                [center, robot].map((el) => el.resetAnimation());
                 resolve();
             }, 4000);
+        });
+    }
+
+    noReaction() {
+        log('noReaction');
+        const head = new Item(this.env.head);
+        head.Animation = 'moveHead 1s 1';
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                [head].map((el) => el.resetAnimation());
+                resolve();
+            }, 1200);
         });
     }
 

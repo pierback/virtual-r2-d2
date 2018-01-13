@@ -31,7 +31,7 @@ class User {
             this.controller.punish();
         });
         this.nothingBtn.addEventListener('click', () => {
-            this.controller.sleep();
+            this.controller.noReaction();
         });
         this.overlay.addEventListener('click', () => {
             this.controller.start();

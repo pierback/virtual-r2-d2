@@ -3,6 +3,7 @@ class Env {
         this.canvas = document.getElementById('canvas');
 
         this.robot = document.getElementById('r2d2');
+        this.head = document.getElementById('r2d2-head');
         this.legLeft = document.getElementById('left-leg');
         this.legRight = document.getElementById('right-leg');
         this.legFront = document.querySelectorAll('.foot') [1];//document.getElementById('front-leg');
@@ -17,6 +18,7 @@ class Env {
         this.barrelItem = document.getElementById('barrel');
         this.chargeBar = document.getElementById('chargeBar');
         this.hammerItem = document.getElementById('hammer-item');
+        this.moonItem = document.getElementById('moon-item');
 
         this.overlay = document.getElementById('start-overlay');
 

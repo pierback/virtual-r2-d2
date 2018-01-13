@@ -90,7 +90,7 @@ class Act {
     }
 
     smearMake() {
-        log('make smear');
+        log('smearMake');
         const robot = new Item(this.env.robot);
         const smear = new Item(this.env.smearItem);
         smear.hide();
@@ -116,7 +116,7 @@ class Act {
     }
 
     smearRemove() {
-        log('remove smear');
+        log('smearRemove');
         const robot = new Item(this.env.robot);
         const smear = new Item(this.env.smearItem);
         smear.X = this.robot.MaxX / 2;
@@ -134,6 +134,21 @@ class Act {
                 resolve();
                 [smear, robot].map((el) => el.resetAnimation());
             }, 3000);
+        });
+    }
+
+    sleep() {
+        log('sleep');
+        const bubble = new Item(this.env.speachBubble);
+        bubble.X = this.robot.X + this.robot.Width - 40;
+        bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
+        bubble.Text = '💤';
+        bubble.show(1);
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                bubble.hide(1);
+                resolve();
+            }, 4000);
         });
     }
 
