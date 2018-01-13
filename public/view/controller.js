@@ -97,7 +97,7 @@ class Controller {
         const waitInterval = setTimeout(() => {
             if (!that.Busy) {
                 that.env.disableButtons();
-                that.noReaction()
+                that.noReaction();
                 //log('no reaction');
                 //that.ws.send('noreaction');
             }
@@ -259,8 +259,8 @@ class Controller {
         this.react.repair()
             .then(() => {
                 log('repair finished');
-                this.send('repair')
-            })
+                this.send('repair');
+            });
     }
 
 
