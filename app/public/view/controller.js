@@ -2,18 +2,19 @@ const { parseJSON, stringifyJSON, log, randSign } = require('/scripts/helper.js'
 const { Robot } = require('../view/robot.js');
 const { Act } = require('../view/actions/act.js');
 const { React } = require('../view/actions/react.js');
-const { Item } = require('../view/environment/item.js');
-const { Env } = require('../view/environment/env.js');
+const { Item } = require('./index/item.js');
+const { Dom } = require('./index/dom.js');
 const { User } = require('../view/user.js');
 const { Move } = require('../view/actions/move.js');
 
 class Controller {
     constructor() {
-        this.env = new Env();
-        this.robot = new Robot(this.env);
-        this.user = new User(this.env, this);
-        this.act = new Act(this.robot, this.env);
-        this.react = new React(this.robot, this.env, Item);
+        log(Dom);
+        this.dom = new Dom();
+        this.robot = new Robot(this.dom);
+        this.user = new User(this.dom, this);
+        this.act = new Act(this.robot, this.dom);
+        this.react = new React(this.robot, this.dom, Item);
         this._busy = false;
         this._initializeSocket();
     }
@@ -23,8 +24,8 @@ class Controller {
     }
 
     start() {
-        this.env.overlay.style.width = '0%';
-        this.env.enableButtons();
+        this.dom.overlay.style.width = '0%';
+        this.dom.enableButtons();
         this.ws.send('noreaction');
     }
 
@@ -87,7 +88,7 @@ class Controller {
     }
 
     toggleBtns() {
-        this.Busy ? this.env.disableButtons() : this.env.enableButtons();
+        this.Busy ? this.dom.disableButtons() : this.dom.enableButtons();
     }
 
     wait() {
@@ -97,7 +98,7 @@ class Controller {
         //waits 5 sec, if no user action then ask server for new action
         const waitInterval = setTimeout(() => {
             if (!that.Busy) {
-                that.env.disableButtons();
+                that.dom.disableButtons();
                 that.noReaction();
                 //log('no reaction');
                 //that.ws.send('noreaction');

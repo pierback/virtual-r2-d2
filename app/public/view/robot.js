@@ -1,19 +1,19 @@
 class Robot {
     constructor(env) {
-        this.env = env;
+        this.dom = env;
         this.updateSize();
     }
 
     updateSize(){
-        this.robot = this.env.robot;
-        const canvas = this.env.canvas;
+        this.robot = this.dom.robot;
+        const canvas = this.dom.canvas;
         const canvasOffset = canvas.getBoundingClientRect();
         const canvasWidth = canvasOffset.width;
         const canvasHeight = canvasOffset.height;
 
         const robotOriginalLegWidth = 52; //original value
         const robotOriginalWidth = 225; // original value
-        const robotOffset = this.env.robot.getBoundingClientRect();
+        const robotOffset = this.dom.robot.getBoundingClientRect();
         const xScale = robotOffset.width / robotOriginalWidth;
         this._xCorrection = Math.floor((robotOriginalWidth - robotOffset.width) / 2 - robotOriginalLegWidth * xScale);
         this._width = Math.floor(robotOffset.width + robotOriginalLegWidth * 2 * xScale);
