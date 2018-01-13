@@ -1,13 +1,13 @@
 class React {
     constructor(robot, env, Item) {
-        this.env = env;
+        this.dom = env;
         this.robot = robot;
         this.ballItem = new Item(env.ballItem);
     }
 
     charge() {
         log('charge');
-        const chargeBar = new Item(this.env.chargeBar);
+        const chargeBar = new Item(this.dom.chargeBar);
         chargeBar.X = this.robot.X - 10;
         chargeBar.show(2);
         return new Promise(function (resolve, reject) {
@@ -44,7 +44,7 @@ class React {
 
     oil() {
         log('oil');
-        const barrel = new Item(this.env.barrelItem);
+        const barrel = new Item(this.dom.barrelItem);
         barrel.X = this.robot.X;
         barrel.show();
         barrel.Animation = 'fallin 2.5s';
@@ -88,8 +88,8 @@ class React {
 
     repair() {
         log('repair');
-        const robot = new Item(this.env.robot);
-        const hammer = new Item(this.env.hammerItem);
+        const robot = new Item(this.dom.robot);
+        const hammer = new Item(this.dom.hammerItem);
 
         hammer.X = this.robot.MaxX / 2 - 20;
         hammer.Y = this.robot.Y - 20;
@@ -111,9 +111,9 @@ class React {
 
     punish() {
         log('punish');
-        const canvas = this.env.canvas;
-        const robot = new Item(this.env.robot);
-        const bubble = new Item(this.env.speachBubble);
+        const canvas = this.dom.canvas;
+        const robot = new Item(this.dom.robot);
+        const bubble = new Item(this.dom.speachBubble);
         canvas.style.filter = 'grayscale(1)';
         bubble.X = this.robot.X + this.robot.Width - 40;
         bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
@@ -132,8 +132,8 @@ class React {
     }
 
     die() {
-        const robot = new Item(this.env.robot);
-        const center = new Item(this.env.dotCenter);
+        const robot = new Item(this.dom.robot);
+        const center = new Item(this.dom.dotCenter);
         center.Animation = 'loosePower 4s'
         robot.Animation = 'fallOver 4s';
 
@@ -148,7 +148,7 @@ class React {
 
     noReaction() {
         log('noReaction');
-        const head = new Item(this.env.head);
+        const head = new Item(this.dom.head);
         head.Animation = 'moveHead 1s 1';
 
         return new Promise(function (resolve, reject) {

@@ -1,4 +1,4 @@
-class Env {
+class Dom {
     constructor() {
         this.canvas = document.getElementById('canvas');
         this.overlay = document.getElementById('start-overlay');
@@ -59,4 +59,5 @@ class Env {
         this.btnPanel.style.background = '';
     }
 }
-exports.Env = Env;
+
+exports.Dom = Dom;

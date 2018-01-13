@@ -1,12 +1,12 @@
 class Act {
     constructor(robot, env) {
-        this.env = env;
+        this.dom = env;
         this.robot = robot;
     }
 
     circle() {
         log('circle');
-        const robot = new Item(this.env.robot);
+        const robot = new Item(this.dom.robot);
         robot.Animation = 'moveCircle 0.9s 3';
 
         return new Promise(function (resolve, reject) {
@@ -19,7 +19,7 @@ class Act {
 
     malfunction() {
         log('malfunction');
-        const bubble = new Item(this.env.speachBubble);
+        const bubble = new Item(this.dom.speachBubble);
         bubble.Text = '⚡️ 💨';
         bubble.show(1);
         return new Promise(function (resolve, reject) {
@@ -39,9 +39,9 @@ class Act {
     //4 seconds
     peepIrregular() {
         log('peepIrregular');
-        let leftUp = new Item(this.env.dotLeftUp);
-        let leftDown = new Item(this.env.dotLeftBottom);
-        let robot = new Item(this.env.robot);
+        let leftUp = new Item(this.dom.dotLeftUp);
+        let leftDown = new Item(this.dom.dotLeftBottom);
+        let robot = new Item(this.dom.robot);
         leftUp.Animation = 'peepIrregular 1s 0.9s 3';
         leftDown.Animation = 'peepIrregular 1s 1s 3';
         robot.Animation = 'shaking 1s 1s 3';
@@ -67,8 +67,8 @@ class Act {
     //3 seconds
     peepMonoton() {
         log('peepMonoton');
-        let center = new Item(this.env.dotCenter);
-        let right = new Item(this.env.dotRight);
+        let center = new Item(this.dom.dotCenter);
+        let right = new Item(this.dom.dotRight);
         center.Animation = 'peepMonoton 1s 3';
         right.Animation = 'peepMonoton1 1s 0.5s 2';
         let sound = new Audio('res/Bleep.mp3');
@@ -91,8 +91,8 @@ class Act {
 
     smearMake() {
         log('smearMake');
-        const robot = new Item(this.env.robot);
-        const smear = new Item(this.env.smearItem);
+        const robot = new Item(this.dom.robot);
+        const smear = new Item(this.dom.smearItem);
         smear.hide();
         robot.Animation = 'smearMake 1.5s 1';
 
@@ -117,8 +117,8 @@ class Act {
 
     smearRemove() {
         log('smearRemove');
-        const robot = new Item(this.env.robot);
-        const smear = new Item(this.env.smearItem);
+        const robot = new Item(this.dom.robot);
+        const smear = new Item(this.dom.smearItem);
         smear.X = this.robot.MaxX / 2;
         smear.Y = this.robot.Y + this.robot.Height * 0.75;
         smear.show();
@@ -139,7 +139,7 @@ class Act {
 
     sleep() {
         log('sleep');
-        const bubble = new Item(this.env.speachBubble);
+        const bubble = new Item(this.dom.speachBubble);
         bubble.X = this.robot.X + this.robot.Width - 40;
         bubble.Y = this.robot.Y - 10 - this.robot.Height / 2;
         bubble.Text = '💤';
@@ -157,8 +157,8 @@ class Act {
         //[name duration iterations]
         log('waveArms');
         let animationQuery = 'arm 1.5s 2';
-        let left = new Item(this.env.legLeft);
-        let right = new Item(this.env.legRight);
+        let left = new Item(this.dom.legLeft);
+        let right = new Item(this.dom.legRight);
         left.Animation = 'arm 1.5s 2';
         right.Animation = 'arm 1.5s 2';
         return new Promise(function (resolve, reject) {

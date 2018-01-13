@@ -1,5 +1,5 @@
 {
-    "env": {
+    "dom": {
         "browser": true,
         "commonjs": true,
         "node": true,
