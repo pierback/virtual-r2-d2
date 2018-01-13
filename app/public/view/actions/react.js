@@ -95,7 +95,7 @@ class React {
         hammer.Y = this.robot.Y - 20;
         hammer.show();
         const sound = new Audio('res/Hammering.mp3');
-        log(sound.r);
+        sound.volume = 0.2;
         hammer.Animation = 'repair 1s 1';
         sound.play();
 
@@ -134,9 +134,8 @@ class React {
     die() {
         const robot = new Item(this.dom.robot);
         const center = new Item(this.dom.dotCenter);
-        center.Animation = 'loosePower 4s'
+        center.Animation = 'loosePower 4s';
         robot.Animation = 'fallOver 4s';
-
 
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
@@ -153,7 +152,7 @@ class React {
 
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
-                [head].map((el) => el.resetAnimation());
+                head.resetAnimation();
                 resolve();
             }, 1200);
         });
