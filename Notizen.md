@@ -30,6 +30,7 @@ Sinnvolle Aktionen für
 * Störung
     * 'malfunction' Sprechblase mit Blitzen ⚡️ und Rauch 💨
     * 'MakeSmear' Ölfleck machen
+    * 'peepMonotonous'
 * Liebe
     * 'peepIrregular' Freudiges quitschen
     * 'RemoveSmear' Ölfleck entfernen

@@ -61,11 +61,14 @@ class Controller {
             case 'malfunction':
                 this.malfunction();
                 break;
-            case 'makeSmear':
-                this.makeSmear();
+            case 'smearMake':
+                this.smearMake();
                 break;
-            case 'removeSmear':
-                this.removeSmear();
+            case 'smearRemove':
+                this.smearRemove();
+                break;
+            case 'sleep':
+                this.sleep();
                 break;
             default:
                 break;
@@ -94,8 +97,9 @@ class Controller {
         const waitInterval = setTimeout(() => {
             if (!that.Busy) {
                 that.env.disableButtons();
-                log('no reaction');
-                that.ws.send('noreaction');
+                that.noReaction()
+                //log('no reaction');
+                //that.ws.send('noreaction');
             }
             clearInterval(checkBusy);
         }, 5000);
@@ -116,7 +120,26 @@ class Controller {
 
     /**
      * act
+     * sorted alphabetically
      */
+
+    circle() {
+        this.Busy = true;
+        this.act.circle()
+            .then(() => {
+                log('circle finished');
+                this.wait();
+            });
+    }
+
+    malfunction() {
+        this.Busy = true;
+        this.act.malfunction()
+            .then(() => {
+                log('malfunction finished');
+                this.wait();
+            });
+    }
 
     move(playBall) {
         this.Busy = true;
@@ -124,14 +147,6 @@ class Controller {
             .then(() => {
                 playBall ? log('play ball finished') : log('move finished');
                 playBall ? this.send('playball') : this.wait();
-            });
-    }
-
-    wave() {
-        this.Busy = true;
-        this.act.waveArms()
-            .then(() => {
-                this.wait();
             });
     }
 
@@ -153,41 +168,38 @@ class Controller {
             });
     }
 
-    circle() {
+    smearMake() {
         this.Busy = true;
-        this.act.circle()
+        this.act.smearMake()
             .then(() => {
-                log('circle finished');
+                log('smearMake finished');
                 this.wait();
             });
     }
 
-
-    makeSmear() {
+    smearRemove() {
         this.Busy = true;
-        this.act.makeSmear()
+        this.act.smearRemove()
             .then(() => {
-                log('makeSmear finished');
+                log('smearRemove finished');
                 this.wait();
             });
     }
 
-    removeSmear() {
+    sleep() {
         this.Busy = true;
-        this.act.removeSmear()
+        this.act.sleep()
             .then(() => {
-                log('removeSmear finished');
+                log('sleep finished');
                 this.wait();
             });
     }
 
-
-
-    malfunction() {
+    wave() {
         this.Busy = true;
-        this.act.malfunction()
+        this.act.waveArms()
             .then(() => {
-                log('malfunction finished');
+                log('waving finished');
                 this.wait();
             });
     }
@@ -195,6 +207,35 @@ class Controller {
     /** 
      * react
     */
+
+    charge() {
+        this.Busy = true;
+        this.react.charge()
+            .then(() => {
+                log('charge finished');
+                this.send('charge');
+            });
+    }
+
+
+    noReaction() {
+        this.Busy = true;
+        this.react.noReaction()
+            .then(() => {
+                log('noReaction finished');
+                this.send('noreaction');
+            });
+    }
+
+    oil() {
+        this.Busy = true;
+        this.react.oil()
+            .then(() => {
+                log('oil finished');
+                this.send('oil');
+            });
+    }
+
     praise() {
         this.Busy = true;
         this.react.praise()
@@ -204,41 +245,29 @@ class Controller {
             });
     }
 
-    oil() {
-        this.Busy = true;
-        this.react.oil()
-            .then(() => {
-                this.send('oil');
-            });
-    }
-
-    charge() {
-        this.Busy = true;
-        this.react.charge()
-            .then(() => {
-                this.send('charge');
-            });
-    }
-
     punish() {
         this.Busy = true;
         this.react.punish()
             .then(() => {
+                log('punish finished');
                 this.send('punish');
             });
     }
 
-    sleep() {
+    repair() {
         this.Busy = true;
-        this.react.sleep()
+        this.react.repair()
             .then(() => {
-                this.send('sleep');
-            });
+                log('repair finished');
+                this.send('repair')
+            })
     }
 
 
 }
+
 const c = new Controller();
+
 
 window.onresize = function (event) {
     c.updateCanvas();

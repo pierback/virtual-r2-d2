@@ -22,7 +22,7 @@ class User {
             this.controller.oil();
         });
         this.repairBtn.addEventListener('click', () => {
-            console.log('this.controller.repair()');
+            this.controller.repair();
         });
         this.praiseBtn.addEventListener('click', () => {
             this.controller.praise();
@@ -31,7 +31,7 @@ class User {
             this.controller.punish();
         });
         this.nothingBtn.addEventListener('click', () => {
-            this.controller.sleep();
+            this.controller.noReaction();
         });
         this.overlay.addEventListener('click', () => {
             this.controller.start();
@@ -45,7 +45,7 @@ class User {
             } else if (key === 50 || key === 83) {
                 that.oilBtn.click();
             } else if (key === 51 || key === 68) {
-                console.log('this.controller.repair()');
+                that.repairBtn.click();
             } else if (key == 52 || key === 70) {
                 that.ballBtn.click();
             } else if (key == 53 || key === 71) {

@@ -17,7 +17,26 @@
     border: 1px solid #938f83 !important;
 }
 
+/* 2. Special Items */
+#hammer-item {
+    display: none;
+    position: absolute;
+    font-size: 40px;
+}
+
 #ball-item {
+    display: none;
+    position: absolute;
+    font-size: 40px;
+}
+
+#mouse-item {
+    display: none;
+    position: absolute;
+    font-size: 40px;
+}
+
+#moon-item {
     display: none;
     position: absolute;
     font-size: 40px;
@@ -30,129 +49,36 @@
     z-index: -1;
 }
 
-@keyframes arm {
-    0% {
-        transform: rotate(0deg) translateY(0px) translateX(0px);
+#barrel {
+    display: none;
+    position: relative;
+    top: 62%;
+    left: 36%;
+    font-size: 100px;
+    z-index: -1;
+}
+
+/* 2.1 Fade items in and out */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-    10% {
-        transform: rotate(180deg) translateY(0px) translateX(0px);
-    }
-    20% {
-        transform: rotate(170deg) translateY(20px) translateX(-10px);
-    }
-    30% {
-        transform: rotate(190deg) translateY(20px) translateX(10px);
-    }
-    40% {
-        transform: rotate(170deg) translateY(20px) translateX(-10px);
-    }
-    50% {
-        transform: rotate(190deg) translateY(20px) translateX(10px);
-    }
-    60% {
-        transform: rotate(170deg) translateY(20px) translateX(-10px);
-    }
-    70% {
-        transform: rotate(190deg) translateY(20px) translateX(10px);
-    }
-    80% {
-        transform: rotate(170deg) translateY(20px) translateX(-10px);
-    }
-    90% {
-        transform: rotate(180deg) translateY(0px) translateX(0px);
-    }
-    100% {
-        transform: rotate(360deg) translateY(0px) translateX(0px);
+    to {
+        opacity: 1;
     }
 }
 
-@keyframes peepMonoton {
-    0% {
-        background-color: red
+@keyframes fadeOut {
+    from {
+        opacity: 1;
     }
-    20% {
-        background-color: transparent
-    }
-    80% {
-        background-color: transparent
-    }
-    100% {
-        background-color: red
+    to {
+        opacity: 0;
     }
 }
 
-@keyframes peepMonoton1 {
-    0% {
-        background-color: red
-    }
-    20% {
-        background-color: #404041
-    }
-    80% {
-        background-color: #404041
-    }
-    100% {
-        background-color: red
-    }
-}
-
-@keyframes peepIrregular {
-    0% {
-        background-color: #d0d2d3
-    }
-    20% {
-        background-color: #d0d2d3
-    }
-    30% {
-        background-color: red
-    }
-    40% {
-        background-color: green
-    }
-    60% {
-        background-color: red
-    }
-    70% {
-        background-color: yellow
-    }
-    80% {
-        background-color: #d0d2d3
-    }
-    100% {
-        background-color: #d0d2d3
-    }
-}
-
-@keyframes shaking {
-    0% {
-        transform: scale(0.3) rotate(0deg) translateY(0px)
-    }
-    20% {
-        transform: scale(0.3) rotate(0deg) translateY(0px)
-    }
-    30% {
-        transform: scale(0.3) rotate(1deg) translateY(15px)
-    }
-    40% {
-        transform: scale(0.3) rotate(-1deg) translateY(-5px)
-    }
-    50% {
-        transform: scale(0.3) rotate(1deg) translateY(20px)
-    }
-    60% {
-        transform: scale(0.3) rotate(0deg) translateY(0px)
-    }
-    70% {
-        transform: scale(0.3) rotate(1deg) translateY(14px)
-    }
-    80% {
-        transform: scale(0.3) rotate(0deg) translateY(0px)
-    }
-    100% {
-        transform: scale(0.3) rotate(0deg) translateY(0px)
-    }
-}
-
+/* 3. ACT */
+/* 3.1 Move in a circle */
 @keyframes moveCircle {
     0% {
         transform: scale(0.3) translateX(0px) translateY(0px);
@@ -189,6 +115,132 @@
     }
 }
 
+/* 3.2 Speech Bubble: Malfunction, sleep, punish,   */
+#talkbubble {
+    display: none;
+    position: relative;
+    top: 44%;
+    left: 42%;
+    bottom: 10px;
+    right: 10px;
+    width: 130px;
+    height: 64px;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 17px;
+    background: white;
+    transform: scale(0.9);
+}
+
+#talkbubble:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 0;
+    height: 0;
+    border: 36px solid transparent;
+    border-top-color: white;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -18px;
+    margin-bottom: -33px;
+    transform: scale(0.9);
+}
+
+/* 3.2 Peep Monoton */
+@keyframes peepMonoton {
+    0% {
+        background-color: red
+    }
+    20% {
+        background-color: transparent
+    }
+    80% {
+        background-color: transparent
+    }
+    100% {
+        background-color: red
+    }
+}
+
+@keyframes peepMonoton1 {
+    0% {
+        background-color: red
+    }
+    20% {
+        background-color: #404041
+    }
+    80% {
+        background-color: #404041
+    }
+    100% {
+        background-color: red
+    }
+}
+
+/* 3.3 Peep Irregular */
+@keyframes peepIrregular {
+    0% {
+        background-color: #d0d2d3
+    }
+    20% {
+        background-color: #d0d2d3
+    }
+    30% {
+        background-color: red
+    }
+    40% {
+        background-color: green
+    }
+    60% {
+        background-color: red
+    }
+    70% {
+        background-color: yellow
+    }
+    80% {
+        background-color: #d0d2d3
+    }
+    100% {
+        background-color: #d0d2d3
+    }
+}
+
+/* also in punished*/
+@keyframes shaking {
+    0% {
+        transform: scale(0.3) rotate(0deg) translateY(0px)
+    }
+    20% {
+        transform: scale(0.3) rotate(0deg) translateY(0px)
+    }
+    30% {
+        transform: scale(0.3) rotate(1deg) translateY(15px)
+    }
+    40% {
+        transform: scale(0.3) rotate(-1deg) translateY(-5px)
+    }
+    50% {
+        transform: scale(0.3) rotate(1deg) translateY(20px)
+    }
+    60% {
+        transform: scale(0.3) rotate(0deg) translateY(0px)
+    }
+    70% {
+        transform: scale(0.3) rotate(1deg) translateY(14px)
+    }
+    80% {
+        transform: scale(0.3) rotate(0deg) translateY(0px)
+    }
+    100% {
+        transform: scale(0.3) rotate(0deg) translateY(0px)
+    }
+}
+
+
+/* 3.4 smearMake */
 @keyframes smearMake {
     0% {
         transform: scale(0.3) translateX(0px) rotate(0deg);
@@ -207,6 +259,7 @@
     }
 }
 
+/* 3.5 smearMake */
 @keyframes smearRemove {
     0% {
         transform: scale(0.3) translateX(0px) translateY(0px);
@@ -240,14 +293,48 @@
     }
 }
 
-#barrel {
-    display: none;
-    position: relative;
-    top: 62%;
-    left: 36%;
-    font-size: 100px;
+/* 3.6 Wave */
+@keyframes arm {
+    0% {
+        transform: rotate(0deg) translateY(0px) translateX(0px);
+    }
+    10% {
+        transform: rotate(180deg) translateY(0px) translateX(0px);
+    }
+    20% {
+        transform: rotate(170deg) translateY(20px) translateX(-10px);
+    }
+    30% {
+        transform: rotate(190deg) translateY(20px) translateX(10px);
+    }
+    40% {
+        transform: rotate(170deg) translateY(20px) translateX(-10px);
+    }
+    50% {
+        transform: rotate(190deg) translateY(20px) translateX(10px);
+    }
+    60% {
+        transform: rotate(170deg) translateY(20px) translateX(-10px);
+    }
+    70% {
+        transform: rotate(190deg) translateY(20px) translateX(10px);
+    }
+    80% {
+        transform: rotate(170deg) translateY(20px) translateX(-10px);
+    }
+    90% {
+        transform: rotate(180deg) translateY(0px) translateX(0px);
+    }
+    100% {
+        transform: rotate(360deg) translateY(0px) translateX(0px);
+    }
 }
 
+
+/* 4. React */
+/* 4.1 Charge Bar */
+
+/* 4.2 Fallin */
 @keyframes fallin {
     0% {
         top: 0%;
@@ -270,61 +357,75 @@
         left: 25%;
     }
     100% {
+        top: 62%;
         left: 36%;
     }
 }
 
-#talkbubble {
-    display: none;
-    height: 64px;
-    padding: 10px;
-    border-radius: 17px;
-    background: white;
-    top: 44%;
-    left: 42%;
-    position: relative;
-    bottom: 10px;
-    right: 10px;
-    width: 130px;
-    font-size: 30px;
-    text-align: center;
-    transform: scale(0.9);
-}
+/* 4.3 Repair */
 
-#talkbubble:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 30%;
-    width: 0;
-    height: 0;
-    border: 36px solid transparent;
-    border-top-color: white;
-    border-bottom: 0;
-    border-left: 0;
-    margin-left: -18px;
-    margin-bottom: -33px;
-    transform: scale(0.9);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+@keyframes repair {
+    0% {
+        transform: rotate(0deg) translateY(0px) translateX(0px);
     }
-    to {
-        opacity: 1;
+    25% {
+        transform: rotate(-15deg) translateY(-2px) translateX(-12px);
+    }
+    50% {
+        transform: rotate(0deg) translateY(0px) translateX(0px);
+    }
+    85% {
+        transform: rotate(-10deg) translateY(-5px) translateX(-15px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0px) translateX(0px);
     }
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
+/* 4.4 Do nothing */
+@keyframes moveHead {
+    0% {
+        transform: rotate(0deg) translateY(0px);
     }
-    to {
-        opacity: 0;
+    25% {
+        transform: rotate(0deg) translateY(-20px);
+    }
+    50% {
+        transform: rotate(-10deg) translateY(-20px);
+    }
+    85% {
+        transform: rotate(0deg) translateY(-20px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0px);
     }
 }
 
+/* 5.0 Die */
+@keyframes fallOver {
+    0% {
+        transform: scale(0.3) rotate(0deg) translateY(0px);
+    }
+    40% {
+        transform: scale(0.3) rotate(90deg) translateY(0px);
+    }
+    100% {
+        transform: scale(0.3) rotate(90deg) translateY(0px);
+    }
+}
+
+@keyframes loosePower {
+    0% {
+        background-color: red;
+    }
+    100% {
+        background-color: #404041;
+    }
+}
+
+
+
+/* charge bar */
 #chargeBar {
     width: 120px;
     top: 52%;
