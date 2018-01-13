@@ -17,54 +17,6 @@ class Act {
         });
     }
 
-    makeSmear() {
-        log('make smear');
-        const robot = new Item(this.env.robot);
-        const smear = new Item(this.env.smearItem);
-        smear.hide();
-        robot.Animation = 'smearMake 1.5s 1';
-
-        setTimeout(() => {
-            const sound = new Audio('res/Splash.mp3');
-            sound.play();
-        }, 530);
-
-        setTimeout(() => {
-            smear.show();
-            smear.X = this.robot.MaxX / 2;
-            smear.Y = this.robot.Y + this.robot.Height * 0.75;
-        }, 700);
-
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                robot.resetAnimation();
-                resolve();
-            }, 2000);
-        });
-    }
-
-    removeSmear() {
-        log('remove smear');
-        const robot = new Item(this.env.robot);
-        const smear = new Item(this.env.smearItem);
-        smear.X = this.robot.MaxX / 2;
-        smear.Y = this.robot.Y + this.robot.Height * 0.75;
-        smear.show();
-        robot.Animation = 'smearRemove 1.5s 1';
-
-
-        setTimeout(() => {
-            smear.hide(0.5);
-        }, 600);
-
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                resolve();
-                [smear, robot].map((el) => el.resetAnimation());
-            }, 3000);
-        });
-    }
-
     malfunction() {
         log('malfunction');
         const bubble = new Item(this.env.speachBubble);
@@ -134,6 +86,54 @@ class Act {
                     [center, right].map((el) => el.resetAnimation());
                 }
             }, trackLength);
+        });
+    }
+
+    smearMake() {
+        log('make smear');
+        const robot = new Item(this.env.robot);
+        const smear = new Item(this.env.smearItem);
+        smear.hide();
+        robot.Animation = 'smearMake 1.5s 1';
+
+        setTimeout(() => {
+            const sound = new Audio('res/Splash.mp3');
+            sound.play();
+        }, 530);
+
+        setTimeout(() => {
+            smear.show();
+            smear.X = this.robot.MaxX / 2;
+            smear.Y = this.robot.Y + this.robot.Height * 0.75;
+        }, 700);
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                robot.resetAnimation();
+                resolve();
+            }, 2000);
+        });
+    }
+
+    smearRemove() {
+        log('remove smear');
+        const robot = new Item(this.env.robot);
+        const smear = new Item(this.env.smearItem);
+        smear.X = this.robot.MaxX / 2;
+        smear.Y = this.robot.Y + this.robot.Height * 0.75;
+        smear.show();
+        robot.Animation = 'smearRemove 1.5s 1';
+
+
+        setTimeout(() => {
+            smear.hide(0.5);
+        }, 600);
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                resolve();
+                [smear, robot].map((el) => el.resetAnimation());
+            }, 3000);
         });
     }
 

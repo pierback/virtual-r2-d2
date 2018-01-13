@@ -16,6 +16,7 @@ class Env {
         this.smearItem = document.getElementById('smear-item');
         this.barrelItem = document.getElementById('barrel');
         this.chargeBar = document.getElementById('chargeBar');
+        this.hammerItem = document.getElementById('hammer-item');
 
         this.overlay = document.getElementById('start-overlay');
 

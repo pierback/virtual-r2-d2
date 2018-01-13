@@ -6,11 +6,9 @@ body {
     height: 70vh;
     width: inherit;
     position: fixed;
-    z-index: 1;
     top: inherit;
     left: inherit;
     z-index: 1;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.9);
     overflow-x: hidden;
     transition: 0.5s;

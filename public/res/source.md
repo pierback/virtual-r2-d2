@@ -17,13 +17,13 @@
  
 # Sounds
 
-##Robot_blip.mp3
+##Robot_blip.mp3 
 * <http://soundbible.com/1669-Robot-Blip-2.html>
 * License: Attribution 3.0
 
- ##Bleep.mp3
- * <http://soundbible.com/1252-Bleep.html>
- * License: Attribution 3.0
+##Bleep.mp3
+* <http://soundbible.com/1252-Bleep.html>
+* License: Attribution 3.0
 
 ## Bleeping.mp3
 * <http://soundbible.com/701-Beep-2.html>
@@ -31,7 +31,11 @@
 
 ## Splash.mp3
 * <http://soundbible.com/1097-Slime-Splash.html>
- * License: Attribution 3.0
+* License: Attribution 3.0
+ 
+## Hammering.mp3
+* <http://soundbible.com/2082-Hammering.html>
+* License: Public Domain
  
 # Robot CSS
 * <https://github.com/tsnolan23/Pure-CSS-R2D2>

@@ -5,6 +5,19 @@ class React {
         this.ballItem = new Item(env.ballItem);
     }
 
+    charge() {
+        log('charge');
+        const chargeBar = new Item(this.env.chargeBar);
+        chargeBar.X = this.robot.X - 10;
+        chargeBar.show(2);
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                chargeBar.hide();
+                resolve();
+            }, 3000);
+        });
+    }
+
     playBall(dir, robotPosX) {
         log('playBall');
         this.ballItem.show();
@@ -27,6 +40,21 @@ class React {
 
         this.playBall.hide = hide;
         this.playBall.moveBall = moveBall;
+    }
+
+    oil() {
+        log('oil');
+        const barrel = new Item(this.env.barrelItem);
+        barrel.X = this.robot.X;
+        barrel.show();
+        barrel.Animation = 'fallin 2.5s';
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                barrel.hide();
+                resolve();
+                barrel.resetAnimation();
+            }, 3000);
+        });
     }
 
     praise() {
@@ -58,33 +86,28 @@ class React {
         });
     }
 
-    oil() {
-        log('oil');
-        const barrel = new Item(this.env.barrelItem);
-        barrel.X = this.robot.X;
-        barrel.show();
-        barrel.Animation = 'fallin 2.5s';
+    repair() {
+        log('repair');
+        const robot = new Item(this.env.robot);
+        const hammer = new Item(this.env.hammerItem);
+
+        hammer.X = this.robot.MaxX / 2 - 20;
+        hammer.Y = this.robot.Y - 20;
+        hammer.show();
+        const sound = new Audio('res/Hammering.mp3');
+        log(sound.r);
+        hammer.Animation = 'repair 1s 1';
+        sound.play();
+
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
-                barrel.hide();
+                hammer.hide();
+                hammer.resetAnimation();
                 resolve();
-                barrel.resetAnimation();
-            }, 3000);
+            }, 2000);
         });
     }
 
-    charge() {
-        log('charge');
-        const chargeBar = new Item(this.env.chargeBar);
-        chargeBar.X = this.robot.X - 10;
-        chargeBar.show(2);
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                chargeBar.hide();
-                resolve();
-            }, 3000);
-        });
-    }
 
     punish() {
         log('punish');
