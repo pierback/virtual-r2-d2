@@ -1,6 +1,6 @@
 class User {
     constructor(env, controller) {
-        this.overlay = env.overlay;
+        this.startBtn = env.startBtn;
         this.rechargeBtn = env.rechargeBtn;
         this.oilBtn = env.oilBtn;
         this.repairBtn = env.repairBtn;
@@ -33,7 +33,7 @@ class User {
         this.nothingBtn.addEventListener('click', () => {
             this.controller.noReaction();
         });
-        this.overlay.addEventListener('click', () => {
+        this.startBtn.addEventListener('click', () => {
             this.controller.start();
         });
 
@@ -55,7 +55,7 @@ class User {
             } else if (key == 55 || key === 74) {
                 that.nothingBtn.click();
             } else if (key == 13 || key === 32) {
-                that.overlay.click();
+                that.startBtn.click();
             }
         };
     }

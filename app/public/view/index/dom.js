@@ -21,8 +21,8 @@ class Dom {
         this.hammerItem = document.getElementById('hammer-item');
         this.moonItem = document.getElementById('moon-item');
 
-
         this.btnPanel = document.getElementById('button-panel');
+        this.startBtn = this.overlay.getElementsByTagName('a') [0];
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');
         this.repairBtn = document.getElementById('repair-btn');
@@ -30,9 +30,11 @@ class Dom {
         this.punishBtn = document.getElementById('punish-btn');
         this.nothingBtn = document.getElementById('nothing-btn');
         this.ballBtn = document.getElementById('ball-btn');
+
+        this.btnPanel.style.background = 'rgba(0, 0, 0, 0.9)';
+
         this.initButtonArray();
         this.disableButtons();
-        this.btnPanel.style.background = 'rgba(0, 0, 0, 0.9)';
     }
 
     initButtonArray() {
