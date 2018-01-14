@@ -48,6 +48,7 @@ class React {
         barrel.X = this.robot.X;
         barrel.show();
         barrel.Animation = 'fallin 2.5s';
+
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 barrel.hide();
