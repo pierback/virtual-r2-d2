@@ -5,8 +5,7 @@
   "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":
-      "if [$NODE_ENV == 'production']; then ts-node ./app/server.js; else npm run browser && nodemon /app/server.js; fi",
+    "start": "ts-node ./app/server.js",
     "dev": "npm run browser && nodemon",
     "browser": "cross-os os",
     "os": {
