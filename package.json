@@ -5,15 +5,18 @@
   "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run foo && nodemon",
-    "foo": "cross-os bar",
-    "bar": {
+    "start":
+      "if [$NODE_ENV == 'production']; then ts-node ./app/server.js; else npm run browser && nodemon /app/server.js; fi",
+    "dev": "npm run browser && nodemon",
+    "browser": "cross-os os",
+    "os": {
       "darwin": "open http://localhost:3200/",
       "win32": "start http://localhost:3200/"
     }
   },
   "dependencies": {
     "express": "^4.16.2",
+    "ts-node": "^4.1.0",
     "websocket": "^1.0.25",
     "ws": "3.3.3"
   },

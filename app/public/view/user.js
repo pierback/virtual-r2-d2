@@ -17,7 +17,7 @@ class User {
         });
         this.rechargeBtn.addEventListener('click', () => {
             this.controller.charge();
-        });
+        });^
         this.oilBtn.addEventListener('click', () => {
             this.controller.oil();
         });

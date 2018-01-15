@@ -33,5 +33,7 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "tslint.autoFixOnSave": true,
+  "prettier.singleQuote": true
 }
