@@ -17,6 +17,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "ts-node": "^4.1.0",
+    "typescript": "^2.6.2",
     "websocket": "^1.0.25",
     "ws": "3.3.3"
   },
@@ -24,7 +25,6 @@
     "cross-os": "^1.2.2",
     "eslint": "^4.11.0",
     "nodemon": "^1.14.7",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
+    "tslint": "^5.8.0"
   }
 }
