@@ -1,6 +1,5 @@
 export class Learner {
   constructor() {
-    console.log('testd');
-    console.log('testd2');
+    console.log('test');
   }
 }
