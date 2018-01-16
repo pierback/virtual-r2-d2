@@ -23,6 +23,7 @@ const mode = 'easy';
 const act = new Act();
 const actions = act.getMethods(mode);
 const environment = new Environment(mode);
+log(environment.getStates(mode))
 const learner = new Learner(actions, environment.getConditionArray());
 
 app.use(express.static(path.join(__dirname, '/public')));
