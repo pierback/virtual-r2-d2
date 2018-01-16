@@ -171,5 +171,13 @@ class Act {
             }, 3000);
         });
     }
+
+    getMethods(mode='easy'){
+        if(mode === 'easy'){
+            return ['peepMonoton', 'malfunction', 'smearMake', 'waveArms'];
+        } else if(mode === 'hard'){
+            return ['circle','peepIrregular', 'peepMonoton', 'malfunction', 'smearMake','smearRemove', 'waveArms'];
+        }
+    }
 }
 exports.Act = Act;

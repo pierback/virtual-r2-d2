@@ -17,11 +17,13 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-const environment = new Environment();
-const learner = new Learner();
 
+
+const mode = 'easy';
 const act = new Act();
-const actions = getAllMethods(act);
+const actions = act.getMethods(mode);
+const environment = new Environment(mode);
+const learner = new Learner(actions, environment.getConditionArray());
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.get('/', (req, res) => {
@@ -33,13 +35,13 @@ environment.getReward('bla', []);
 
 wss.on('connection', function(ws) {
   ws.on('message', function(message) {
-    const conArr = environment.conditionArray;
+    const conArr = environment.getConditionArray();
     const reaction = message.toString();
     environment.update(prevAction, reaction);
     const reward = environment.getReward(reaction, conArr);
     prevAction = actions[Math.floor(Math.random() * actions.length)];
     console.log(
-      `${stringifyJSON(environment.conditionArray)} reward: ${reward}`
+      `${stringifyJSON(environment.getConditionArray())} reward: ${reward}`
     );
     ws.send(prevAction.toString());
   });

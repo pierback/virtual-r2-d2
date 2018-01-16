@@ -1,76 +1,105 @@
 class Environment {
-  constructor() {
+  constructor(mode='easy') {
     this.energy = 100;
     this.attention = 100;
     this.oilLevel = 100;
     this.love = 50;
     this.malfunction = false;
+    this.mode = mode;
   }
 
   update(action, reaction) {
     console.log(action, reaction);
-    this._updateEnergy(action, reaction);
-    this._updateAttention(action, reaction);
-    this._updateOilLevel(action, reaction);
-    this._updateLove(action, reaction);
     this._updateMalfunction(action, reaction);
-  }
 
-  get conditionArray() {
-    return {
-      energy: this.energy,
-      attention: this.attention,
-      oilLevel: this.oilLevel,
-      love: this.love,
-      malfunction: this.malfunction
-    };
-  }
-
-  _updateEnergy(action, reaction) {
-    if (action !== 'sleep') {
-      this.energy -= 5;
-    }
-    if (reaction === 'charge' && !this.malfunction) {
-      this.energy = 100;
+    if(this.mode === 'easy'){
+        this._updateOilEasy(action, reaction);
+        this._updateAttentionEasy(action, reaction);
+    } else if(this.mode === 'hard'){
+        this._updateAttention(action, reaction);
+        this._updateOilLevel(action, reaction);
+        this._updateEnergy(action,reaction);
+        this._updateLove(action, reaction);
     }
   }
 
-  _updateAttention(action, reaction) {
-    if (reaction === 'noreaction') {
-      const decrease = 8 * Math.pow(this.attention / 100, 2) + 5;
-      this.attention = this.attention - Math.floor(decrease);
-    } else if (
-      ['playBall', 'smearMake'].includes(reaction) &&
-      !this.malfunction
-    ) {
-      this.attention += 10;
-    } else if (!this.malfunction) {
-      this.attention += 5;
-    }
-
-    if (this.attention > 100) this.attention = 100;
+  getConditionArray() {
+      if(this.mode === 'easy'){
+          return {
+              attention: this.attention,
+              oilLevel: this.oilLevel,
+              malfunction: this.malfunction
+          };
+      } else if(this.mode === 'hard'){
+          return {
+              energy: this.energy,
+              attention: this.attention,
+              oilLevel: this.oilLevel,
+              love: this.love,
+              malfunction: this.malfunction
+          };
+      }
   }
 
-  _updateOilLevel(action, reaction) {
-    if (action === 'smearMake') {
-      this.oilLevel -= 15;
-    } else if (action === 'waveArms') {
-      this.oilLevel -= 5;
-    }
-    if (reaction === 'oil' && this.oilLevel < 40 && !this.malfunction) {
-      this.oilLevel += 60;
-    }
-  }
 
-  _updateLove(action, reaction) {
-    if (reaction === 'praise' && !this.malfunction) {
-      this.love += 50;
-    } else {
-      this.love -= 5;
+    _updateOilEasy(action,reaction){
+      if(reaction === 'charge' || reaction === 'oil'){
+          this._updateOilLevel(action, 'oil');
+      }
     }
 
-    if (this.love > 100) this.love = 100;
-  }
+    _updateOilLevel(action, reaction) {
+        if (action === 'smearMake') {
+          this.oilLevel -= 15;
+        } else if (action === 'waveArms') {
+          this.oilLevel -= 5;
+        }
+        if (reaction === 'oil' && this.oilLevel < 40 && !this.malfunction) {
+          this.oilLevel += 60;
+        }
+    }
+
+    _updateEnergy(action, reaction) {
+        if (action !== 'sleep') {
+            this.energy -= 5;
+        }
+        if (reaction === 'charge' && !this.malfunction) {
+            this.energy = 100;
+        }
+    }
+
+
+    _updateAttentionEasy(action,reaction){
+        if(['playBall', 'smearMake', 'praise', 'noreaction'].includes(reaction)){
+            this._updateAttention(action, 'playBall');
+        }
+    }
+
+    _updateLove(action, reaction) {
+        if (reaction === 'praise' && !this.malfunction) {
+          this.love += 50;
+        } else {
+          this.love -= 5;
+        }
+
+        if (this.love > 100) this.love = 100;
+    }
+
+    _updateAttention(action, reaction) {
+        if (reaction === 'noreaction') {
+            const decrease = 8 * Math.pow(this.attention / 100, 2) + 5;
+            this.attention = this.attention - Math.floor(decrease);
+        } else if (
+            ['playBall', 'smearMake'].includes(reaction) &&
+            !this.malfunction
+        ) {
+            this.attention += 10;
+        } else if (!this.malfunction) {
+            this.attention += 5;
+        }
+
+        if (this.attention > 100) this.attention = 100;
+    }
 
   _updateMalfunction(action, reaction) {
     if (reaction === 'repair') {
@@ -145,7 +174,7 @@ class Environment {
         reward -= 10;
       }
     }
-
+    /*
     //@ts-ignore
     Object.entries(this.conditionArray).forEach(([key, value]) => {
       if (key !== 'malfunction') {
@@ -157,6 +186,7 @@ class Environment {
         }
       }
     });
+    */
     return reward;
   }
 }
