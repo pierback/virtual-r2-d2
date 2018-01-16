@@ -6,16 +6,23 @@ const { Item } = require('../view/index/item.js');
 const { Dom } = require('../view/index/dom.js');
 const { User } = require('../view/user.js');
 const { Move } = require('../view/actions/move.js');
+const { ActFactory } = require('../view/actions/act-factory.js');
 
 class Controller {
     constructor() {
+        log('Im in the constructor');
         this.dom = new Dom();
         this.robot = new Robot(this.dom);
         this.user = new User(this.dom, this);
         this.act = new Act(this.robot, this.dom);
         this.react = new React(this.robot, this.dom, Item);
         this._busy = false;
-        this._initializeSocket();
+        this.factory = new ActFactory(this.act);
+        //this._initializeSocket();
+        this.factory.case1();
+        let circle = this.factory.case1.circle();
+        log(circle)
+        circle.c();
     }
 
     updateCanvas() {
@@ -205,9 +212,9 @@ class Controller {
             });
     }
 
-    /** 
+    /**
      * react
-    */
+     */
 
     charge() {
         this.Busy = true;
