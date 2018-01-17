@@ -45,7 +45,7 @@ export class Environment {
     }
   }
 
-  getStates():HashTable {
+  getStates(): HashTable {
     let table = new HashTable();
     if (this.mode === 'easy') {
       const oil = [true, true, true, true, false, false, false, false];
@@ -193,8 +193,10 @@ export class Environment {
 
   setRewardCharge(reward: number, reaction: string, prevConditions: Condition) {
     if (reaction === 'charge') {
+      //@ts-ignore
       if (prevConditions.energy < 50) {
         reward += 50;
+        //@ts-ignore
       } else if (prevConditions.energy < 80) {
         reward += 10;
       } else {

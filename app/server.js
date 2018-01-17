@@ -27,20 +27,20 @@ const mode = 'easy';
 const act = new Act();
 const actions = act.getMethods(mode);
 const environment = new Environment(mode);
-const learner = new Learner(actions, environment.getStates(mode));
+const learner = new Learner(actions, environment.getStates());
 
 let prevAction;
 let prevState;
 
-wss.on('connection', function(ws) {
-  ws.on('message', function(message) {
+wss.on('connection', function (ws) {
+  ws.on('message', function (message) {
     //const conArr = environment.getConditionArray();
     const reaction = message.toString();
     environment.update(prevAction, reaction);
-    const reward = environment.getReward(reaction, conArr);
+    const reward = environment.getReward(reaction, prevState);//<--- previous conArr
     learner.updateTable(prevState, reward, prevAction);
     //prevAction = actions[Math.floor(Math.random() * actions.length)];
-    prevState = environment.getCurrentState();
+    prevState = environment.getStates();//environment.getCurrentState();
     prevAction = learner.getNextAction(prevState);
     console.log(
       `${stringifyJSON(environment.getConditionArray())} reward: ${reward}`

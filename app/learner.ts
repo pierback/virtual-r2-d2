@@ -7,11 +7,11 @@ export class Learner {
     protected gamma: number;
     protected learnRate: number;
     protected batchSize: number;
-    protected qTable: number[][];
+    protected qTable: number;
     protected actions: String[];
     protected stateTable: HashTable;
 
-    constructor(actions: String[] , stateTable: HashTable) {
+    constructor(actions: String[], stateTable: HashTable) {
         this.eps = 0.1;
         this.lamda = 0.1;
         this.epsDecayRate = 0.1;
@@ -24,11 +24,11 @@ export class Learner {
         this.qTable = [this.actions.length][Object.keys(this.stateTable.hashes).length];
     }
 
-    updateTable(curState: State, reward:number, prevAction:String){
-
+    updateTable(curState: State, reward: number, prevAction: String) {
+        return null;
     }
 
-    getNextAction(curState:State){
-
+    getNextAction(curState: State): string {
+        return '';
     }
 }
