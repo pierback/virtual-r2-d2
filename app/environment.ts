@@ -189,7 +189,7 @@ export class Environment {
     return reward;
   }
 
-  setRewardCharge(reward: number, reaction: string, prevConditions: any) {
+  setRewardCharge(reward: number, reaction: string, prevConditions: Condition) {
     if (reaction === 'charge') {
       if (prevConditions.energy < 50) {
         reward += 50;
@@ -202,7 +202,7 @@ export class Environment {
     return reward;
   }
 
-  setRewardOil(reward: number, reaction: string, prevConditions: any) {
+  setRewardOil(reward: number, reaction: string, prevConditions: Condition) {
     if (reaction === 'oil') {
       if (prevConditions.oilLevel > 40) {
         reward -= 50;
@@ -271,10 +271,10 @@ export class Environment {
 }
 
 class HashTable {
-  public hashes: any;
+  public hashes: String[];
 
   constructor() {
-    this.hashes = {};
+    this.hashes = [];
   }
 
   put(key: any, value: number) {
