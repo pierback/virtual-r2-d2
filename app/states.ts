@@ -25,6 +25,28 @@ export class State {
         this.love = love;
         this.malfunction = malfunction;
     }
-
-
 }
+
+export class HashTable {
+  public hashes: any;
+
+  constructor() {
+    this.hashes = {};
+  }
+
+  put(key: any, value: number) {
+    this.hashes[JSON.stringify(key)] = value;
+  }
+
+  get(key: any) {
+    return this.hashes[JSON.stringify(key)];
+  }
+}
+
+export type Condition = {
+  energy?: number,
+  attention: number,
+  oilLevel: number,
+  love?: number,
+  malfunction: boolean
+};

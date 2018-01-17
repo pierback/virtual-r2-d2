@@ -18,29 +18,30 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-
-const mode = 'easy';
-const act = new Act();
-const actions = act.getMethods(mode);
-const environment = new Environment(mode);
-log(environment.getStates(mode))
-const learner = new Learner(actions, environment.getConditionArray());
-
 app.use(express.static(path.join(__dirname, '/public')));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/view/index/index.html');
 });
 
+const mode = 'easy';
+const act = new Act();
+const actions = act.getMethods(mode);
+const environment = new Environment(mode);
+const learner = new Learner(actions, environment.getStates(mode));
+
 let prevAction;
-environment.getReward('bla', []);
+let prevState;
 
 wss.on('connection', function(ws) {
   ws.on('message', function(message) {
-    const conArr = environment.getConditionArray();
+    //const conArr = environment.getConditionArray();
     const reaction = message.toString();
     environment.update(prevAction, reaction);
     const reward = environment.getReward(reaction, conArr);
-    prevAction = actions[Math.floor(Math.random() * actions.length)];
+    learner.updateTable(prevState, reward, prevAction);
+    //prevAction = actions[Math.floor(Math.random() * actions.length)];
+    prevState = environment.getCurrentState();
+    prevAction = learner.getNextAction(prevState);
     console.log(
       `${stringifyJSON(environment.getConditionArray())} reward: ${reward}`
     );

@@ -1,4 +1,4 @@
-import { State } from './states';
+import { State, Condition, HashTable } from './states';
 
 export class Environment {
   protected energy: number = 100;
@@ -45,12 +45,12 @@ export class Environment {
     }
   }
 
-  getStates() {
+  getStates():HashTable {
+    let table = new HashTable();
     if (this.mode === 'easy') {
-      let table = new HashTable();
-      let oil = [true, true, true, true, false, false, false, false];
-      let attention = [true, true, false, false, true, true, false, false];
-      let malfunction = [true, false, false, true, true, false, false, true];
+      const oil = [true, true, true, true, false, false, false, false];
+      const attention = [true, true, false, false, true, true, false, false];
+      const malfunction = [true, false, false, true, true, false, false, true];
 
       for (let i = 0; i < oil.length; i++) {
         let state = new State(oil[i], attention[i], malfunction[i]);
@@ -59,6 +59,8 @@ export class Environment {
     } else {
       //return [state1 .. state100]
     }
+
+    return table;
   }
 
   _updateOilEasy(action: string, reaction: string) {
@@ -269,27 +271,3 @@ export class Environment {
     return reward;
   }
 }
-
-class HashTable {
-  public hashes: String[];
-
-  constructor() {
-    this.hashes = [];
-  }
-
-  put(key: any, value: number) {
-    this.hashes[JSON.stringify(key)] = value;
-  }
-
-  get(key: any) {
-    return this.hashes[JSON.stringify(key)];
-  }
-}
-
-type Condition = {
-  energy?: number,
-  attention: number,
-  oilLevel: number,
-  love?: number,
-  malfunction: boolean
-};
