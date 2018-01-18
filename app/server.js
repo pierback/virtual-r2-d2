@@ -37,15 +37,14 @@ wss.on('connection', function (ws) {
     //const conArr = environment.getConditionArray();
     const reaction = message.toString();
     environment.update(prevAction, reaction);
-    const reward = environment.getReward(reaction, prevState);//<--- previous conArr
+    const reward = environment.getReward(reaction, environment.getConditionArray());//<--- previous conArr
     learner.updateTable(prevState, reward, prevAction);
-    //prevAction = actions[Math.floor(Math.random() * actions.length)];
-    prevState = environment.getStates();//environment.getCurrentState();
+    prevState = environment.getConditionArray();//environment.getCurrentState();
     prevAction = learner.getNextAction(prevState);
     console.log(
-      `${stringifyJSON(environment.getConditionArray())} reward: ${reward}`
+      `${stringifyJSON(prevState)} reward: ${reward}`
     );
-    ws.send(prevAction.toString());
+    ws.send(prevAction);
   });
 });
 

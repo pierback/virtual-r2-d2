@@ -1,11 +1,11 @@
-const {parseJSON, stringifyJSON, log, randSign} = require('/scripts/helper.js');
-const {Robot} = require('../view/robot.js');
-const {Act} = require('../view/actions/act.js');
-const {React} = require('../view/actions/react.js');
-const {Item} = require('../view/index/item.js');
-const {Dom} = require('../view/index/dom.js');
-const {User} = require('../view/user.js');
-const {Move} = require('../view/actions/move.js');
+const { parseJSON, stringifyJSON, log, randSign } = require('/scripts/helper.js');
+const { Robot } = require('../view/robot.js');
+const { Act } = require('../view/actions/act.js');
+const { React } = require('../view/actions/react.js');
+const { Item } = require('../view/index/item.js');
+const { Dom } = require('../view/index/dom.js');
+const { User } = require('../view/user.js');
+const { Move } = require('../view/actions/move.js');
 
 class Controller {
     constructor() {
@@ -147,7 +147,7 @@ class Controller {
         Move(this.robot, this.act, this.react, playBall)
             .then(() => {
                 playBall ? log('play ball finished') : log('move finished');
-                playBall ? this.send('playball') : this.wait();
+                playBall ? this.send('playBall') : this.wait();
             });
     }
 

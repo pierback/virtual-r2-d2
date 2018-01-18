@@ -5,7 +5,7 @@ export class Environment {
   protected attention: number = 100;
   protected oilLevel: number = 100;
   protected love: number = 50;
-  protected malfunction: boolean = false;
+  protected malfunction: boolean = true;
   protected mode: string;
 
   constructor(mode = 'easy') {
@@ -56,15 +56,12 @@ export class Environment {
         let state = new State(oil[i], attention[i], malfunction[i]);
         table.put(state, i);
       }
-    } else {
-      //return [state1 .. state100]
     }
-
     return table;
   }
 
   _updateOilEasy(action: string, reaction: string) {
-    if (reaction === 'charge' || reaction === 'oil') {
+    if (['charge', 'oil'].includes(reaction) || ['smearMake', 'waveArms'].includes(action)) {
       this._updateOilLevel(action, 'oil');
     }
   }
@@ -73,9 +70,11 @@ export class Environment {
     if (action === 'smearMake') {
       this.oilLevel -= 15;
     } else if (action === 'waveArms') {
+      console.log('decrease oil');
       this.oilLevel -= 5;
     }
     if (reaction === 'oil' && this.oilLevel < 40 && !this.malfunction) {
+      console.log('increase oil');
       this.oilLevel += 60;
     }
   }
@@ -90,9 +89,9 @@ export class Environment {
   }
 
   _updateAttentionEasy(action: string, reaction: string) {
-    //@ts-ignore
     if (['playBall', 'smearMake', 'praise', 'noreaction'].includes(reaction)) {
-      this._updateAttention(action, 'playBall');
+      const tmpReaction = reaction === 'noreaction' ? 'noreaction' : 'playBall';
+      this._updateAttention(action, tmpReaction);
     }
   }
 
@@ -107,14 +106,13 @@ export class Environment {
   }
 
   _updateAttention(_action: string, reaction: string) {
+    console.log('tmpReaction attention', reaction);
     if (reaction === 'noreaction') {
       const decrease = 8 * Math.pow(this.attention / 100, 2) + 5;
       this.attention = this.attention - Math.floor(decrease);
-    } else if (
-      //@ts-ignore
-      ['playBall', 'smearMake'].includes(reaction) &&
-      !this.malfunction
-    ) {
+      console.log('decrease attention');
+    } else if (['playBall', 'smearMake'].includes(reaction) && !this.malfunction) {
+      console.log('increase attention');
       this.attention += 10;
     } else if (!this.malfunction) {
       this.attention += 5;
@@ -134,9 +132,7 @@ export class Environment {
   }
 
   getReward(reaction: string, prevConditions: Condition) {
-    let reward = 1 as number;
-    reward = 2;
-
+    let reward: number = 0;
     reward = this.setRewardMalfunction(reward, reaction, prevConditions);
 
     if (this.mode === 'easy') {
@@ -150,12 +146,15 @@ export class Environment {
 
     if (reaction === 'noreaction') {
       //easy mode is valid, because the value for energy and love is not changed
-      //@ts-ignore
-      const love = prevConditions.love >= 50 ? true : false;
+      let love, energy: boolean = true;
+      if (this.mode === 'hard') {
+        //@ts-ignore
+        love = prevConditions.love >= 50 ? true : false;
+        //@ts-ignore
+        energy = prevConditions.energy > 70 ? true : false;
+      }
       const oil = prevConditions.oilLevel > 70 ? true : false;
       const attention = prevConditions.attention > 70 ? true : false;
-      //@ts-ignore
-      const energy = prevConditions.energy > 70 ? true : false;
       const malfunction = prevConditions.malfunction ? false : true;
 
       if (love && oil && attention && energy && malfunction) {
@@ -214,7 +213,6 @@ export class Environment {
         reward += 50;
       }
     }
-
     return reward;
   }
 
@@ -256,7 +254,6 @@ export class Environment {
     if (reaction === 'punish') {
       reward -= 10;
     }
-
     return reward;
   }
 
@@ -269,7 +266,6 @@ export class Environment {
         reward -= 50;
       }
     }
-
     return reward;
   }
 }

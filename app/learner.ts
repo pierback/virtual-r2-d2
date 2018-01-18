@@ -1,4 +1,6 @@
 import { State, Condition, HashTable } from './states';
+//@ts-ignore
+import { log } from './public/scripts/helper.js';
 
 export class Learner {
     protected eps: number;
@@ -8,10 +10,10 @@ export class Learner {
     protected learnRate: number;
     protected batchSize: number;
     protected qTable: number;
-    protected actions: String[];
+    protected actions: string[];
     protected stateTable: HashTable;
 
-    constructor(actions: String[], stateTable: HashTable) {
+    constructor(actions: string[], stateTable: HashTable) {
         this.eps = 0.1;
         this.lamda = 0.1;
         this.epsDecayRate = 0.1;
@@ -28,7 +30,7 @@ export class Learner {
         return null;
     }
 
-    getNextAction(curState: State): string {
-        return '';
+    getNextAction(curState: Condition): string {
+        return this.actions[3];
     }
 }

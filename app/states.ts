@@ -12,19 +12,19 @@
 }*/
 
 export class State {
-    protected energy:boolean;
-    protected oil:boolean;
-    protected attention:boolean;
-    protected love:boolean;
-    protected malfunction:boolean;
+  protected energy: boolean;
+  protected oil: boolean;
+  protected attention: boolean;
+  protected love: boolean;
+  protected malfunction: boolean;
 
-    constructor( oil:boolean, attention:boolean, malfunction:boolean, energy:boolean=true, love:boolean=true){
-        this.energy = energy;
-        this.oil = oil;
-        this.attention = attention;
-        this.love = love;
-        this.malfunction = malfunction;
-    }
+  constructor(oil: boolean, attention: boolean, malfunction: boolean, energy: boolean = true, love: boolean = true) {
+    this.energy = energy;
+    this.oil = oil;
+    this.attention = attention;
+    this.love = love;
+    this.malfunction = malfunction;
+  }
 }
 
 export class HashTable {

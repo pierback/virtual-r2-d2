@@ -2,11 +2,22 @@
   "rules": {
     "curly": false,
     "eofline": false,
-    "align": [true, "parameters"],
+    "align": [
+      true,
+      "parameters"
+    ],
     "class-name": true,
-    "indent": [true, "spaces"],
-    "max-line-length": [true, 120],
-    "no-consecutive-blank-lines": [true],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "max-line-length": [
+      true,
+      120
+    ],
+    "no-consecutive-blank-lines": [
+      true
+    ],
     "no-trailing-whitespace": true,
     "no-duplicate-variable": true,
     "no-var-keyword": true,
@@ -15,9 +26,20 @@
     "no-use-before-declare": true,
     "no-var-requires": false,
     "no-require-imports": false,
-    "one-line": [true, "check-else", "check-whitespace", "check-open-brace"],
-    "quotemark": [true, "single"],
-    "semicolon": [true, "always"],
+    "one-line": [
+      true,
+      "check-else",
+      "check-whitespace",
+      "check-open-brace"
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "typedef-whitespace": [
       true,
       {

@@ -4,6 +4,10 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "declaration": false,
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
