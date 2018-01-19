@@ -3,23 +3,17 @@ import { State, Condition, HashTable } from './states';
 import { log } from './public/scripts/helper.js';
 
 export class Learner {
-    protected eps: number;
-    protected lamda: number;
-    protected epsDecayRate: number;
-    protected gamma: number;
-    protected learnRate: number;
-    protected batchSize: number;
-    protected qTable: number;
-    protected actions: string[];
-    protected stateTable: HashTable;
+    private eps: number = 0.1;
+    private lamda: number = 0.1;
+    private epsDecayRate: number = 1;
+    private gamma: number = 1;
+    private learnRate: number = 0.3;
+    private batchSize: number = 100;
+    private qTable: number;
+    private actions: string[];
+    private stateTable: HashTable;
 
     constructor(actions: string[], stateTable: HashTable) {
-        this.eps = 0.1;
-        this.lamda = 0.1;
-        this.epsDecayRate = 0.1;
-        this.gamma = 0.1;
-        this.learnRate = 0.1;
-        this.batchSize = 0.1;
         this.actions = actions;
         this.stateTable = stateTable;
 
@@ -27,6 +21,7 @@ export class Learner {
     }
 
     updateTable(curState: State, reward: number, prevAction: String) {
+        this.eps = 0.5;
         return null;
     }
 

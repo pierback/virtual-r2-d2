@@ -12,27 +12,23 @@
 }*/
 
 export class State {
-  protected energy: boolean;
-  protected oil: boolean;
-  protected attention: boolean;
-  protected love: boolean;
-  protected malfunction: boolean;
+  private oil: boolean;
+  private attention: boolean;
+  private malfunction: boolean;
+  private energy: boolean = true;
+  private love: boolean = true;
 
-  constructor(oil: boolean, attention: boolean, malfunction: boolean, energy: boolean = true, love: boolean = true) {
-    this.energy = energy;
-    this.oil = oil;
-    this.attention = attention;
-    this.love = love;
-    this.malfunction = malfunction;
+  constructor(_oil: boolean, _attention: boolean, _malfunction: boolean, _energy?: boolean, _love?: boolean) {
+    this.oil = _oil;
+    this.attention = _attention;
+    this.malfunction = _malfunction;
+    this.energy = _energy || true;
+    this.love = _love || true;
   }
 }
 
 export class HashTable {
-  public hashes: any;
-
-  constructor() {
-    this.hashes = {};
-  }
+  public hashes: Object = {};
 
   put(key: any, value: number) {
     this.hashes[JSON.stringify(key)] = value;

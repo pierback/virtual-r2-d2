@@ -1,4 +1,6 @@
 import { State, Condition, HashTable } from './states';
+//@ts-ignore
+import { log } from './public/scripts/helper.js';
 
 export class Environment {
   protected energy: number = 100;
@@ -6,14 +8,14 @@ export class Environment {
   protected oilLevel: number = 100;
   protected love: number = 50;
   protected malfunction: boolean = true;
-  protected mode: string;
+  protected mode: string = 'easy';
 
-  constructor(mode = 'easy') {
-    this.mode = mode;
+  constructor(_mode: string) {
+    this.mode = _mode;
   }
 
   update(action: string, reaction: string) {
-    console.log(action, reaction);
+    log(action, reaction);
     this._updateMalfunction(action, reaction);
 
     if (this.mode === 'easy') {
@@ -70,11 +72,11 @@ export class Environment {
     if (action === 'smearMake') {
       this.oilLevel -= 15;
     } else if (action === 'waveArms') {
-      console.log('decrease oil');
+      log('decrease oil');
       this.oilLevel -= 5;
     }
     if (reaction === 'oil' && this.oilLevel < 40 && !this.malfunction) {
-      console.log('increase oil');
+      log('increase oil');
       this.oilLevel += 60;
     }
   }
@@ -106,13 +108,13 @@ export class Environment {
   }
 
   _updateAttention(_action: string, reaction: string) {
-    console.log('tmpReaction attention', reaction);
+    log('tmpReaction attention', reaction);
     if (reaction === 'noreaction') {
       const decrease = 8 * Math.pow(this.attention / 100, 2) + 5;
       this.attention = this.attention - Math.floor(decrease);
-      console.log('decrease attention');
+      log('decrease attention');
     } else if (['playBall', 'smearMake'].includes(reaction) && !this.malfunction) {
-      console.log('increase attention');
+      log('increase attention');
       this.attention += 10;
     } else if (!this.malfunction) {
       this.attention += 5;
@@ -171,7 +173,7 @@ export class Environment {
         Object.entries(this.conditionArray).forEach(([key, value]) => {
           if (key !== 'malfunction') {
             if (value < 10) {
-              console.log('loop value', value, 'rewardsd', reward);
+              log('loop value', value, 'rewardsd', reward);
               reward -= 10;
             } else {
               reward += 5;
