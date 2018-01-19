@@ -12,14 +12,14 @@
 }*/
 
 export class State {
-  private oil: boolean;
+  private oilLevel: boolean;
   private attention: boolean;
   private malfunction: boolean;
   private energy: boolean = true;
   private love: boolean = true;
 
-  constructor(_oil: boolean, _attention: boolean, _malfunction: boolean, _energy?: boolean, _love?: boolean) {
-    this.oil = _oil;
+  constructor(_oilLevel: boolean, _attention: boolean, _malfunction: boolean, _energy?: boolean, _love?: boolean) {
+    this.oilLevel = _oilLevel;
     this.attention = _attention;
     this.malfunction = _malfunction;
     this.energy = _energy || true;

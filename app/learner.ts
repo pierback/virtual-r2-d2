@@ -1,6 +1,6 @@
 import { State, Condition, HashTable } from './states';
 //@ts-ignore
-import { log } from './public/scripts/helper.js';
+import { log, parseJSON } from './public/scripts/helper.js';
 
 export class Learner {
     private eps: number = 0.1;
@@ -21,7 +21,6 @@ export class Learner {
     }
 
     updateTable(curState: State, reward: number, prevAction: String) {
-        this.eps = 0.5;
         return null;
     }
 

@@ -219,7 +219,6 @@ export class Environment {
   }
 
   setRewardAttentionEasy(reward: number, reaction: string, prevConditions: Condition) {
-    //@ts-ignore
     if (['punish', 'playBall', 'praise'].includes(reaction)) {
       reward = this.setRewardAttention(reward, 'playBall', prevConditions);
     }
