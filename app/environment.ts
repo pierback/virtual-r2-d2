@@ -47,6 +47,11 @@ export class Environment {
     }
   }
 
+  getCurrentState(): State {
+    // tslint:disable-next-line:max-line-length
+    return new State(this.oilLevel > 30 ? true : false, this.attention > 30 ? true : false, this.malfunction, true, true);
+  }
+
   getStates(): HashTable {
     let table = new HashTable();
     if (this.mode === 'easy') {

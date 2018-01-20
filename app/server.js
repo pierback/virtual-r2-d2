@@ -39,7 +39,7 @@ wss.on('connection', function (ws) {
     environment.update(prevAction, reaction);
     const reward = environment.getReward(reaction, environment.getConditionArray());//<--- previous conArr
     learner.updateTable(prevState, reward, prevAction);
-    prevState = environment.getConditionArray();//environment.getCurrentState();
+    prevState = environment.getCurrentState();//environment.getCurrentState();
     prevAction = learner.getNextAction(prevState);
     console.log(
       `${stringifyJSON(prevState)} reward: ${reward}`

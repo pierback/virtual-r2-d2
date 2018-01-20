@@ -17,6 +17,18 @@ exports.stringifyJSON = test => JSON.stringify(test);
 
 exports.log = console.log.bind(console);
 
+exports.createMatrix = (rows, cols, defaultValue) => {
+    const arr = [];
+    for (let i = 0; i < rows; i++) {
+        arr.push([]);
+        arr[i].push(new Array(cols));
+        for (let j = 0; j < cols; j++) {
+            arr[i][j] = defaultValue;
+        }
+    }
+    return arr;
+};
+
 exports.getAllMethods = (obj) => {
     let props = [];
     do {
@@ -35,6 +47,5 @@ exports.getAllMethods = (obj) => {
         (obj = Object.getPrototypeOf(obj)) &&   //walk-up the prototype chain
         Object.getPrototypeOf(obj)              //not the the Object prototype methods (hasOwnProperty, etc...)
     );
-
     return props;
 };
