@@ -138,7 +138,8 @@ export class Environment {
     }
   }
 
-  getReward(reaction: string, prevConditions: Condition) {
+  getReward(reaction: string) {
+    const prevConditions: Condition = this.getConditionArray();
     let reward: number = 0;
     reward = this.setRewardMalfunction(reward, reaction, prevConditions);
 

@@ -172,11 +172,11 @@ class Act {
         });
     }
 
-    getMethods(mode='easy'){
-        if(mode === 'easy'){
-            return ['peepMonoton', 'malfunction', 'smearMake', 'waveArms'];
-        } else if(mode === 'hard'){
-            return ['circle','peepIrregular', 'peepMonoton', 'malfunction', 'smearMake','smearRemove', 'waveArms'];
+    getMethods(mode = 'easy') {
+        if (mode === 'easy') {
+            return ['sleep', 'malfunction', 'smearMake', 'waveArms'];
+        } else if (mode === 'hard') {
+            return ['sleep', 'circle', 'peepIrregular', 'peepMonoton', 'malfunction', 'smearMake', 'smearRemove', 'waveArms'];
         }
     }
 }

@@ -147,7 +147,7 @@ class Controller {
         Move(this.robot, this.act, this.react, playBall)
             .then(() => {
                 playBall ? log('play ball finished') : log('move finished');
-                playBall ? this.send('playBall') : this.wait();
+                playBall ? this.send('playball') : this.wait();
             });
     }
 
