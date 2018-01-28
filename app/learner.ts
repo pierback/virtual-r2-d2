@@ -43,7 +43,8 @@ export class Learner {
         const aId1 = this.actions.indexOf(_a1);
         const aId2 = this.actions.indexOf(_a2);
         const delta = reward + this.gamma * this.qTable[s2][aId2] - this.qTable[s1][aId1];
-        this.eTable[s1][_a1] += 1;
+        //log('delta', delta);
+        this.eTable[s1][aId1] += 1;
 
         this.updateQTable(delta);
         this.updateETable();
@@ -51,7 +52,6 @@ export class Learner {
 
     public getNextAction(curState: State): string {
         const s = this.stateTable.get(curState);
-        log('state', s);
         let maxVal: number = 0;
         let actionId: number = 0;
 

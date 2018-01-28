@@ -15,7 +15,7 @@ export class Environment {
   }
 
   update(action: string, reaction: string) {
-    log(action, reaction);
+    //log(action, reaction);
     this._updateMalfunction(action, reaction);
 
     if (this.mode === 'easy') {
@@ -77,11 +77,11 @@ export class Environment {
     if (action === 'smearMake') {
       this.oilLevel -= 15;
     } else if (action === 'waveArms') {
-      log('decrease oil');
+      //log('decrease oil');
       this.oilLevel -= 5;
     }
     if (reaction === 'oil' && this.oilLevel < 40 && !this.malfunction) {
-      log('increase oil');
+      //log('increase oil');
       this.oilLevel += 60;
     }
   }
@@ -113,13 +113,13 @@ export class Environment {
   }
 
   _updateAttention(_action: string, reaction: string) {
-    log('tmpReaction attention', reaction);
+    //log('tmpReaction attention', reaction);
     if (reaction === 'noreaction') {
       const decrease = 8 * Math.pow(this.attention / 100, 2) + 5;
       this.attention = this.attention - Math.floor(decrease);
-      log('decrease attention');
+      //log('decrease attention');
     } else if (['playBall', 'smearMake'].includes(reaction) && !this.malfunction) {
-      log('increase attention');
+      //log('increase attention');
       this.attention += 10;
     } else if (!this.malfunction) {
       this.attention += 5;
@@ -179,7 +179,7 @@ export class Environment {
         Object.entries(this.conditionArray).forEach(([key, value]) => {
           if (key !== 'malfunction') {
             if (value < 10) {
-              log('loop value', value, 'rewardsd', reward);
+              //log('loop value', value, 'rewardsd', reward);
               reward -= 10;
             } else {
               reward += 5;
