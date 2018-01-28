@@ -36,9 +36,13 @@ wss.on('connection', function (ws) {
   ws.on('message', function (message) {
     //const conArr = environment.getConditionArray();
     const reaction = message.toString();
+
     environment.update(prevAction, reaction);
+    //current state in numbers 
     const reward = environment.getReward(reaction, environment.getConditionArray());//<--- previous conArr
+    //s'        r       a'
     learner.updateTable(prevState, reward, prevAction);
+
     prevState = environment.getCurrentState();//environment.getCurrentState();
     prevAction = learner.getNextAction(prevState);
     console.log(

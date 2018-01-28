@@ -27,13 +27,13 @@ export class Learner {
                 this.qTable[i][j] = (0 + i);
             }
         }
-        log(this.stateTable);
+        //log(this.stateTable);
     }
 
     updateTable(curState: State, reward: number, prevAction: string) {
         const actionID = this.actions.indexOf(prevAction);
         const stateID = this.stateTable.get(JSON.stringify(curState));
-        log(prevAction, actionID, JSON.stringify(curState), stateID);
+        //log(prevAction, actionID, JSON.stringify(curState), stateID);
         //log(this.qTable[actionID][stateID]);
         return null;
     }
