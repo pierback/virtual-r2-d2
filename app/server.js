@@ -39,10 +39,11 @@ function init(test) {
   if (test) {
     const { test } = require('./test');
     let reaction = test(prevAction);
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 30; i++) {
       const action = learn(reaction);
       reaction = test(action);
     }
+    log('done');
     log(learner.QTable);
   } else {
     wss.on('connection', function (ws) {
@@ -56,15 +57,19 @@ function init(test) {
 }
 
 function learn(reaction) {
+  log(prevAction, reaction);
+  prevCondition = environment.getConditionArray();//we need this here!! otherwise it will be overwritten in the next
+    // step
   environment.update(prevAction, reaction);
   //current state in numbers 
-  const reward = environment.getReward(reaction);
+  const reward = environment.getReward(reaction, prevCondition);
   const curState = environment.getCurrentState();
   const curAction = learner.getNextAction(prevState);
   learner.updateLearner(reward, prevAction, prevState, curAction, curState);
+
   console.log(
     `${stringifyJSON(curAction)} reward: ${reward}`
-  );
+  )
   prevState = curState;
   prevAction = curAction;
 

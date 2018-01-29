@@ -9,23 +9,23 @@ Learn proper actions to communicate needs to user.
 1. Needs
 	* Oil -> o-True, o-False
 	* Attention -> a-True, a-False
-	* Malfunction-free -> m-True, m-False
+	* operates-free -> m-True, m-False
 2. Actions
 	* sleep -> a1
-	* malfunction-bubble -> a2
+	* operates-bubble -> a2
 	* smearMake -> a3
 	* waveArms -> a4
 3. Possible user Actions
 	* RechargeBattery -> Oil
 	* Oil -> Oil
-	* Repair -> Malfunction
+	* Repair -> operates
 	* PlayBall -> Attention
 	* Praise -> Attention
 	* Punish -> Attention
 	* DoNothing -> Nothing
 4. DebugBot-Reactions (
 	* a1 -> DoNothing (no needs)
-	* a2 -> Repair (malfunction)
+	* a2 -> Repair (operates)
 	* a3 -> Oil, RechargeBattery (oil/energy)
 	* a4 -> PlayBall, Praise, Punish (attention)
 
@@ -42,11 +42,11 @@ Learn proper actions to communicate needs to user.
 |s1 | m-True, o-True, a-True    | pref |      |      |      |
 |s2 | m-True, o-True, a-False   |      |      |      | pref |
 |s3 | m-True, o-False, a-True   |      |      | pref |      |
-|s4 | m-True, o-False, a-False  |      |      | pref | pref |
+|s4 | m-True, o-False, a-False  |      |      | pref |      |
 |s5 | m-False, o-True, a-True   |      | pref |      |      |
 |s6 | m-False, o-True, a-False  |      | pref |      | pref |
-|s7 | m-False, o-False, a-True  |      | pref | pref |      |
-|s8 | m-False, o-False, a-False |      | pref | pref | pref |
+|s7 | m-False, o-False, a-True  |      |      | pref |      |
+|s8 | m-False, o-False, a-False |      |      | pref |      |
 
 Note: pref -> start their with a higher reward in order to learn faster !?
 
@@ -79,7 +79,7 @@ function updateLearner(reward, a1,s1, a2, s2){
 
 function updateQTable(delta){
 	//for every state and action (oft besuchte Zustände werden mehr verändert, sowohl mit positiven als auch negativen reward!??)
-	Q[s][a] = Q[s][a] + Alpha * temp * e[s][a] 
+	Q[s][a] = Q[s][a] + Alpha * delta * e[s][a] 
 }
 
 function updateETable(){

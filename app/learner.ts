@@ -1,14 +1,14 @@
-import { State, Condition, HashTable } from './states';
+import { State, HashTable } from './states';
 //@ts-ignore
 import { log, parseJSON, createMatrix } from './public/scripts/helper.js';
 
 export class Learner {
     private eps: number = 0.1;
     private lambda: number = 0.1;
-    private epsDecayRate: number = 1;
+    //private epsDecayRate: number = 1;
     private gamma: number = 1;
     private learnRate: number = 0.3;
-    private batchSize: number = 100;
+    //private batchSize: number = 100;
     private qTable: number[][]; //number;
     private eTable: number[][]; //number;
     private actions: string[];
@@ -35,6 +35,17 @@ export class Learner {
                 this.eTable[s][a] = 0;
             }
         }
+
+        this.qTable[this.stateTable.get(new State(true,  true, true))][this.actions.indexOf('sleep')] = 10;
+        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('smearMake')] = 10;
+        this.qTable[this.stateTable.get(new State(true,  false, true))][this.actions.indexOf('waveArms')] = 10;
+        this.qTable[this.stateTable.get(new State(true,  true, false))][this.actions.indexOf('malfunction')] = 10;
+
+        this.qTable[this.stateTable.get(new State(true,  false, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false,  false, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false,  true, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('waveArms')] = 10;
+        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('smearMake')] = 10;
     }
 
     public updateLearner(reward: number, _a1: string, _s1: State, _a2: string, _s2: State) {
@@ -52,16 +63,19 @@ export class Learner {
 
     public getNextAction(curState: State): string {
         const s = this.stateTable.get(curState);
-        let maxVal: number = 0;
+        var maxVal: number = 0;
         let actionId: number = 0;
 
         if (Math.random() < this.eps) {
+            //log('---pick random action');
             //choose random action
             return this.actions[Math.floor(Math.random() * this.actions.length)];
         } else {
             //choose best action
+            //log('---pick best action');
+
             for (let a = 0; a < this.actions.length; a++) {
-                if (this.qTable[s][a] > maxVal) {
+                if (this.qTable[s][a] >= maxVal) {
                     maxVal = this.qTable[s][a];
                     actionId = a;
                 }
@@ -73,7 +87,7 @@ export class Learner {
     private updateQTable(delta: number) {
         for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
             for (let a = 0; a < this.actions.length; a++) {
-                this.qTable[s][a] = this.qTable[s][a] + this.learnRate * delta * this.eTable[s][a];
+                this.qTable[s][a] = Math.round(this.qTable[s][a] + this.learnRate * delta * this.eTable[s][a]);
             }
         }
     }

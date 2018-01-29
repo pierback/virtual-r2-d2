@@ -28,7 +28,7 @@ Sinnvolle Aktionen für
     * 'waveArms' spielerisch
     * 'MakeSmear' Ölfleck machen
 * Störung
-    * 'malfunction' Sprechblase mit Blitzen ⚡️ und Rauch 💨
+    * 'operates' Sprechblase mit Blitzen ⚡️ und Rauch 💨
     * 'MakeSmear' Ölfleck machen
     * 'peepMonotonous'
 * Liebe
