@@ -27,30 +27,33 @@ app.get('/', (req, res) => {
 const mode = 'easy';
 const act = new Act();
 const actions = act.getMethods(mode);
-const environment = new Environment(mode);
+let environment = new Environment(mode);
 const learner = new Learner(actions, environment.getStates());
 
 let prevState = environment.getCurrentState();
 let prevAction = learner.getNextAction(prevState);
 
-init();
+init(false);
 
 function init(test = true) {
   if (test) {
     const { test } = require('./test');
     let reaction = test(prevAction);
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       const action = learn(reaction);
       reaction = test(action);
     }
     log('done');
-    log(actions);
+    log(Array(46).join(' '), actions);
     learner.qTablePrint();
     init(false);
   } else {
     wss.on('connection', function (ws) {
       ws.on('message', function (message) {
         const reaction = message.toString();
+        if (reaction === 'restart') {
+          environment = new Environment(mode);
+        }
         const action = learn(reaction);
         ws.send(action);
       });
@@ -63,6 +66,9 @@ function learn(reaction) {
   const prevCondition = environment.getConditionArray();//we need this here!! otherwise it will be overwritten in the next
   // step
   environment.update(prevAction, reaction);
+  if (environment.isDead()) {
+    return 'die';
+  }
   //current state in numbers 
   const reward = environment.getReward(reaction, prevCondition);
   const curState = environment.getCurrentState();
@@ -70,7 +76,7 @@ function learn(reaction) {
   learner.updateLearner(reward, prevAction, prevState, curAction, curState);
 
   console.log(
-    `${stringifyJSON(curAction)} reward: ${reward}`
+    `${stringifyJSON(curState)} ${stringifyJSON(curAction)} reward: ${reward}`
   );
   prevState = curState;
   prevAction = curAction;

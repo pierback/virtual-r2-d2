@@ -28,6 +28,12 @@ class Controller {
         this.ws.send('noreaction');
     }
 
+    restart() {
+        this.dom.overlay.style.width = '0%';
+        this.dom.enableButtons();
+        this.ws.send('restart');
+    }
+
     _initializeSocket() {
         const that = this;
         const HOST = location.origin.replace(/^http/, 'ws');
@@ -70,6 +76,9 @@ class Controller {
                 break;
             case 'sleep':
                 this.sleep();
+                break;
+            case 'die':
+                this.die();
                 break;
             default:
                 break;
@@ -215,6 +224,22 @@ class Controller {
             .then(() => {
                 log('charge finished');
                 this.send('charge');
+            });
+    }
+
+    die() {
+        this.Busy = true;
+        this.react.die()
+            .then(() => {
+                log('die finished');
+                this.dom.overlay.style.width = 'inherit';
+                this.dom.disableButtons();
+                this.dom.blacknPanel();
+                if (this.dom.startBtn.className !== 'w3-hide') {
+                    this.dom.startBtn.className = 'w3-hide';
+
+                }
+                this.dom.restartBtn.className = this.dom.restartBtn.className.replace('w3-hide', '');
             });
     }
 

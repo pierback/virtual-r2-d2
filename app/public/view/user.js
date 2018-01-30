@@ -8,6 +8,7 @@ class User {
     this.punishBtn = env.punishBtn;
     this.nothingBtn = env.nothingBtn;
     this.ballBtn = env.ballBtn;
+    this.restartBtn = env.restartBtn;
     this.controller = controller;
     this._initializeListeners();
   }
@@ -15,11 +16,9 @@ class User {
     this.ballBtn.addEventListener('click', () => {
       this.controller.move(true);
     });
-
     this.rechargeBtn.addEventListener('click', () => {
       this.controller.charge();
     });
-
     this.oilBtn.addEventListener('click', () => {
       this.controller.oil();
     });
@@ -38,9 +37,12 @@ class User {
     this.startBtn.addEventListener('click', () => {
       this.controller.start();
     });
+    this.restartBtn.addEventListener('click', () => {
+      this.controller.restart();
+    });
 
     const that = this;
-    window.onkeyup = function(e) {
+    window.onkeyup = function (e) {
       const key = e.keyCode ? e.keyCode : e.which;
       if (key === 49 || key === 65) {
         that.rechargeBtn.click();

@@ -7,7 +7,7 @@ class Dom {
         this.head = document.getElementById('r2d2-head');
         this.legLeft = document.getElementById('left-leg');
         this.legRight = document.getElementById('right-leg');
-        this.legFront = document.querySelectorAll('.foot') [1];
+        this.legFront = document.querySelectorAll('.foot')[1];
         this.dotCenter = document.getElementById('dot-center');
         this.dotRight = document.getElementById('dot-right');
         this.dotLeftUp = document.getElementById('dot-left-up');
@@ -22,7 +22,8 @@ class Dom {
         this.moonItem = document.getElementById('moon-item');
 
         this.btnPanel = document.getElementById('button-panel');
-        this.startBtn = this.overlay.getElementsByTagName('a') [0];
+        this.startBtn = this.overlay.getElementsByTagName('a')[0];
+        this.restartBtn = this.overlay.getElementsByTagName('a')[1];
         this.rechargeBtn = document.getElementById('recharge-btn');
         this.oilBtn = document.getElementById('oil-btn');
         this.repairBtn = document.getElementById('repair-btn');
@@ -31,10 +32,14 @@ class Dom {
         this.nothingBtn = document.getElementById('nothing-btn');
         this.ballBtn = document.getElementById('ball-btn');
 
-        this.btnPanel.style.background = 'rgba(0, 0, 0, 0.9)';
 
+        this.blacknPanel();
         this.initButtonArray();
         this.disableButtons();
+    }
+
+    blacknPanel() {
+        this.btnPanel.style.background = 'rgba(0, 0, 0, 0.9)';
     }
 
     initButtonArray() {

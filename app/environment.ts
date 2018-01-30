@@ -5,7 +5,7 @@ import { log } from './public/scripts/helper.js';
 export class Environment {
     protected energy: number = 100;
     protected attention: number = 100;
-    private thresholdAttention: number = 30;
+    private thresholdAttention: number = 60;
     protected oilLevel: number = 80;
     private thresholdOil: number = 40;
     protected love: number = 50;
@@ -16,7 +16,7 @@ export class Environment {
         this.mode = _mode;
     }
 
-    getConditionArray(): Condition {
+    public getConditionArray(): Condition {
         if (this.mode === 'easy') {
             return {
                 attention: this.attention,
@@ -34,16 +34,16 @@ export class Environment {
         }
     }
 
-    getDetailedState(): string {
+    public getDetailedState(): string {
         return `oilLevel: ${this.oilLevel}, attention: ${this.attention}, operates ${this.operates}`;
     }
 
-    getCurrentState(): State {
+    public getCurrentState(): State {
         // tslint:disable-next-line:max-line-length
         return new State(this.oilLevel > this.thresholdOil ? true : false, this.attention > this.thresholdAttention ? true : false, this.operates);
     }
 
-    getStates(): HashTable {
+    public getStates(): HashTable {
         let table = new HashTable();
         if (this.mode === 'easy') {
             const oil = [true, true, true, true, false, false, false, false];
@@ -56,6 +56,12 @@ export class Environment {
             }
         }
         return table;
+    }
+
+    public isDead() {
+        if (this.oilLevel <= 0 || this.attention <= 0) {
+            return true;
+        } else { return false; }
     }
 
     //UPDATE ENVIRONMENT STATE
@@ -198,7 +204,7 @@ export class Environment {
     }
 
     private getRewardOil(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'oil') {
+        if (reaction === 'oil' && prevConditions.operates) {
             if (prevConditions.oilLevel > this.thresholdOil) {
                 reward -= 30;
             } else {
@@ -209,7 +215,7 @@ export class Environment {
     }
 
     private getRewardCharge(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'charge') {
+        if (reaction === 'charge' && prevConditions.operates) {
             //@ts-ignore
             if (prevConditions.energy < 50) {
                 reward += 30;
@@ -231,7 +237,7 @@ export class Environment {
     }
 
     private getRewardAttention(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'playball') {
+        if (reaction === 'playball' && prevConditions.operates) {
             if (prevConditions.attention < this.thresholdAttention) {
                 reward += 31;
             } else {
@@ -243,7 +249,7 @@ export class Environment {
     }
 
     private getRewardLove(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'praise') {
+        if (reaction === 'praise' && prevConditions.operates) {
             //@ts-ignore
             if (prevConditions.love < 50) {
                 reward += 30;

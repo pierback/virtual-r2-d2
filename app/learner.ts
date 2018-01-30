@@ -5,9 +5,9 @@ import { log, parseJSON, createMatrix } from './public/scripts/helper.js';
 export class Learner {
     private eps: number = 0.1;
     private lambda: number = 0.1;
-    //private epsDecayRate: number = 1;
     private gamma: number = 1;
     private learnRate: number = 0.3;
+    //private epsDecayRate: number = 1;
     //private batchSize: number = 100;
     private qTable: number[][]; //number;
     private eTable: number[][]; //number;
@@ -35,7 +35,6 @@ export class Learner {
                 this.eTable[s][a] = 0;
             }
         }
-
         this.qTable[this.stateTable.get(new State(true, true, true))][this.actions.indexOf('sleep')] = 10;
         this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('smearMake')] = 10;
         this.qTable[this.stateTable.get(new State(true, false, true))][this.actions.indexOf('waveArms')] = 10;
@@ -49,7 +48,6 @@ export class Learner {
     }
 
     public qTablePrint() {
-        let i = 0;
         let arr: any = [];
         for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
             arr = [];
@@ -58,12 +56,6 @@ export class Learner {
             }
             log(this.stateTable.getKey(s), arr);
         }
-
-        /* for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
-            for (let a = 0; a < this.actions.length; a++) {
-                log(this.stateTable.hashes[s], this.qTable[s][a]);
-            }
-        } */
     }
 
     public updateLearner(reward: number, _a1: string, _s1: State, _a2: string, _s2: State) {
