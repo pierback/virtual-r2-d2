@@ -44,8 +44,8 @@ export class Learner {
         this.qTable[this.stateTable.get(new State(true, false, false))][this.actions.indexOf('malfunction')] = 10;
         this.qTable[this.stateTable.get(new State(false, false, false))][this.actions.indexOf('malfunction')] = 10;
         this.qTable[this.stateTable.get(new State(false, true, false))][this.actions.indexOf('malfunction')] = 10;
-        this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('waveArms')] = 10;
-        this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('smearMake')] = 10;
+        this.qTable[this.stateTable.get(new State(false, false, true))][this.actions.indexOf('waveArms')] = 10;
+        this.qTable[this.stateTable.get(new State(false, false, true))][this.actions.indexOf('smearMake')] = 10;
     }
 
     public qTablePrint() {
