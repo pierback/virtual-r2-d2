@@ -2,15 +2,15 @@ export class State {
   private oilLevel: boolean;
   private attention: boolean;
   private operates: boolean;
-  private energy: boolean = true;
-  private love: boolean = true;
+  /* private energy: boolean = true;
+  private love: boolean = true; */
 
   constructor(_oilLevel: boolean, _attention: boolean, _operates: boolean, _energy?: boolean, _love?: boolean) {
     this.oilLevel = _oilLevel;
     this.attention = _attention;
     this.operates = _operates;
-    this.energy = _energy || true;
-    this.love = _love || true;
+    /*  this.energy = _energy || true;
+     this.love = _love || true; */
   }
 }
 
@@ -23,6 +23,14 @@ export class HashTable {
 
   get(key: any) {
     return this.hashes[JSON.stringify(key)];
+  }
+
+  getKey(val: number) {
+    for (let [k, v] of Object.entries(this.hashes)) {
+      if (val === v) {
+        return k;
+      }
+    }
   }
 }
 

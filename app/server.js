@@ -33,18 +33,20 @@ const learner = new Learner(actions, environment.getStates());
 let prevState = environment.getCurrentState();
 let prevAction = learner.getNextAction(prevState);
 
-init(true);
+init();
 
-function init(test) {
+function init(test = true) {
   if (test) {
     const { test } = require('./test');
     let reaction = test(prevAction);
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 100; i++) {
       const action = learn(reaction);
       reaction = test(action);
     }
     log('done');
-    log(learner.QTable);
+    log(actions);
+    learner.qTablePrint();
+    init(false);
   } else {
     wss.on('connection', function (ws) {
       ws.on('message', function (message) {
@@ -58,8 +60,8 @@ function init(test) {
 
 function learn(reaction) {
   log(prevAction, reaction);
-  prevCondition = environment.getConditionArray();//we need this here!! otherwise it will be overwritten in the next
-    // step
+  const prevCondition = environment.getConditionArray();//we need this here!! otherwise it will be overwritten in the next
+  // step
   environment.update(prevAction, reaction);
   //current state in numbers 
   const reward = environment.getReward(reaction, prevCondition);
@@ -69,7 +71,7 @@ function learn(reaction) {
 
   console.log(
     `${stringifyJSON(curAction)} reward: ${reward}`
-  )
+  );
   prevState = curState;
   prevAction = curAction;
 

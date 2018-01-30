@@ -1,6 +1,6 @@
-import {State, Condition, HashTable} from './states';
+import { State, Condition, HashTable } from './states';
 //@ts-ignore
-import {log} from './public/scripts/helper.js';
+import { log } from './public/scripts/helper.js';
 
 export class Environment {
     protected energy: number = 100;
@@ -40,7 +40,7 @@ export class Environment {
 
     getCurrentState(): State {
         // tslint:disable-next-line:max-line-length
-        return new State(this.oilLevel > this.thresholdOil ? true : false, this.attention > this.thresholdAttention ? true : false, this.operates, true, true);
+        return new State(this.oilLevel > this.thresholdOil ? true : false, this.attention > this.thresholdAttention ? true : false, this.operates);
     }
 
     getStates(): HashTable {
@@ -154,7 +154,7 @@ export class Environment {
         return reward;
     }
 
-    private getRewardNoReaction(reward: number, reaction: string, prevConditions: Condition){
+    private getRewardNoReaction(reward: number, reaction: string, prevConditions: Condition) {
         if (reaction === 'noreaction') {
             //easy mode is valid, because the value for energy and love is not changed
             let love: boolean = true;
@@ -175,7 +175,6 @@ export class Environment {
                 reward -= 32;
             }
         }
-
         return reward;
     }
 
@@ -224,8 +223,6 @@ export class Environment {
         return reward;
     }
 
-
-
     private getRewardAttentionEasy(reward: number, reaction: string, prevConditions: Condition) {
         if (['playball', 'praise'].includes(reaction)) {
             reward = this.getRewardAttention(reward, 'playball', prevConditions);
@@ -260,6 +257,5 @@ export class Environment {
         }
         return reward;
     }
-
 
 }

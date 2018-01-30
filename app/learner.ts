@@ -36,16 +36,34 @@ export class Learner {
             }
         }
 
-        this.qTable[this.stateTable.get(new State(true,  true, true))][this.actions.indexOf('sleep')] = 10;
-        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('smearMake')] = 10;
-        this.qTable[this.stateTable.get(new State(true,  false, true))][this.actions.indexOf('waveArms')] = 10;
-        this.qTable[this.stateTable.get(new State(true,  true, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(true, true, true))][this.actions.indexOf('sleep')] = 10;
+        this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('smearMake')] = 10;
+        this.qTable[this.stateTable.get(new State(true, false, true))][this.actions.indexOf('waveArms')] = 10;
+        this.qTable[this.stateTable.get(new State(true, true, false))][this.actions.indexOf('malfunction')] = 10;
 
-        this.qTable[this.stateTable.get(new State(true,  false, false))][this.actions.indexOf('malfunction')] = 10;
-        this.qTable[this.stateTable.get(new State(false,  false, false))][this.actions.indexOf('malfunction')] = 10;
-        this.qTable[this.stateTable.get(new State(false,  true, false))][this.actions.indexOf('malfunction')] = 10;
-        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('waveArms')] = 10;
-        this.qTable[this.stateTable.get(new State(false,  true, true))][this.actions.indexOf('smearMake')] = 10;
+        this.qTable[this.stateTable.get(new State(true, false, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false, false, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false, true, false))][this.actions.indexOf('malfunction')] = 10;
+        this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('waveArms')] = 10;
+        this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('smearMake')] = 10;
+    }
+
+    public qTablePrint() {
+        let i = 0;
+        let arr: any = [];
+        for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
+            arr = [];
+            for (let a = 0; a < this.actions.length; a++) {
+                arr.push(`${this.qTable[s][a]}`);
+            }
+            log(this.stateTable.getKey(s), arr);
+        }
+
+        /* for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
+            for (let a = 0; a < this.actions.length; a++) {
+                log(this.stateTable.hashes[s], this.qTable[s][a]);
+            }
+        } */
     }
 
     public updateLearner(reward: number, _a1: string, _s1: State, _a2: string, _s2: State) {
@@ -63,7 +81,7 @@ export class Learner {
 
     public getNextAction(curState: State): string {
         const s = this.stateTable.get(curState);
-        var maxVal: number = 0;
+        let maxVal: number = 0;
         let actionId: number = 0;
 
         if (Math.random() < this.eps) {
