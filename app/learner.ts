@@ -3,10 +3,12 @@ import { State, HashTable } from './states';
 import { log, parseJSON, createMatrix } from './public/scripts/helper.js';
 
 export class Learner {
-    private eps: number = 0.1;
-    private lambda: number = 0.1;
-    private gamma: number = 1;
-    private learnRate: number = 0.3;
+    private eps: number = 0.3;
+    private epsDecayRate: number = 0.82;
+    private iterationCounter: number = 0;
+    private lambda: number = 0.5;
+    private gamma: number = 0.2;
+    private learnRate: number = 0.1;
     //private epsDecayRate: number = 1;
     //private batchSize: number = 100;
     private qTable: number[][]; //number;
@@ -35,7 +37,14 @@ export class Learner {
                 this.eTable[s][a] = 0;
             }
         }
+
+        this.setDefaultVals();
+    }
+
+    private setDefaultVals(){
         this.qTable[this.stateTable.get(new State(true, true, true))][this.actions.indexOf('sleep')] = 10;
+
+        /*
         this.qTable[this.stateTable.get(new State(false, true, true))][this.actions.indexOf('smearMake')] = 10;
         this.qTable[this.stateTable.get(new State(true, false, true))][this.actions.indexOf('waveArms')] = 10;
         this.qTable[this.stateTable.get(new State(true, true, false))][this.actions.indexOf('malfunction')] = 10;
@@ -45,6 +54,7 @@ export class Learner {
         this.qTable[this.stateTable.get(new State(false, true, false))][this.actions.indexOf('malfunction')] = 10;
         this.qTable[this.stateTable.get(new State(false, false, true))][this.actions.indexOf('waveArms')] = 10;
         this.qTable[this.stateTable.get(new State(false, false, true))][this.actions.indexOf('smearMake')] = 10;
+        */
     }
 
     public qTablePrint() {
@@ -64,11 +74,18 @@ export class Learner {
         const aId1 = this.actions.indexOf(_a1);
         const aId2 = this.actions.indexOf(_a2);
         const delta = reward + this.gamma * this.qTable[s2][aId2] - this.qTable[s1][aId1];
-        //log('delta', delta);
         this.eTable[s1][aId1] += 1;
 
         this.updateQTable(delta);
         this.updateETable();
+
+        this.iterationCounter++;
+        if(this.iterationCounter % 20 === 0){
+            //log(this.iterationCounter, this.eps);
+            if(this.eps > 0.01){
+                this.eps = Math.round(this.eps *1000 * this.epsDecayRate)/1000.0;
+            }
+        }
     }
 
     public getNextAction(curState: State): string {
@@ -77,19 +94,18 @@ export class Learner {
         let actionId: number = 0;
 
         if (Math.random() < this.eps) {
-            //log('---pick random action');
+            //log('---pick random action', this.iterationCounter);
             //choose random action
             return this.actions[Math.floor(Math.random() * this.actions.length)];
         } else {
-            //choose best action
             //log('---pick best action');
-
             for (let a = 0; a < this.actions.length; a++) {
                 if (this.qTable[s][a] >= maxVal) {
                     maxVal = this.qTable[s][a];
                     actionId = a;
                 }
             }
+
             return this.actions[actionId];
         }
     }

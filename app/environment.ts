@@ -60,6 +60,7 @@ export class Environment {
 
     public isDead() {
         if (this.oilLevel <= 0 || this.attention <= 0) {
+            //log('oilLevel', this.oilLevel, 'attention: ', this.attention);
             return true;
         } else { return false; }
     }
@@ -67,7 +68,7 @@ export class Environment {
     //UPDATE ENVIRONMENT STATE
     update(action: string, reaction: string) {
         //log(action, reaction);
-        this._updateOperates(action, reaction);
+
         this._updateAttention(action, reaction);
 
         if (this.mode === 'easy') {
@@ -77,6 +78,8 @@ export class Environment {
             this._updateEnergy(action, reaction);
             this._updateLove(action, reaction);
         }
+
+        this._updateOperates(action, reaction);
     }
 
     _updateOperates(_action: string, reaction: string) {
@@ -95,24 +98,13 @@ export class Environment {
     }
 
     _updateOilLevel(action: string, reaction: string) {
-        if (action === 'smearMake') {
-            this.oilLevel -= 20;
-        } else if (action === 'waveArms') {
-            //log('decrease oil');
-            this.oilLevel -= 15;
-        }
-        if (reaction === 'oil' && this.oilLevel <= this.thresholdOil && this.operates) {
-            //log('increase oil');
-            this.oilLevel += 60;
-        }
-    }
-
-    _updateEnergy(action: string, reaction: string) {
         if (action !== 'sleep') {
-            this.energy -= 5;
+            this.oilLevel -= 10;
         }
-        if (reaction === 'charge' && this.operates) {
-            this.energy = 100;
+
+        if (reaction === 'oil' && this.operates) {
+            //log('increase oil');
+            this.oilLevel = 100;
         }
     }
 
@@ -130,6 +122,7 @@ export class Environment {
         if (this.attention > 100) this.attention = 100;
     }
 
+    // ONLY  IN HARD MODE
     _updateLove(_action: string, reaction: string) {
         if (reaction === 'praise' && this.operates) {
             this.love += 50;
@@ -138,6 +131,15 @@ export class Environment {
         }
 
         if (this.love > 100) this.love = 100;
+    }
+
+    _updateEnergy(action: string, reaction: string) {
+        if (action !== 'sleep') {
+            this.energy -= 5;
+        }
+        if (reaction === 'charge' && this.operates) {
+            this.energy = 100;
+        }
     }
 
     //GET REWARD
@@ -185,14 +187,12 @@ export class Environment {
     }
 
     private getRewardOperates(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'repair') {
-            //repaired robo
-            if (!prevConditions.operates) {
-                reward += 51;
-            } else {
-                reward -= 51;
-            }
+        if (!prevConditions.operates && reaction === 'repair') {
+            reward += 51;
+        } else if(!prevConditions.operates) {
+            reward -= 51;
         }
+
         return reward;
     }
 
@@ -209,21 +209,6 @@ export class Environment {
                 reward -= 30;
             } else {
                 reward += 30;
-            }
-        }
-        return reward;
-    }
-
-    private getRewardCharge(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'charge' && prevConditions.operates) {
-            //@ts-ignore
-            if (prevConditions.energy < 50) {
-                reward += 30;
-                //@ts-ignore
-            } else if (prevConditions.energy < 80) {
-                reward += 10;
-            } else {
-                reward += -30;
             }
         }
         return reward;
@@ -248,6 +233,7 @@ export class Environment {
         return reward;
     }
 
+    //ONLY IN HARD MODE
     private getRewardLove(reward: number, reaction: string, prevConditions: Condition) {
         if (reaction === 'praise' && prevConditions.operates) {
             //@ts-ignore
@@ -264,4 +250,18 @@ export class Environment {
         return reward;
     }
 
+    private getRewardCharge(reward: number, reaction: string, prevConditions: Condition) {
+        if (reaction === 'charge' && prevConditions.operates) {
+            //@ts-ignore
+            if (prevConditions.energy < 50) {
+                reward += 30;
+                //@ts-ignore
+            } else if (prevConditions.energy < 80) {
+                reward += 10;
+            } else {
+                reward += -30;
+            }
+        }
+        return reward;
+    }
 }
