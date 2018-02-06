@@ -185,14 +185,13 @@ export class Environment {
     }
 
     private getRewardOperates(reward: number, reaction: string, prevConditions: Condition) {
-        if (reaction === 'repair') {
-            //repaired robo
-            if (!prevConditions.operates) {
-                reward += 51;
-            } else {
-                reward -= 51;
-            }
+
+        if (!prevConditions.operates && reaction === 'repair') {
+            reward += 51;
+        } else if(!prevConditions.operates) {
+            reward -= 51;
         }
+
         return reward;
     }
 

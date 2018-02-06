@@ -72,7 +72,7 @@ function learn(reaction) {
   //current state in numbers 
   const reward = environment.getReward(reaction, prevCondition);
   const curState = environment.getCurrentState();
-  const curAction = learner.getNextAction(prevState);
+  const curAction = learner.getNextAction(curState);
   learner.updateLearner(reward, prevAction, prevState, curAction, curState);
 
   console.log(
