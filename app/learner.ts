@@ -28,7 +28,6 @@ export class Learner {
         this.qTable = createMatrix(Object.keys(this.stateTable.hashes).length, this.actions.length, 0);
         this.eTable = createMatrix(Object.keys(this.stateTable.hashes).length, this.actions.length, 0);
 
-        //log('value', this.qTable[0][0]); return;
         for (let s = 0; s < Object.keys(this.stateTable.hashes).length; s++) {
             for (let a = 0; a < this.actions.length; a++) {
                 this.qTable[s][a] = 0;
