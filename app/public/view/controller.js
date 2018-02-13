@@ -7,6 +7,8 @@ const { Dom } = require('../view/index/dom.js');
 const { User } = require('../view/user.js');
 const { Move } = require('../view/actions/move.js');
 
+let count = 0;
+
 class Controller {
     constructor() {
         this.dom = new Dom();
@@ -49,6 +51,7 @@ class Controller {
     }
 
     evalActFunc(funcName) {
+        count++;
         switch (funcName) {
             case 'moveRobot':
                 this.move();
@@ -228,6 +231,9 @@ class Controller {
     }
 
     die() {
+        count--;
+        console.log('count', count);
+        count = 0;
         this.Busy = true;
         this.react.die()
             .then(() => {

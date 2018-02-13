@@ -185,10 +185,9 @@ export class Environment {
     }
 
     private getRewardOperates(reward: number, reaction: string, prevConditions: Condition) {
-
         if (!prevConditions.operates && reaction === 'repair') {
             reward += 51;
-        } else if(!prevConditions.operates) {
+        } else if (!prevConditions.operates) {
             reward -= 51;
         }
 
