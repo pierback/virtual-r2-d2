@@ -2,6 +2,10 @@
     max-height: 80vh;
 }
 
+h3 {
+    margin-top: 85px;
+}
+
 #canvas {
     position: relative;
     background-image: url(/res/desert-cropped-y.jpg);

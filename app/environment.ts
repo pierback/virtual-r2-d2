@@ -60,6 +60,7 @@ export class Environment {
 
     public isDead() {
         if (this.oilLevel <= 0 || this.attention <= 0) {
+            this.oilLevel <= 0 ? log('OIL STARVING') : log('ATTENTION STARVING');
             return true;
         } else { return false; }
     }
