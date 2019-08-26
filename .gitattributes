@@ -1,6 +1,6 @@
 * text=auto
 app/* linguist-vendored
-*.ts linguist-vendored
+*.js linguist-vendored
 
 *.js linguist-language=JavaScript
 *.ts linguist-language=TypeScript
