@@ -3,4 +3,5 @@
 *.js linguist-language=JavaScript
 *.ts linguist-language=TypeScript
 
-*.css export-ignore
+app/public/* linguist-vendored
+
